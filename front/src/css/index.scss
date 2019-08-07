@@ -4,7 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: pink;
+    background: #F8F8F8;
 }
 
 .header {
@@ -16,7 +16,7 @@ body {
     top: 0;
     left: 0;
     opacity: 0.9;
-    z-index: 1;//z-index定义了谁覆盖谁，数字大的覆盖数字小的。
+    z-index: 1; //z-index定义了谁覆盖谁，数字大的覆盖数字小的。
 
 
     .container {
@@ -59,7 +59,7 @@ body {
 
                 &.active {
                     width: 80px;
-                    border-bottom: 5px solid #e63929;
+                    border-bottom: 5px solid $themeColor;
                 }
 
                 // 小三角
@@ -97,21 +97,23 @@ body {
     width: 100%;
     margin-top: $navHeight+20px;
 
+    //将所有内容包起来，不直接写在div.main中。前人经验，不知道好处是什么。
     .wrapper {
-        background: #521a1a;
-        width: $pageWidth;
-        margin: 0 auto;
-        height: 1000px;
-        overflow: hidden;
+        // background: #521a1a; //颜色
+        width: $pageWidth; //宽度，设置在contants.scss中，并引用它
+        margin: 0 auto; //外边距 上下0 左右自动，也就是居中
+        // height: 1000px; //高度，取消高度，靠元素来支撑其main中的高度
+        overflow: hidden; //溢出部分隐藏，
 
+        //将新闻相关的包起来，三部分：横幅、箭头、小圆点
         .news_wrapper {
             $bannerWidth: $mainBoxWidth;
             $bannerHeigth: 202px;
             width: $mainBoxWidth;
-            height: 500px;
-            background: #e63929;
-            float: left;
+            // height: 500px;//取消高度，靠元素来支撑其main中的高度
+            float: left; //左浮动
 
+            //横幅的组
             .banner_gruop {
                 width: 100%;
                 height: 202px;
@@ -139,7 +141,7 @@ body {
                     }
                 }
 
-                //箭头
+                //箭头共同的属性
                 .arrow {
                     font-family: Arial, Helvetica, sans-serif;
                     font-size: 70px;
@@ -161,9 +163,9 @@ body {
                     right: 20px;
                 }
 
-                //小圆点
+                //小圆点的组
                 .page_control_group {
-                    position: absolute;
+                    position: absolute; //绝对定位
                     left: 0;
                     right: 0;
                     bottom: 20px;
@@ -197,13 +199,120 @@ body {
                 }
 
             }
+
+            //轮播图下面的新闻组
+            .list_outer_group {
+                background: #fff;
+                margin-top: 12px;
+                overflow: hidden;
+
+                //新闻标签选项
+                .list_tab {
+                    overflow: hidden;
+                    width: 100%;
+                    height: 66px;
+                    border: 1px solid #eee;
+                    border-left: none;
+                    border-right: none;
+
+                    li {
+                        float: left;
+                        padding: 0 10px;
+                        margin-top: 20px;
+
+                        a {
+                            color: #878787;
+                        }
+
+                        //伪类选择器，根据特殊名字选择，假装是个类
+                        &:first-of-type {
+                            border-left: 5px solid #E63929;
+                        }
+
+                        &.active {
+                            a {
+                                color: #E63929;
+                            }
+                        }
+
+                    }
+                }
+
+                //新闻简介
+                .list_inner_group {
+                    li {
+                        padding: 20px;
+                        border-bottom: 1px solid #eee;
+                        overflow: hidden;
+
+
+                        .thumbnail_group {
+                            float: left;
+                            height: 162px;
+                            width: 226px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+
+                        .news_group {
+                            float: right;
+                            width: 504px;
+                            height: 162;
+                            position: relative;
+
+                            .title {
+                                font-size: 20px;
+
+                                a {
+                                    color: #212121;
+
+                                    &:hover {
+                                        color: $themeColor;
+                                    }
+                                }
+                            }
+
+                            .desc {
+                                color: #878787;
+                                font-size: 14px;
+                                margin-top: 10px;
+                            }
+
+                            .more {
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                font-size: 14px;
+
+                                .category {
+                                    color: #878787;
+                                }
+
+                                .pub_time {
+                                    float: right;
+                                    margin-left: 14px;
+                                }
+
+                                .author {
+                                    float: right;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
         }
 
         .sidebar-wrapper {
             width: $sideBarWidth;
-            height: 500px;
+            height: 500px; //取消高度，靠元素来支撑其main中的高度
             float: right;
-            background: #fff;
+            background: yellowgreen;
         }
     }
 }

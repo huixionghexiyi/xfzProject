@@ -11,7 +11,6 @@
     <title>首页</title>
     <script src="../../dist/js/jquery-3.3.1.min.js"></script>
     <script src="../../dist/js/index.min.js"></script>
-
 </head>
 
 <body>
@@ -38,8 +37,9 @@
     <div class="main">
         <div class="wrapper">
             <div class="news_wrapper">
+                <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
                 <div class="banner_gruop" id="banner_gruop">
-                    <!-- 轮播 -->
+                    <!-- 轮播图 -->
                     <ul class="banner_ul" id="banner_ul">
                         <li><a href="#"><img src="../../src/img/banner1.jpg" alt=""></a></li>
                         <li><a href="#"><img src="../../src/img/banner2.jpg" alt=""></a></li>
@@ -51,10 +51,61 @@
                     <!-- 小圆点 -->
                     <div class="page_control_group">
                         <ul class="page_control" id="page_control">
-
+                            <!-- 这里是pageControl，也就是小圆点，动态生成 -->
                         </ul>
                     </div>
                 </div>
+                <div class="list_outer_group">
+                    <ul class="list_tab">
+                        <li class="active"><a href="">最新资讯</a></li>
+                        <li><a href="">新消费</a></li>
+                        <li><a href="">金融科技</a></li>
+                        <li><a href="">出行物流</a></li>
+                    </ul>
+                    <ul class="list_inner_group">
+                        <li>
+                            <div class="thumbnail_group">
+                                <a href="#">
+                                    <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                                </a>
+                            </div>
+                            <div class="news_group">
+                                <p class="title">
+                                    <a href="#">
+                                        早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
+                                    </a>
+                                </p>
+                                <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
+                                <p class="more">
+                                    <span class="category">中兴5G手机</span>
+                                    <span class="pub_time">一小时前</span>
+                                    <span class="author">huixiong</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                                <div class="thumbnail_group">
+                                    <a href="#">
+                                        <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                                    </a>
+                                </div>
+                                <div class="news_group">
+                                    <p class="title">
+                                        <a href="#">
+                                            早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
+                                        </a>
+                                    </p>
+                                    <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
+                                    <p class="more">
+                                        <span class="category">中兴5G手机</span>
+                                        <span class="pub_time">一小时前</span>
+                                        <span class="author">huixiong</span>
+                                    </p>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+
             </div>
             <!-- 右边 -->
             <div class="sidebar-wrapper"></div>

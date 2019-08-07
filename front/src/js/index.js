@@ -29,10 +29,9 @@ Banner.prototype.initBanner = function () {
     this.bannerUl.append(firstBanner);//第一张加到最后面
     this.bannerUl.prepend(lastBanner);//最后一张加到最前面
     this.bannerUl.css({ "width": (self.bannerCount + 2) * self.bannerWidth, "left": -self.bannerWidth });
-
 }
 /**
- * 初始化小圆点
+ * 初始化小圆点，pageContorl
  */
 Banner.prototype.initPageControl = function () {
     var self = this;
@@ -67,6 +66,7 @@ Banner.prototype.toggleArrow = function (isShow) {
  */
 Banner.prototype.animate = function () {
     var self = this;
+    //设置滑动的方向和花费的时间。
     this.bannerUl.animate({ "left": -self.bannerWidth * self.index }, 500);
     //设置pageControl
     var index = self.index;
