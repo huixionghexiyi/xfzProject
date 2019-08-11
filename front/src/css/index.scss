@@ -449,7 +449,7 @@ body {
             //热门推荐
             .hot_news_group {
                 overflow: hidden;
-               
+
                 .hot_list_group {
                     li {
                         padding: 0 20px 20px;
@@ -512,7 +512,171 @@ body {
 
             }
 
-            //foorer
+
         }
+    }
+}
+
+//foorer
+.footer {
+    background: #2E2E2E;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+
+    .top_group {
+        width: $pageWidth;
+        margin: 0 auto;
+        overflow: hidden;
+
+
+        .left_group {
+            float: left;
+            width: 60%;
+            padding-top: 20px;
+
+            .title {
+                font-size: 18px;
+                color: #fff;
+            }
+
+            .partner_group {
+                overflow: hidden;
+
+                li {
+                    float: left;
+                    height: 30px;
+                    margin: 20px;
+
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+
+        .right_group {
+            float: left;
+            width: 40%;
+            margin-top: 20px;
+
+            .logo_group {
+                width: 165;
+                height: 50;
+                background: url("https://www.xfz.cn/static/build/images/logo-test.png") no-repeat; //配置logo
+                background-size: 100% 100%;
+            }
+
+            .detail_group {
+                position: relative; //相对定位，这是为了让focus_us的绝对定位有坐标。
+
+                .links {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    overflow: hidden;
+
+                    li {
+                        float: left;
+
+                        a {
+                            font-size: 13px;
+                            color: #c9c9c9;
+                        }
+
+                    }
+                }
+
+                .address {
+                    margin-bottom: 10px;
+                    font-size: 13px;
+                    margin-right: 20px;
+                    color: #c9c9c9;
+
+                }
+
+                .email {
+                    overflow: hidden;
+                    margin-bottom: 10px;
+
+                    p {
+                        float: left;
+                        margin-right: 20px;
+                        font-size: 13px;
+                        color: #c9c9c9;
+
+                    }
+                }
+
+                .focus_us {
+                    margin-bottom: 30px;
+                    height: 35px;
+                    overflow: hidden;
+
+                    span {
+                        float: left;
+                        font-size: 13px;
+                        color: #c9c9c9;
+                    }
+
+                    .wx {
+                        float: left;
+                        color: #c9c9c9;
+                        height: 40px;
+                        margin-left: 10px;
+                        background: url("https://www.xfz.cn/static/build/images/wx-icon.png") no-repeat;
+                        cursor: pointer;
+                        span {
+                            margin-left: 37px;
+                            color: #fff;
+                        }
+
+                        //二维码1
+                        .wx1_qrcode {
+                            width: 120px;
+                            height: 120px;
+                            background: url("../../src/img/xfz-wechat-share.png") no-repeat;
+                            position: absolute;
+                            background-size: contain;
+                            bottom: 37px;
+                            left: 30px;
+                            display: none;
+                        }
+
+                        //二维码2
+                        .wx2_qrcode {
+                            width: 120px;
+                            height: 120px;
+                            background: url("../../src/img/xfz-wechat-share.png") no-repeat;
+                            position: absolute;
+                            background-size: contain;
+                            left: 170px;
+                            bottom: 37px;
+                            display: none;
+                        }
+
+                        &:hover {
+                            //鼠标放到div class ='wx'上就可以展示二维码，由于子div包含的二维码不同所以显示的也不同
+                            .wx1_qrcode {
+                                display: block;
+                            }
+
+                            .wx2_qrcode {
+                                display: block;
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    .bottom_group {
+        background: #555555;
+        height: 68px;
+        line-height: 68px;
+        text-align: center;
+        color: #C9C9C9;
     }
 }
