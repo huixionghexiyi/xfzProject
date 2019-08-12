@@ -9,10 +9,12 @@
         .main_content_wrapper {
             padding: 20px;
             background: #fff;
-            box-sizing: border-box;//为了让内边距展示在盒子内
+            box-sizing: border-box; //为了让内边距展示在盒子内
+
             //新闻详情
             .news_wrapper {
                 padding-bottom: 10px;
+
                 .title {
                     color: $mainFontColor;
                     font-size: 24px;
@@ -81,44 +83,92 @@
                 }
             }
 
-            //评论区
+            //发表评论
             .comment_wrapper {
                 padding-top: 10px;
                 border-top: 1px solid $lineColor;
-                .title{
+
+                .title {
                     color: $mainFontColor;
                     font-size: 18px;
                     font-weight: 400;
                 }
-                .comment_textarea{
+
+                .comment_textarea {
                     margin-top: 10px;
                     padding: 5px 10px;
                     font-size: 14px;
-                    resize: none;//清除右下角文本框标识
+                    resize: none; //清除右下角文本框标识
                     border: 1px solid #ccc;
                     // outline: none;//清除选中边框变色
                     width: 100%;
                     border-radius: 3px;
                 }
-                .nologin_textarea{
+
+                .nologin_textarea {
                     height: 40px;
                     line-height: 28px;
                 }
-                .logined_textarea{
+
+                .logined_textarea {
                     height: 80px;
                 }
-                .submit_btn_group{
+
+                .submit_btn_group {
                     text-align: right;
                     margin-top: 10px;
-                    .submit_btn{
+
+                    .submit_btn {
                         background: #f6766a;
                         color: #fff;
-                        padding:5px 10px;
+                        padding: 5px 10px;
                         border-radius: 3px;
                         border: none;
                         cursor: pointer;
                     }
                 }
+            }
+
+            //评论列表
+            .comment_list {
+                margin-top: 15px;
+                
+                li {
+                    border-bottom: 1px solid #ccc;
+                    padding-bottom: 15px;
+                    margin-bottom: 15px;
+                    .comment_info {
+                        height: 30px;
+                        line-height: 30px;
+                        color: $assistFontColor;
+                        overflow: hidden;
+                        font-size: 14px;
+                        img {
+                            float: left;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                        }
+                        .author{
+                            float: left;
+                            margin-left: 10px;
+                        }
+                        .sub_time{
+                            float: right;
+                        }
+
+                    }
+                    .comment_content{
+                        margin-left: 40px;
+                        margin-top: 10px;
+                        font-size: 16px;
+                    }
+                    //删除父元素的最后一个子元素的边框
+                    &:last-of-type{
+                        border: none;
+                    }
+                }
+               
             }
         }
     }
