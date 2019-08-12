@@ -1,0 +1,199 @@
+@import "constants.scss";
+
+body {
+    background: #F8F8F8;
+}
+// 主体的公共部分
+.main {
+    width: 100%;
+    margin-top: $navHeight+20px;
+
+    .wrapper {
+        // background: #521a1a; //颜色
+        width: $pageWidth; //宽度，设置在contants.scss中，并引用它
+        margin: 0 auto; //外边距 上下0 左右自动，也就是居中
+        // height: 1000px; //高度，取消高度，靠元素来支撑其main中的高度
+        overflow: hidden; //溢出部分隐藏，
+
+        .main_content_wrapper {
+            $bannerWidth: $mainBoxWidth;
+            // $bannerHeigth: 202px;
+            width: $mainBoxWidth;
+            // height: 500px;//取消高度，靠元素来支撑其main中的高度
+            float: left; //左浮动
+        }
+
+        //右边，和左边分开写。看着清楚一点
+        .sidebar-wrapper {
+            width: $sideBarWidth;
+            // height: 500px; //取消高度，靠元素来支撑其main中的高度
+            float: right;
+            background: yellowgreen;
+            background: #fff;
+            float: right;
+            overflow: hidden; //获取子元素的高度，不然就没有高度
+
+            // 右边所有的标题,在线课堂，关注小饭桌，热门推荐
+            .title_group {
+                padding: 20px;
+                overflow: hidden;
+
+                .title {
+                    float: left;
+                    font-size: 18px;
+                    // background: red;
+                    color: #212121;
+                }
+
+                .more {
+                    float: right;
+                    color: $themeColor;
+                    font-size: 14px;
+                }
+            }
+
+            //广告位
+            .advertise_group {
+                img {
+                    width: 100%; //以后的图片如果很宽，会自动缩小
+                }
+            }
+
+            //平台关注
+            .platform_group {
+                // padding: 20px 20px 0 20px;
+                overflow: hidden;
+                // background: red;
+
+                .title {
+                    float: left;
+                    font-size: 18px;
+                    color: #212121;
+                }
+
+                //关注博包括知乎、微博、头条
+                .focus_group {
+                    overflow: hidden;
+
+                    .left_group {
+                        padding: 0 20px;
+                        width: 180px;
+                        float: left;
+
+                        li {
+                            width: 100%;
+                            height: 50px;
+                            line-height: 50px;
+                            // background: red;
+                            background: url("../../src/img/side-icon.png");
+                            background-repeat: no-repeat;
+                            background-size: 26%;
+                            margin-bottom: 10px;
+
+                            a {
+                                color: #878787;
+                                margin-left: 64px;
+                                font-size: 14px;
+                            }
+                        }
+
+                        .zhihu {
+                            //通过调整背景图片的位置
+                            //以达到同一张图片展示不同内容的目的
+                            background-position-y: 0px;
+                        }
+
+                        .weibo {
+                            background-position-y: -60px;
+
+                        }
+
+                        .toutiao {
+                            background-position-y: -120px;
+                        }
+
+
+
+                    }
+
+                    .right_group {
+                        width: 110px;
+                        height: 80px;
+                        float: right;
+                        background: url("../../src/img/xfz-wechat-share.png") no-repeat;
+                        background-size: contain;
+
+                        .desc {
+                            font-size: 12px;
+                            margin-top: 80px;
+                            color: #878787;
+                        }
+                    }
+                }
+
+            }
+
+            //热门推荐
+            .hot_news_group {
+                overflow: hidden;
+
+                .hot_list_group {
+                    li {
+                        padding: 0 20px 20px;
+                        overflow: hidden;
+                        border-bottom: 1px solid #eee;
+
+                        .left_group {
+                            float: left;
+                            width: 190px;
+                            height: 72px;
+                            position: relative;
+
+                            .title {
+                                font-size: 16px;
+
+                                a {
+                                    color: #212121;
+
+                                    &:hover {
+                                        color: $themeColor;
+                                    }
+                                }
+
+                            }
+
+                            .more {
+                                font-size: 12px;
+                                overflow: hidden;
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+
+                                .category {
+                                    float: left;
+                                }
+
+                                .pub_time {
+                                    color: $assistFontColor;
+                                    float: right;
+                                }
+                            }
+                        }
+
+                        .right_group {
+                            float: right;
+                            width: 102px;
+                            height: 72px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

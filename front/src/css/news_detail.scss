@@ -1,0 +1,125 @@
+@import "init.scss";
+@import "constants.scss";
+@import "header.scss";
+@import "footer.scss";
+@import "main.scss";
+
+.main {
+    .wrapper {
+        .main_content_wrapper {
+            padding: 20px;
+            background: #fff;
+            box-sizing: border-box;//为了让内边距展示在盒子内
+            //新闻详情
+            .news_wrapper {
+                padding-bottom: 10px;
+                .title {
+                    color: $mainFontColor;
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+
+                //标题下面的附加信息
+                .news_info {
+                    $newsInfoHeight: 28px;
+                    overflow: hidden;
+                    margin-top: 25px;
+                    font-size: 14px;
+                    color: $assistFontColor;
+                    line-height: $newsInfoHeight;
+                    height: $newsInfoHeight;
+
+                    //左边的作者、日期、分类
+                    .info_group {
+                        float: left;
+
+                        span {
+                            margin-right: 20px;
+                        }
+
+                        .category {
+                            background: #f6766a;
+                            padding: 0 5px;
+                            color: #fff;
+                            border-radius: 3px;
+                        }
+                    }
+
+                    //标题下面，右边的分享
+                    .share_group {
+                        float: right;
+                        overflow: hidden;
+
+                        span {
+                            float: left; //如果不将分享至所在的span左浮动，那么分享至就会在右边。
+                        }
+
+                        .item_group {
+                            float: left;
+                            width: 28px;
+                            height: 28px;
+                            background: url("https://www.xfz.cn/static/build/images/share.png") no-repeat;
+                            background-size: 230%;
+                        }
+
+                        .weixin {}
+
+                        .weibo {
+                            background-position: -36px 0; //调整背景图片的位置
+                            //使用left、right等调节位置是绝对定位的调节方式。这个是图片背景的位置
+                        }
+                    }
+                }
+
+                .article {
+                    margin-top: 20px;
+
+                    img {
+
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            //评论区
+            .comment_wrapper {
+                padding-top: 10px;
+                border-top: 1px solid $lineColor;
+                .title{
+                    color: $mainFontColor;
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+                .comment_textarea{
+                    margin-top: 10px;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    resize: none;//清除右下角文本框标识
+                    border: 1px solid #ccc;
+                    // outline: none;//清除选中边框变色
+                    width: 100%;
+                    border-radius: 3px;
+                }
+                .nologin_textarea{
+                    height: 40px;
+                    line-height: 28px;
+                }
+                .logined_textarea{
+                    height: 80px;
+                }
+                .submit_btn_group{
+                    text-align: right;
+                    margin-top: 10px;
+                    .submit_btn{
+                        background: #f6766a;
+                        color: #fff;
+                        padding:5px 10px;
+                        border-radius: 3px;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
