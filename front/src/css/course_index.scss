@@ -1,0 +1,131 @@
+@import "init.scss";
+@import "constants.scss";
+@import "header.scss";
+@import "main.scss";
+@import "footer.scss";
+
+.main {
+    margin-top: 64px;
+
+    .course_nav {
+        width: 100%;
+        height: $courseNavHeight;
+        background: #fff;
+        //阴影的设置，rgba带有透明度
+        //box-shadow: h-shadow v-shadow blur spread color inset/outset
+        //水平方向需要的阴影程度,垂直方向，模糊程度，阴影大小，颜色，外部/内部阴影
+        box-shadow: 0 4px 5px rgba($color: #000000, $alpha: 0.1);
+
+        //内容
+        .nav_container {
+            margin: 0 auto; //让盒子居中，需要设是width
+            width: $pageWidth;
+            overflow: hidden;
+            line-height: $courseNavHeight;
+            overflow: hidden;
+
+            .title {
+                float: left;
+                font-size: 24px;
+                color: #696969;
+                font-weight: 400;
+            }
+
+            .nav_list {
+                float: left;
+                margin-left: 100px;
+
+                li {
+                    float: left;
+                    margin: 0 40px;
+
+                    a {
+                        font-size: 16px;
+                        color: #888;
+                    }
+
+                    &.active {
+                        a {
+                            color: $mainFontColor;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wrapper {
+
+        //所有的课程ul
+        .course_list {
+            margin-top: 20px; //ul距离上面的距离
+            //flex布局，css3特性
+            display: flex;
+            flex-direction: row; //指定方向
+            flex-wrap: wrap; //环绕方式，一行还不下就换行
+            justify-content: space-between; //对齐方式
+
+            li {
+                $courseItemHeight: 280px;//设置每个li的高度
+                $thumbnailHeight: 156px;//设置图片的高度，用于计算文字的高度，li减图片
+                width: 278px;
+                height: $courseItemHeight;
+                background: #fff;
+                margin-bottom: 20px;
+                //鼠标放上去显示阴影
+                &:hover {
+                    //x方向 y方向 模糊 染色
+                    box-shadow: 0 3px 10px rgba($color: #000000, $alpha: 0.1);
+                }
+                //缩略图
+                .thumbnail_group {
+                    .thumbnail {
+                        width: 100%; //是相对与父盒子是100%,父盒子需要指定宽度
+                        background-size: 100%;
+                    }
+                }
+                //文字内容
+                .course_info {
+                    width: 100%;
+                    height: $courseItemHeight - $thumbnailHeight;
+                    padding: 20px;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    .title {
+                        font-size: 16px;
+                        color: $mainFontColor;
+                    }
+
+                    .author {
+                        margin-top: 10px;
+                        font-size: 14px;
+                        color: $assistFontColor;
+                    }
+
+                    .price_group {
+                        position: absolute;
+                        left: 20px;
+                        right: 20px;
+                        bottom: 20px;
+                        //行级标签就用text-align让其放到右边
+                        //如果是块级标签就需要浮动
+                        text-align: right;
+
+                        .free {
+                            color: #7ED312;
+                        }
+
+                        .pay {
+                            color: #F54A4A;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+
+}
