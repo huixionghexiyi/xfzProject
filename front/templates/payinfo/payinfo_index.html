@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- 图标 -->
     <link rel="shortcut icon" href="../../f.png" />
-    <link rel="stylesheet" href="../../dist/css/news/index.min.css">
+    <link rel="stylesheet" href="../../dist/css/payinfo/payinfo_index.min.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
     <title>首页</title>
     <script src="../../dist/js/jquery-3.3.1.min.js"></script>
@@ -21,10 +21,10 @@
                 <a href="/"></a>
             </div>
             <ul class="nav">
-                <li class="active"><a href="index.html">资讯</a></li>
-                <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="../search/search_index.html">搜索</a> </li>
+                    <li class="active"><a href="../news/index.html">资讯</a></li>
+                    <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
+                    <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
+                    <li><a href="../search/search_index.html">搜索</a> </li>
             </ul>
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>
@@ -37,82 +37,72 @@
     <div class="main">
         <div class="wrapper">
             <div class="main_content_wrapper">
-                <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
-                <div class="banner_gruop" id="banner_gruop">
-                    <!-- 轮播图 -->
-                    <ul class="banner_ul" id="banner_ul">
-                        <li><a href="#"><img src="../../src/img/banner1.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner2.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner3.jpg" alt=""></a></li>
-                    </ul>
-                    <!-- 左右箭头 -->
-                    <span class="arrow left_arrow" id="left_arrow">‹</span>
-                    <span class="arrow right_arrow" id="right_arrow">›</span>
-                    <!-- 小圆点 -->
-                    <div class="page_control_group">
-                        <ul class="page_control" id="page_control">
-                            <!-- 这里是pageControl，也就是小圆点，动态生成 -->
-                        </ul>
-                    </div>
+                <div class="venture_banner">
+                    <img src="https://www.xfz.cn/static/build/images/web-shopxfz-banner.jpg" class="venture_banner_img">
                 </div>
-                <!-- 新闻组 -->
-                <div class="list_outer_group">
-                    <!-- 新闻标签 -->
-                    <ul class="list_tab">
-                        <li class="active"><a href="">最新资讯</a></li>
-                        <li><a href="">新消费</a></li>
-                        <li><a href="">金融科技</a></li>
-                        <li><a href="">出行物流</a></li>
-                    </ul>
-                    <!-- 新闻简介 -->
-                    <ul class="list_inner_group">
-                        <li>
-                            <div class="thumbnail_group">
-                                <a href="#">
-                                    <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
-                                </a>
+                <ul class="venture_list">
+                    <li>
+                        <a href="#">
+                            <div class="venture_img">
+                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
                             </div>
-                            <div class="news_group">
-                                <p class="title">
-                                    <a href="news_detail.html">
-                                        早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
-                                    </a>
-                                </p>
-                                <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
-                                <p class="more">
-                                    <span class="category">中兴5G手机</span>
-                                    <span class="pub_time">一小时前</span>
-                                    <span class="author">huixiong</span>
-                                </p>
+                            <div class="venture_introduct">
+                                <p class="venture_title">如何写一份好点商业计划书</p>
+                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                                <p class="venture_price">¥8.8</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="thumbnail_group">
-                                <a href="#">
-                                    <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
-                                </a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="venture_img">
+                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
                             </div>
-                            <div class="news_group">
-                                <p class="title">
-                                    <a href="#">
-                                        早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
-                                    </a>
-                                </p>
-                                <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
-                                <p class="more">
-                                    <span class="category">中兴5G手机</span>
-                                    <span class="pub_time">一小时前</span>
-                                    <span class="author">huixiong</span>
-                                </p>
+                            <div class="venture_introduct">
+                                <p class="venture_title">如何写一份好点商业计划书</p>
+                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                                <p class="venture_price">¥8.8</p>
                             </div>
-                        </li>
-                    </ul>
-                    <div class="load_more_group">
-                        <button class="load_more">
-                            查看更多
-                        </button>
-                    </div>
-                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="venture_img">
+                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                            </div>
+                            <div class="venture_introduct">
+                                <p class="venture_title">如何写一份好点商业计划书</p>
+                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                                <p class="venture_price">¥8.8</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="venture_img">
+                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                            </div>
+                            <div class="venture_introduct">
+                                <p class="venture_title">如何写一份好点商业计划书</p>
+                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                                <p class="venture_price">¥8.8</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="venture_img">
+                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                            </div>
+                            <div class="venture_introduct">
+                                <p class="venture_title">如何写一份好点商业计划书</p>
+                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                                <p class="venture_price">¥8.8</p>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
             <!-- 右边 -->
             <div class="sidebar-wrapper">

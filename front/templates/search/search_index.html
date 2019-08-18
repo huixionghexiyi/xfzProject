@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- 图标 -->
     <link rel="shortcut icon" href="../../f.png" />
-    <link rel="stylesheet" href="../../dist/css/news/index.min.css">
+    <link rel="stylesheet" href="../../dist/css/search/search_index.min.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
     <title>首页</title>
     <script src="../../dist/js/jquery-3.3.1.min.js"></script>
@@ -21,10 +21,10 @@
                 <a href="/"></a>
             </div>
             <ul class="nav">
-                <li class="active"><a href="index.html">资讯</a></li>
-                <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="../search/search_index.html">搜索</a> </li>
+                    <li class="news active"><a href="../news/index.html">资讯</a></li>
+                    <li class="course"><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
+                    <li class="venture"><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
+                    <li class="search"><a href="../search/search_index.html">搜索</a> </li>
             </ul>
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>
@@ -38,32 +38,19 @@
         <div class="wrapper">
             <div class="main_content_wrapper">
                 <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
-                <div class="banner_gruop" id="banner_gruop">
-                    <!-- 轮播图 -->
-                    <ul class="banner_ul" id="banner_ul">
-                        <li><a href="#"><img src="../../src/img/banner1.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner2.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner3.jpg" alt=""></a></li>
-                    </ul>
-                    <!-- 左右箭头 -->
-                    <span class="arrow left_arrow" id="left_arrow">‹</span>
-                    <span class="arrow right_arrow" id="right_arrow">›</span>
-                    <!-- 小圆点 -->
-                    <div class="page_control_group">
-                        <ul class="page_control" id="page_control">
-                            <!-- 这里是pageControl，也就是小圆点，动态生成 -->
-                        </ul>
+                <div class="search_group" id="search_group">
+                    <div class="search_input">
+                        <input type="text" placeholder="可输入新闻关键词、作者名字搜索">
                     </div>
+                    <a href="">
+                        <div class="search_btn">
+                            搜索
+                        </div>
+                    </a>
                 </div>
                 <!-- 新闻组 -->
                 <div class="list_outer_group">
-                    <!-- 新闻标签 -->
-                    <ul class="list_tab">
-                        <li class="active"><a href="">最新资讯</a></li>
-                        <li><a href="">新消费</a></li>
-                        <li><a href="">金融科技</a></li>
-                        <li><a href="">出行物流</a></li>
-                    </ul>
+                    <div class="group_type">热门推荐</div>
                     <!-- 新闻简介 -->
                     <ul class="list_inner_group">
                         <li>
@@ -107,11 +94,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="load_more_group">
-                        <button class="load_more">
-                            查看更多
-                        </button>
-                    </div>
+
                 </div>
             </div>
             <!-- 右边 -->

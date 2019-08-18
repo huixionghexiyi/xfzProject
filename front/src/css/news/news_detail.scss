@@ -1,8 +1,8 @@
-@import "init.scss";
-@import "constants.scss";
-@import "header.scss";
-@import "footer.scss";
-@import "main.scss";
+@import "../../css/common/init.scss";
+@import "../../css/common/constants.scss";
+@import "../../css/common/header.scss";
+@import "../../css/common/main.scss";
+@import "../../css/common/footer.scss";
 
 .main {
     .wrapper {
@@ -67,6 +67,7 @@
                         .weixin {}
 
                         .weibo {
+                            width: 28px;
                             background-position: -36px 0; //调整背景图片的位置
                             //使用left、right等调节位置是绝对定位的调节方式。这个是图片背景的位置
                         }

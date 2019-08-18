@@ -1,0 +1,58 @@
+@import "../common/constants.scss";
+
+
+.main {
+    margin-top: 64px;
+
+    .course_nav {
+        width: 100%;
+        height: $courseNavHeight;
+        background: #fff;
+        //阴影的设置，rgba带有透明度
+        //box-shadow: h-shadow v-shadow blur spread color inset/outset
+        //水平方向需要的阴影程度,垂直方向，模糊程度，阴影大小，颜色，外部/内部阴影
+        box-shadow: 0 4px 5px rgba($color: #000000, $alpha: 0.1);
+
+        //内容
+        .nav_container {
+            margin: 0 auto; //让盒子居中，需要设是width
+            width: $pageWidth;
+            overflow: hidden;
+            line-height: $courseNavHeight;
+            overflow: hidden;
+
+            .title {
+                float: left;
+                font-size: 24px;
+                color: #696969;
+                font-weight: 400;
+            }
+
+            .nav_list {
+                float: left;
+                margin-left: 100px;
+
+                li {
+                    float: left;
+                    margin: 0 40px;
+
+                    a {
+                        font-size: 16px;
+                        color: #888;
+                    }
+
+                    &.active {
+                        a {
+                            color: $mainFontColor;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+}

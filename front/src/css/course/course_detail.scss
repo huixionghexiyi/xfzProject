@@ -1,0 +1,229 @@
+@import "../common/init.scss";
+@import "../common/constants.scss";
+@import "../common/header.scss";
+@import "../common/main.scss";
+@import "../common/footer.scss";
+@import "course_nav.scss";
+
+
+.main {
+
+    //主体
+    .wrapper {
+        width: 1070px;
+        margin-top: 20px;
+        overflow: hidden;
+
+        //主体的上面介绍
+        .course_wrapper {
+            background: #fff;
+
+            //课程信息
+            .course_info {
+                padding: 20px;
+                padding-bottom: 0px;
+
+                //标题
+                .title {
+                    color: $mainFontColor;
+                    font-size: 20px;
+                }
+
+                //分享至
+                .share_group {
+                    overflow: hidden;
+                    margin-top: 10px;
+                    // margin-bottom: 10px;
+
+                    .share {
+                        font-size: 13px;
+                        color: $assistFontColor;
+                        float: left;
+                    }
+
+                    .item_group {
+                        float: left;
+                        width: 20px;
+                        height: 20px;
+                        background: url("https://www.xfz.cn/static/build/images/share.png") no-repeat;
+                        background-size: 220%;
+                    }
+
+                    .weixin {}
+
+                    .weibo {
+                        margin-left: 5px;
+                        background-position: -24px 0px;
+                    }
+                }
+            }
+            //视频介绍
+            .video_gruop {
+                width: 100%;
+                height: 600px;
+                background: pink;
+            }
+
+        }
+        //主体的下面
+        .bottom_wrapper {
+            margin-top: 20px;
+            overflow: hidden;
+            //主体的左边课程介绍
+            .detail_wrapper {
+                float: left;
+                width: 700px;
+
+                .item_group {
+                    background: #fff;
+                    padding: 20px;
+                    margin-bottom: 20px;
+
+                    .item_title {
+                        font-size: 18px;
+                        color: $mainFontColor;
+                        border-left: 5px solid $themeColor;
+                        padding-left: 15px;
+                    }
+
+                    .teacher_group {
+                        margin-top: 20px;
+                        overflow: hidden;
+
+                        .avatar_group {
+                            float: left;
+                            width: 60px;
+                            height: 60px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .teacher_info {
+                            float: left;
+                            margin-left: 15px;
+                            color: $assistFontColor;
+
+                            .desc {
+                                margin-top: 7px;
+                            }
+                        }
+                    }
+
+                    .item_content {
+                        margin-top: 20px;
+                        color: #686868;
+                        line-height: 1.8; //行高变为字体大小的1.8倍
+                    }
+                }
+            }
+            //主体的右边推荐
+            .recommend_wrapper {
+                width: 355px;
+                background: #fff;
+                float: right;
+                padding: 20px;
+                box-sizing: border-box; //内边距占用内部的空间
+
+                .recommend_title {
+                    color: $mainFontColor;
+                    font-size: 18px;
+                }
+
+                .course_list {
+                    li {
+                        overflow: hidden;
+                        padding: 20px 0;
+                        border-bottom: 1px solid $lineColor;
+                        &:last-of-type{
+                            border: none;
+                        }
+                        .course_info_group {
+                            float: left;
+                            width: 150px;
+                            height: 90px;
+                            position: relative;
+                            font-size: 16px;
+
+                            .course_title {
+                                color: $mainFontColor;
+                            }
+                            .teacher{
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                color: $assistFontColor;
+                            }
+                            
+                        }
+                        .thumbnail_group {
+                            float: right;
+                            width: 150px;
+                            height: 90px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //最下面购买横幅
+        .buy_group {
+            overflow: hidden;
+            background: #fff;
+            height: 60px;
+            line-height: 60px;
+
+            .buy_title {
+                float: left;
+                padding-left: 20px;
+                color: $mainFontColor;
+                font-weight: 600;
+
+                span {
+                    background: #FDE3E3;
+                    padding: 3px 5px;
+                    border-radius: 15px;
+                    font-size: 12px;
+                    color: #f76363;
+                }
+            }
+
+            //购买按钮
+            .pay_group {
+                float: right;
+                overflow: hidden;
+
+                .price {
+                    float: left;
+                }
+
+                .pay_btn {
+                    background: #ff8d3f;
+                    float: right;
+                    margin: 8px 20px;
+                    border-radius: 4px;
+                    line-height: 24px;
+                    font-size: 18px;
+                    padding: 10px 30px;
+                    color: #fff;
+                }
+
+                .free {
+                    color: $freeColor;
+                }
+
+                .pay {
+                    color: $payColor;
+                }
+            }
+        }
+
+    }
+}

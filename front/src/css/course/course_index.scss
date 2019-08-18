@@ -1,8 +1,8 @@
-@import "init.scss";
-@import "constants.scss";
-@import "header.scss";
-@import "main.scss";
-@import "footer.scss";
+@import "../common/init.scss";
+@import "../common/constants.scss";
+@import "../common/header.scss";
+@import "../common/main.scss";
+@import "../common/footer.scss";
 
 .main {
     margin-top: 64px;
@@ -67,17 +67,23 @@
             justify-content: space-between; //对齐方式
 
             li {
-                $courseItemHeight: 280px;//设置每个li的高度
-                $thumbnailHeight: 156px;//设置图片的高度，用于计算文字的高度，li减图片
+                $courseItemHeight: 280px; //设置每个li的高度
+                $thumbnailHeight: 156px; //设置图片的高度，用于计算文字的高度，li减图片
                 width: 278px;
                 height: $courseItemHeight;
                 background: #fff;
                 margin-bottom: 20px;
+
                 //鼠标放上去显示阴影
-                &:hover {
+                a {
+                    display: block;
+                }
+
+                a:hover {
                     //x方向 y方向 模糊 染色
                     box-shadow: 0 3px 10px rgba($color: #000000, $alpha: 0.1);
                 }
+
                 //缩略图
                 .thumbnail_group {
                     .thumbnail {
@@ -85,6 +91,7 @@
                         background-size: 100%;
                     }
                 }
+
                 //文字内容
                 .course_info {
                     width: 100%;

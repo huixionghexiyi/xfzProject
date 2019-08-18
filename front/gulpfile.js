@@ -12,7 +12,7 @@ var util = require("gulp-util");
 var sourcemaps = require("gulp-sourcemaps");
 var path = {
     'html': './templates/**/',//templates下的任意目录下的html
-    'css': './src/css/',
+    'css': './src/css/**/',
     'js': './src/js/',
     'img': './src/img/',
     'css_dist': './dist/css/',
