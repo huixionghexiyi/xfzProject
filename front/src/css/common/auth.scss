@@ -1,0 +1,157 @@
+@import 'constants.scss';
+@import 'init.scss';
+
+body {
+    background: #ccc;
+}
+
+//遮罩一个透明的div，用于遮住
+.mask_wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
+    //一开始不展示登录注册界面
+    display: none;
+
+    //登陆注册的盒子
+    .auth_wrapper {
+        $authHeight: 525px;
+        $authWidth: 400px;
+        height: $authHeight;
+        width: $authWidth;
+        margin: 40px auto;
+
+        //最上面的关闭
+        .close_wrapper {
+            width: 100%;
+            height: 40px;
+            background: #ccc;
+
+            //关闭按钮
+            .close_btn {
+                display: block;
+                margin-top: 10px;
+                height: 30px;
+                width: 30px;
+                color: $assistFontColor;
+                float: right;
+                cursor: pointer;
+            }
+        }
+
+        //鉴权盒子
+        .auth_inner_wrapper {
+            width: 100%;
+            height: $authHeight - 40px;
+            position: relative;
+            overflow: hidden;
+
+            //用一个大盒子包住登录和注册，方便滑动切换
+            .scroll_group {
+                height: 100%;
+                width: $authWidth * 2;
+                position: absolute;
+                top: 0;
+                left: 0px;
+            }
+
+            //鉴权中的公用属性
+            .auth_group {
+                width: $authWidth;
+                // height: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+
+                //上方标题，登录/注册
+                .top_group {
+                    height: 36px;
+                    border-bottom: 1px solid $lineColor;
+                    line-height: 34px;
+
+                    .title {
+                        float: left;
+                        color: $mainFontColor;
+                        border-bottom: 3px solid $themeColor;
+                    }
+
+                    .switch {
+                        float: right;
+                        color: $mainFontColor;
+                    }
+                }
+
+                //form表单
+                .form-group {
+                    margin-top: 20px;
+
+                    .input-group {
+                        margin-bottom: 20px;
+                        overflow: hidden;
+
+                        .form-control {
+                            border: 1px solid #ccc;
+                            padding: 10px;
+                            width: 100%;
+                            box-sizing: border-box;
+                            height: 40px;
+                            //清除鼠标选中框时，的蓝色框
+                            outline: none;
+                        }
+
+                        .remember_label {
+                            font-size: 14px;
+                        }
+
+                        .submit_btn {
+                            height: 40px;
+                            width: 100%;
+                            background: $themeColor;
+                            color: #fff;
+                            border: none;
+                            cursor: pointer;
+
+                        }
+
+                        .short-input-group {
+                            width: 250px;
+                            float: left;
+                        }
+
+                        .input-group-addon {
+                            float: right;
+                            width: 100px;
+
+                            .sms-captcha-btn {
+                                width: 100%;
+                                height: 40px;
+                                border: 1px solid $themeColor;
+                                color: $themeColor;
+                                display: inline-block;
+                                text-align: center;
+                                line-height: 40px;
+                                box-sizing: border-box;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //登录浮动起来
+            .signin {
+                float: left;
+                background: #fff;
+            }
+
+            //注册浮动起来
+            .signup {
+                background: #fff;
+                float: left;
+            }
+        }
+    }
+}
