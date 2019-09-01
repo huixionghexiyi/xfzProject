@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="../../dist/js/jquery-3.3.1.min.js"></script>
-    <script src="../../dist/js/auth.min.js"></script>
-    <link rel="stylesheet" href="../../dist/css/common/auth.min.css">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{static 'js/auth.min.js'}"></script>
+    <link rel="stylesheet" href="{static 'css/common/auth.min.css'}">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_rgq1ez69z2.css">
     <title>授权页面</title>
 </head>
@@ -83,7 +83,7 @@
                                     <input type="text" class="form-control" name="img_captcha">
                                 </div>
                                 <div class="input-group-addon">
-                                    <span class="sms-captcha-btn">发送验证码</span> 
+                                    <span class="sms-captcha-btn">发送验证码</span>
                                 </div>
                             </div>
                             <div class="input-group">

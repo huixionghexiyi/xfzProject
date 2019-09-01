@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- 图标 -->
-    <link rel="shortcut icon" href="../../f.png" />
-    <link rel="stylesheet" href="../../dist/css/news/index.min.css">
+    <link rel="shortcut icon" href="{% static 'img/f.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
     <title>首页</title>
-    <script src="../../dist/js/jquery-3.3.1.min.js"></script>
-    <script src="../../dist/js/index.min.js"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/index.min.js' %}"></script>
 </head>
 
 <body>
@@ -22,9 +22,9 @@
             </div>
             <ul class="nav">
                 <li class="active"><a href="index.html">资讯</a></li>
-                <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="../search/search_index.html">搜索</a> </li>
+                <li><a href="{% static 'course/course_index.html' %}">创业课堂</a><i class="little-triangle"></i></li>
+                <li><a href="{% static 'payinfo/payinfo_index.html' %}">付费资讯</a><i class="little-triangle"></i></li>
+                <li><a href="{% static 'search/search_index.html' %}">搜索</a> </li>
             </ul>
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>
@@ -41,9 +41,9 @@
                 <div class="banner_gruop" id="banner_gruop">
                     <!-- 轮播图 -->
                     <ul class="banner_ul" id="banner_ul">
-                        <li><a href="#"><img src="../../src/img/banner1.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner2.jpg" alt=""></a></li>
-                        <li><a href="#"><img src="../../src/img/banner3.jpg" alt=""></a></li>
+                        <li><a href="#"><img src="{% static 'img/banner1.jpg' %}" alt=""></a></li>
+                        <li><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt=""></a></li>
+                        <li><a href="#"><img src="{% static 'img/banner3.jpg' %}" alt=""></a></li>
                     </ul>
                     <!-- 左右箭头 -->
                     <span class="arrow left_arrow" id="left_arrow">‹</span>

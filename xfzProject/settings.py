@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for xfzProject project.
 
@@ -12,7 +13,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 安装自定义的应用
+    'apps.xfzauth',
+    'apps.cms',
+    'apps.news',
 ]
 
 MIDDLEWARE = [
@@ -51,10 +55,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'xfzProject.urls'
 
+
+# 模板文件
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 修改为front下的templates目录
+        'DIRS': [os.path.join(BASE_DIR,'front','templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +70,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 自动导入静态文件，以后就不用手动导入
+            'builtins':[
+                'django.templatetags.static'
+            ]
         },
     },
 ]
@@ -73,10 +84,15 @@ WSGI_APPLICATION = 'xfzProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# 配置mysql数据库
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'xfz',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+        'USER':'root',
+        'PASSWORD':'admin'
     }
 }
 
@@ -99,13 +115,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 鉴权model
+AUTH_USER_MODEL = 'xfzauth.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -117,4 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# 静态文件
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'front','dist')
+]
