@@ -20,5 +20,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', include("apps.news.urls")),
     path('cms/', include("apps.cms.urls")),
+    path('account/', include("apps.xfzauth.urls")),
     path('course/', include("apps.course.urls")),
 ]

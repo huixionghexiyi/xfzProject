@@ -16,6 +16,7 @@ class UserManager(BaseUserManager):
         user = self.model(telephone=telephone,
                           username=username, password=password, **kwargs)
         user.set_password(password)
+        user.save()
         return user
 
     def create_user(self, telephone, username, password, **kwargs):
@@ -45,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # 作为唯一验证字段，如果没有重写User模型，则是Username作为唯一验证字段字段
     USERNAME_FIELD = 'telephone'
     # 验证必须输入的字段，包括：telephone、username、password
-    REQUIRED_FIRELDS = ['username']
+    REQUIRED_FIELDS = ['username']
     # 定义邮件
     EMAIL_FIELD = 'email'
 
