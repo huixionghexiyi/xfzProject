@@ -1,235 +1,87 @@
-<html lang="en">
+{% extends 'base/front_base.html' %}
+{% block title %}
+付费咨询
+{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- 图标 -->
-    <link rel="shortcut icon" href="../../f.png" />
-    <link rel="stylesheet" href="../../dist/css/payinfo/payinfo_index.min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
-    <title>首页</title>
-    <script src="../../dist/js/jquery-3.3.1.min.js"></script>
-    <script src="../../dist/js/index.min.js"></script>
-</head>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/payinfo/payinfo_index.min.css' %}">
+{% endblock head %}
 
-<body>
-    <!-- 最上边的页头 -->
-    <header class="header">
-        <div class="container">
-            <div class="logo-box">
-                <a href="/"></a>
+{% block main %}
+<!-- 中间的主体内容 -->
+<div class="main">
+    <div class="wrapper">
+        <div class="main_content_wrapper">
+            <div class="venture_banner">
+                <img src="https://www.xfz.cn/static/build/images/web-shopxfz-banner.jpg" class="venture_banner_img">
             </div>
-            <ul class="nav">
-                <li class="active"><a href="../news/index.html">资讯</a></li>
-                <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="../search/search_index.html">搜索</a> </li>
-            </ul>
-            <div class="auth-box">
-                <i class="icon-person iconfont"></i>
-                <a href="#">登录</a>&nbsp;/
-                <a href="#">注册</a>
-            </div>
-        </div>
-    </header>
-    <!-- 中间的主体内容 -->
-    <div class="main">
-        <div class="wrapper">
-            <div class="main_content_wrapper">
-                <div class="venture_banner">
-                    <img src="https://www.xfz.cn/static/build/images/web-shopxfz-banner.jpg" class="venture_banner_img">
-                </div>
-                <ul class="venture_list">
-                    <li>
-                        <a href="#">
-                            <div class="venture_img">
-                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
-                            </div>
-                            <div class="venture_introduct">
-                                <p class="venture_title">如何写一份好点商业计划书</p>
-                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
-                                <p class="venture_price">¥8.8</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="venture_img">
-                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
-                            </div>
-                            <div class="venture_introduct">
-                                <p class="venture_title">如何写一份好点商业计划书</p>
-                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
-                                <p class="venture_price">¥8.8</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="venture_img">
-                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
-                            </div>
-                            <div class="venture_introduct">
-                                <p class="venture_title">如何写一份好点商业计划书</p>
-                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
-                                <p class="venture_price">¥8.8</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="venture_img">
-                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
-                            </div>
-                            <div class="venture_introduct">
-                                <p class="venture_title">如何写一份好点商业计划书</p>
-                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
-                                <p class="venture_price">¥8.8</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="venture_img">
-                                <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
-                            </div>
-                            <div class="venture_introduct">
-                                <p class="venture_title">如何写一份好点商业计划书</p>
-                                <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
-                                <p class="venture_price">¥8.8</p>
-                            </div>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-            <!-- 右边 -->
-            <div class="sidebar-wrapper">
-                <!-- 上面的标题 -->
-                <div class="title_group">
-                    <span class="title">在线课堂</span>
-                    <a href="#" class="more">更多</a>
-                </div>
-                <!-- 广告位 -->
-                <div class="advertise_group">
+            <ul class="venture_list">
+                <li>
                     <a href="#">
-                        <img src="https://static-fancube.xfz.cn/1564990010871/%E8%83%8C%E6%99%AF%E5%9B%BE.jpg-website.active.list"
-                            alt="ff">
+                        <div class="venture_img">
+                            <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                        </div>
+                        <div class="venture_introduct">
+                            <p class="venture_title">如何写一份好点商业计划书</p>
+                            <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="venture_price">¥8.8</p>
+                        </div>
                     </a>
-                </div>
-                <!-- 平台关注 -->
-                <div class="platform_group">
-                    <div class="title_group">
-                        <span class="title">关注小饭桌</span>
-                    </div>
-                    <div class="focus_group">
-                        <ul class="left_group">
-                            <li class="zhihu"><a href="#">小饭桌创业课堂</a></li>
-                            <li class="weibo"><a href="#">小饭桌创业课堂</a></li>
-                            <li class="toutiao"><a href="#">小饭桌创业课堂</a></li>
-                        </ul>
-                        <div class="right_group">
-                            <!-- 这里指定的是背景图片，而不是img标签 -->
-                            <p class="desc">小饭桌公众号</p>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="venture_img">
+                            <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
                         </div>
-                    </div>
-                </div>
-                <!-- 热门新闻 -->
-                <div class="hot_news_group">
-                    <div class="title_group">
-                        <span class="title">热门推荐</span>
-                    </div>
-                    <ul class="hot_list_group">
-                        <li>
-                            <!-- 热门推荐左边标题展示 -->
-                            <div class="left_group">
-                                <p class="title"><a href="#">首届产业智能升级大会广州闭幕 全场热议...</a></p>
-                                <p class="more">
-                                    <span class="category"><a href="#">深度报道</a> </span>
-                                    <span class="pub_time">一小时前</span>
-                                </p>
-                            </div>
-                            <!-- 右边图片展示 -->
-                            <div class="right_group">
-                                <a href="#"><img src="https://static-image.xfz.cn/1564795992_944.png-website.news.list"
-                                        alt=""></a>
-                            </div>
-                        </li>
-                        <li>
-                            <!-- 热门推荐左边标题展示 -->
-                            <div class="left_group">
-                                <p class="title"><a href="#">首届产业智能升级大会广州闭幕 全场热议...</a></p>
-                                <p class="more">
-                                    <span class="category"><a href="#">深度报道</a> </span>
-                                    <span class="pub_time">一小时前</span>
-                                </p>
-                            </div>
-                            <!-- 右边图片展示 -->
-                            <div class="right_group">
-                                <a href="#"><img src="https://static-image.xfz.cn/1564795992_944.png-website.news.list"
-                                        alt=""></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+                        <div class="venture_introduct">
+                            <p class="venture_title">如何写一份好点商业计划书</p>
+                            <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="venture_price">¥8.8</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="venture_img">
+                            <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                        </div>
+                        <div class="venture_introduct">
+                            <p class="venture_title">如何写一份好点商业计划书</p>
+                            <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="venture_price">¥8.8</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="venture_img">
+                            <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                        </div>
+                        <div class="venture_introduct">
+                            <p class="venture_title">如何写一份好点商业计划书</p>
+                            <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="venture_price">¥8.8</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="venture_img">
+                            <img src="https://www.xfz.cn/static/build/images/web-bp-pc.png">
+                        </div>
+                        <div class="venture_introduct">
+                            <p class="venture_title">如何写一份好点商业计划书</p>
+                            <p class="venture_word">一份好的商业计划书，是创业成功的开始！</p>
+                            <p class="venture_price">¥8.8</p>
+                        </div>
+                    </a>
+                </li>
 
+            </ul>
+        </div>
+        <!-- 右边 -->
+        {% include 'common/siderbar.html' %}
     </div>
-    <!-- footer底部信息 -->
-    <div class="footer">
 
-        <div class="top_group">
-
-            <div class="left_group">
-                <div class="title">
-                    <p>合作伙伴</p>
-                </div>
-                <ul class="partner_group">
-                    <li><img src="https://static-image.xfz.cn/1454046552_487.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454046135_474.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454046053_122.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454047318_361.png" alt=""> </li>
-                </ul>
-            </div>
-            <div class="right_group">
-                <div class="logo_group"></div>
-                <div class="detail_group">
-                    <ul class="links">
-                        <li><a href="#">关于小饭桌&nbsp;</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;小饭桌创业课堂</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;凡创资本</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;凡卓资本</a></li>
-                    </ul>
-                    <div class="email">
-                        <p>融资服务：bp@xfz.cn</p>
-                        <p>商务合作：bd@xfz.cn</p>
-                    </div>
-                    <div class="address">地址：北京市朝阳区东三环北路38号院泰康金融大厦</div>
-                    <div class="focus_us">
-                        <span class="us">关注我们:</span>
-                        <div class="wx">
-                            <span class="wx1_text">小饭桌</span>
-                            <div class="wx1_qrcode"></div>
-                        </div>
-                        <div class="wx">
-                            <span class="wx2_text">小饭桌创业课堂</span>
-                            <div class="wx2_qrcode"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="bottom_group">
-            <div class="inner_group">
-                <p> ©2019 北京子木投资顾问有限公司 京ICP备15051289号 | 增值电信业务经营许可证：京B2-20170574</p>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+</div>
+{% endblock main %}

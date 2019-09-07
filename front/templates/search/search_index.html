@@ -1,228 +1,81 @@
-<html lang="en">
+{% extends 'base/front_base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- 图标 -->
-    <link rel="shortcut icon" href="../../f.png" />
-    <link rel="stylesheet" href="../../dist/css/search/search_index.min.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
-    <title>首页</title>
-    <script src="../../dist/js/jquery-3.3.1.min.js"></script>
-    <script src="../../dist/js/index.min.js"></script>
-</head>
+{% block title %}
+搜索
+{% endblock title %}
 
-<body>
-    <!-- 最上边的页头 -->
-    <header class="header">
-        <div class="container">
-            <div class="logo-box">
-                <a href="/"></a>
-            </div>
-            <ul class="nav">
-                <li class="active"><a href="../news/index.html">资讯</a></li>
-                <li><a href="../course/course_index.html">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="../payinfo/payinfo_index.html">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="../search/search_index.html">搜索</a> </li>
-            </ul>
-            <div class="auth-box">
-                <i class="icon-person iconfont"></i>
-                <a href="">登录</a>&nbsp;/
-                <a href="#">注册</a>
-            </div>
-        </div>
-    </header>
-    <!-- 中间的主体内容 -->
-    <div class="main">
-        <div class="wrapper">
-            <div class="main_content_wrapper">
-                <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
-                <div class="search_group" id="search_group">
-                    <div class="search_input">
-                        <input type="text" placeholder="可输入新闻关键词、作者名字搜索">
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search/search_index.min.css' %}">
+<script src="{% static 'js/index.min.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+<!-- 中间的主体内容 -->
+<div class="main">
+    <div class="wrapper">
+        <div class="main_content_wrapper">
+            <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
+            <div class="search_group" id="search_group">
+                <div class="search_input">
+                    <input type="text" placeholder="可输入新闻关键词、作者名字搜索">
+                </div>
+                <a href="">
+                    <div class="search_btn">
+                        搜索
                     </div>
-                    <a href="">
-                        <div class="search_btn">
-                            搜索
+                </a>
+            </div>
+            <!-- 新闻组 -->
+            <div class="list_outer_group">
+                <div class="group_type">热门推荐</div>
+                <!-- 新闻简介 -->
+                <ul class="list_inner_group">
+                    <li>
+                        <div class="thumbnail_group">
+                            <a href="#">
+                                <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <!-- 新闻组 -->
-                <div class="list_outer_group">
-                    <div class="group_type">热门推荐</div>
-                    <!-- 新闻简介 -->
-                    <ul class="list_inner_group">
-                        <li>
-                            <div class="thumbnail_group">
-                                <a href="#">
-                                    <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                        <div class="news_group">
+                            <p class="title">
+                                <a href="news_detail.html">
+                                    早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
                                 </a>
-                            </div>
-                            <div class="news_group">
-                                <p class="title">
-                                    <a href="news_detail.html">
-                                        早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
-                                    </a>
-                                </p>
-                                <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
-                                <p class="more">
-                                    <span class="category">中兴5G手机</span>
-                                    <span class="pub_time">一小时前</span>
-                                    <span class="author">huixiong</span>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumbnail_group">
-                                <a href="#">
-                                    <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
-                                </a>
-                            </div>
-                            <div class="news_group">
-                                <p class="title">
-                                    <a href="#">
-                                        早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
-                                    </a>
-                                </p>
-                                <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
-                                <p class="more">
-                                    <span class="category">中兴5G手机</span>
-                                    <span class="pub_time">一小时前</span>
-                                    <span class="author">huixiong</span>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-            <!-- 右边 -->
-            <div class="sidebar-wrapper">
-                <!-- 上面的标题 -->
-                <div class="title_group">
-                    <span class="title">在线课堂</span>
-                    <a href="#" class="more">更多</a>
-                </div>
-                <!-- 广告位 -->
-                <div class="advertise_group">
-                    <a href="#">
-                        <img src="https://static-fancube.xfz.cn/1564990010871/%E8%83%8C%E6%99%AF%E5%9B%BE.jpg-website.active.list"
-                            alt="ff">
-                    </a>
-                </div>
-                <!-- 平台关注 -->
-                <div class="platform_group">
-                    <div class="title_group">
-                        <span class="title">关注小饭桌</span>
-                    </div>
-                    <div class="focus_group">
-                        <ul class="left_group">
-                            <li class="zhihu"><a href="#">小饭桌创业课堂</a></li>
-                            <li class="weibo"><a href="#">小饭桌创业课堂</a></li>
-                            <li class="toutiao"><a href="#">小饭桌创业课堂</a></li>
-                        </ul>
-                        <div class="right_group">
-                            <!-- 这里指定的是背景图片，而不是img标签 -->
-                            <p class="desc">小饭桌公众号</p>
+                            </p>
+                            <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
+                            <p class="more">
+                                <span class="category">中兴5G手机</span>
+                                <span class="pub_time">一小时前</span>
+                                <span class="author">huixiong</span>
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <!-- 热门新闻 -->
-                <div class="hot_news_group">
-                    <div class="title_group">
-                        <span class="title">热门推荐</span>
-                    </div>
-                    <ul class="hot_list_group">
-                        <li>
-                            <!-- 热门推荐左边标题展示 -->
-                            <div class="left_group">
-                                <p class="title"><a href="#">首届产业智能升级大会广州闭幕 全场热议...</a></p>
-                                <p class="more">
-                                    <span class="category"><a href="#">深度报道</a> </span>
-                                    <span class="pub_time">一小时前</span>
-                                </p>
-                            </div>
-                            <!-- 右边图片展示 -->
-                            <div class="right_group">
-                                <a href="#"><img src="https://static-image.xfz.cn/1564795992_944.png-website.news.list"
-                                        alt=""></a>
-                            </div>
-                        </li>
-                        <li>
-                            <!-- 热门推荐左边标题展示 -->
-                            <div class="left_group">
-                                <p class="title"><a href="#">首届产业智能升级大会广州闭幕 全场热议...</a></p>
-                                <p class="more">
-                                    <span class="category"><a href="#">深度报道</a> </span>
-                                    <span class="pub_time">一小时前</span>
-                                </p>
-                            </div>
-                            <!-- 右边图片展示 -->
-                            <div class="right_group">
-                                <a href="#"><img src="https://static-image.xfz.cn/1564795992_944.png-website.news.list"
-                                        alt=""></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- footer底部信息 -->
-    <div class="footer">
-
-        <div class="top_group">
-
-            <div class="left_group">
-                <div class="title">
-                    <p>合作伙伴</p>
-                </div>
-                <ul class="partner_group">
-                    <li><img src="https://static-image.xfz.cn/1454046552_487.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454046135_474.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454046053_122.png" alt=""> </li>
-                    <li><img src="https://static-image.xfz.cn/1454047318_361.png" alt=""> </li>
+                    </li>
+                    <li>
+                        <div class="thumbnail_group">
+                            <a href="#">
+                                <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                            </a>
+                        </div>
+                        <div class="news_group">
+                            <p class="title">
+                                <a href="#">
+                                    早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
+                                </a>
+                            </p>
+                            <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
+                            <p class="more">
+                                <span class="category">中兴5G手机</span>
+                                <span class="pub_time">一小时前</span>
+                                <span class="author">huixiong</span>
+                            </p>
+                        </div>
+                    </li>
                 </ul>
-            </div>
-            <div class="right_group">
-                <div class="logo_group"></div>
-                <div class="detail_group">
-                    <ul class="links">
-                        <li><a href="#">关于小饭桌&nbsp;</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;小饭桌创业课堂</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;凡创资本</a></li>
-                        <li><a href="#">&nbsp;|&nbsp;凡卓资本</a></li>
-                    </ul>
-                    <div class="email">
-                        <p>融资服务：bp@xfz.cn</p>
-                        <p>商务合作：bd@xfz.cn</p>
-                    </div>
-                    <div class="address">地址：北京市朝阳区东三环北路38号院泰康金融大厦</div>
-                    <div class="focus_us">
-                        <span class="us">关注我们:</span>
-                        <div class="wx">
-                            <span class="wx1_text">小饭桌</span>
-                            <div class="wx1_qrcode"></div>
-                        </div>
-                        <div class="wx">
-                            <span class="wx2_text">小饭桌创业课堂</span>
-                            <div class="wx2_qrcode"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-
-        </div>
-
-        <div class="bottom_group">
-            <div class="inner_group">
-                <p> ©2019 北京子木投资顾问有限公司 京ICP备15051289号 | 增值电信业务经营许可证：京B2-20170574</p>
             </div>
         </div>
+        {% include 'common/siderbar.html' %}
     </div>
-</body>
-
-</html>
+</div>
+{% endblock main %}

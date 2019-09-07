@@ -12,11 +12,11 @@ body {
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
     //一开始不展示登录注册界面
     display: none;
-
+    z-index: 99;
     //登陆注册的盒子
     .auth_wrapper {
         $authHeight: 525px;
@@ -24,6 +24,11 @@ body {
         height: $authHeight;
         width: $authWidth;
         margin: 40px auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -$authWidth/2;
+        margin-right:-$authHeight/2;
 
         //最上面的关闭
         .close_wrapper {
@@ -142,13 +147,13 @@ body {
             }
 
             //登录浮动起来
-            .signin {
+            .signin_group {
                 float: left;
                 background: #fff;
             }
 
             //注册浮动起来
-            .signup {
+            .signup_group {
                 background: #fff;
                 float: left;
             }

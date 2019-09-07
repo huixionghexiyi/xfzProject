@@ -1,20 +1,99 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{static 'js/auth.min.js'}"></script>
-    <link rel="stylesheet" href="{static 'css/common/auth.min.css'}">
+    <!-- 图标 -->
+    <link rel="shortcut icon" href="{% static 'img/f.png' %}" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_m4uef31fzhs.css">
+    <link rel="stylesheet" href="{% static 'css/common/auth.min.css' %}">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1332595_rgq1ez69z2.css">
-    <title>授权页面</title>
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/auth.min.js' %}"></script>
+    <script src="{% static 'js/csrftoken.min.js' %}"></script>
+    {% block head %}{% endblock head %}
 </head>
 
 <body>
-    <!-- 点击显示mask_wrapper中的内容 -->
-    <button id="btn"><a href="">登录</a> / <a href="##"">注册</a> </button>
+    <!-- 最上边的页头 -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-box">
+                <a href="/"></a>
+            </div>
+            <ul class="nav">
+                <li class="active"><a href="index.html">资讯</a></li>
+                <li><a href="{% static 'course/course_index.html' %}">创业课堂</a><i class="little-triangle"></i></li>
+                <li><a href="{% static 'payinfo/payinfo_index.html' %}">付费资讯</a><i class="little-triangle"></i></li>
+                <li><a href="{% static 'search/search_index.html' %}">搜索</a> </li>
+            </ul>
+            <div class="auth-box">
+                <i class="icon-person iconfont"></i>
+                <a href="#" class="signin">登录</a>&nbsp;/
+                <a href="##" class="signup">注册</a>
+            </div>
+        </div>
+    </header>
+    <!-- 中间的主体内容 -->
+
+    {% block main %}
+    {% endblock main %}
+
+    <!-- footer底部信息 -->
+    <div class="footer">
+
+        <div class="top_group">
+
+            <div class="left_group">
+                <div class="title">
+                    <p>合作伙伴</p>
+                </div>
+                <ul class="partner_group">
+                    <li><img src="https://static-image.xfz.cn/1454046552_487.png" alt=""> </li>
+                    <li><img src="https://static-image.xfz.cn/1454046135_474.png" alt=""> </li>
+                    <li><img src="https://static-image.xfz.cn/1454046053_122.png" alt=""> </li>
+                    <li><img src="https://static-image.xfz.cn/1454047318_361.png" alt=""> </li>
+                </ul>
+            </div>
+            <div class="right_group">
+                <div class="logo_group"></div>
+                <div class="detail_group">
+                    <ul class="links">
+                        <li><a href="#">关于小饭桌&nbsp;</a></li>
+                        <li><a href="#">&nbsp;|&nbsp;小饭桌创业课堂</a></li>
+                        <li><a href="#">&nbsp;|&nbsp;凡创资本</a></li>
+                        <li><a href="#">&nbsp;|&nbsp;凡卓资本</a></li>
+                    </ul>
+                    <div class="email">
+                        <p>融资服务：bp@xfz.cn</p>
+                        <p>商务合作：bd@xfz.cn</p>
+                    </div>
+                    <div class="address">地址：北京市朝阳区东三环北路38号院泰康金融大厦</div>
+                    <div class="focus_us">
+                        <span class="us">关注我们:</span>
+                        <div class="wx">
+                            <span class="wx1_text">小饭桌</span>
+                            <div class="wx1_qrcode"></div>
+                        </div>
+                        <div class="wx">
+                            <span class="wx2_text">小饭桌创业课堂</span>
+                            <div class="wx2_qrcode"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="bottom_group">
+            <div class="inner_group">
+                <p> ©2019 北京子木投资顾问有限公司 京ICP备15051289号 | 增值电信业务经营许可证：京B2-20170574</p>
+            </div>
+        </div>
+    </div>
     <!-- 透明遮罩 -->
     <div class="mask_wrapper">
         <!-- 中间的鉴权盒子 -->
@@ -28,10 +107,10 @@
                 <!-- 包含登录注册，点击切换 -->
                 <div class="scroll_group">
                     <!-- 登录 -->
-                    <div class="signin auth_group">
+                    <div class="signin_group auth_group">
                         <div class="top_group">
                             <span class="title">请登录</span>
-                            <a href="javascript: void(0); " class="switch">立即注册></a>
+                            <a href="javascript: void(0); " class="switch to_signin">立即注册></a>
                         </div>
                         <div action="#" class="form-group">
                             <div class="input-group">
@@ -52,10 +131,10 @@
                         </div>
                     </div>
                     <!-- 注册 -->
-                    <div class="signup auth_group">
+                    <div class="signup_group auth_group">
                         <div class="top_group">
                             <span class="title">请注册</span>
-                            <a href="javascript: void(0); " class="switch">立即登录></a>
+                            <a href="javascript: void(0); " class="switch to_signup">立即登录></a>
                         </div>
                         <div action="#" class="form-group">
                             <div class="input-group">
@@ -97,5 +176,6 @@
         </div>
     </div>
 </body>
+
 
 </html>

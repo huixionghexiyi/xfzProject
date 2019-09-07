@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.views.decorators.http import require_POST
 from .form import LoginForm
 from django.http import JsonResponse
+from utils import resultful
 
 
 @require_POST
@@ -28,13 +29,14 @@ def login_view(request):
                     request.session.set_expiry(None)
                 else:
                     request.session.set_expiry(0)
-                return JsonResponse({"code": 200, "message": "", "data": {}})
+                return resultful.ok()
             else:  # 用户不可用
-                return JsonResponse({"code": 405, "message": "账号被冻结！", "data": {}})
+                return resultful.unauth(message="账户没有激活")
         else:
-            return JsonResponse({"code": 400, "message": "手机号码或密码错误~", "data": {}})
+            return resultful.params_error(message="手机号或密码错误")
     else:  # 表单验证错误
         # 这里查看forms的相关视频
+        # 传递的参数错误，比如：密码长度过短
         errors = form.get_errors()
-        return JsonResponse({"code": 400, "message": "表单验证出错", "data": errors})
+        return resultful.params_error(message=errors)
     # 数据处理返回Json：{code、message、data{}}

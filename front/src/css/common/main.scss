@@ -3,6 +3,7 @@
 body {
     background: #F8F8F8;
 }
+
 // 主体的公共部分
 .main {
     width: 100%;
@@ -85,7 +86,7 @@ body {
                             height: 50px;
                             line-height: 50px;
                             // background: red;
-                            background: url("../../../src/img/side-icon.png");
+                            background: url("{%static 'img/side-icon.png'%}");
                             background-repeat: no-repeat;
                             background-size: 26%;
                             margin-bottom: 10px;
