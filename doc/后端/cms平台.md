@@ -30,3 +30,4 @@ apps中创建app：`xfzauth`:
 >这里需要学习django的验证与授权
 定义User方法，继承AbstractBaseUser、PermissionsMixin
 查看方法`xfzauth/models.py`
+

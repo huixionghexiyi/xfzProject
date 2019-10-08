@@ -117,7 +117,7 @@
                         .wx1_qrcode {
                             width: 120px;
                             height: 120px;
-                            background: url("../../../src/img/xfz-wechat-share.png") no-repeat;
+                            background: url("{%static 'img/xfz-wechat-share.png' %}") no-repeat;
                             position: absolute;
                             background-size: contain;
                             bottom: 37px;
@@ -129,7 +129,7 @@
                         .wx2_qrcode {
                             width: 120px;
                             height: 120px;
-                            background: url("../../../src/img/xfz-wechat-share.png") no-repeat;
+                            background: url("{%static 'img/xfz-wechat-share.png' %}") no-repeat;
                             position: absolute;
                             background-size: contain;
                             left: 170px;

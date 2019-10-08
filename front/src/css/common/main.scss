@@ -86,7 +86,7 @@ body {
                             height: 50px;
                             line-height: 50px;
                             // background: red;
-                            background: url("{%static 'img/side-icon.png'%}");
+                            background: url('{%STATIC_URL%}img/side-icon.png');
                             background-repeat: no-repeat;
                             background-size: 26%;
                             margin-bottom: 10px;

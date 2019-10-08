@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import login, logout, authenticate
 from django.views.decorators.http import require_POST
-from .form import LoginForm
+from .forms import LoginForm
 from django.http import JsonResponse
 from utils import resultful
 
@@ -14,7 +14,7 @@ def login_view(request):
     """
     # 获取form 表单
     form = LoginForm(request.POST)
-    # 判断合法性
+    # judge validity
     if form.is_valid():  # 如果有效才进行验证
         telephone = form.cleaned_data.get('telephone')
         password = form.cleaned_data.get('password')
@@ -40,3 +40,4 @@ def login_view(request):
         errors = form.get_errors()
         return resultful.params_error(message=errors)
     # 数据处理返回Json：{code、message、data{}}
+

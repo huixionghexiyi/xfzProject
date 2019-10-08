@@ -49,12 +49,13 @@ Auth.prototype.listenEvent = function () {
     var switchBtn = $(".switch");
     signinBtn.click(function () {
         self.showEvent();
-        self.scrollGroup.css("left:0");
+        console.log("login in");
+        self.scrollGroup.css({"left":0});
     });
     signupBtn.click(function () {
         self.showEvent();
-        self.scrollGroup.css("left:-400");
-
+        console.log("login out");
+        self.scrollGroup.css({"left":-400});
     });
     closeBtn.click(function () {
         self.hideEvent();
@@ -89,16 +90,20 @@ Auth.prototype.listenRequestEvent = function () {
                 'remember': remember ? 1 : 0
             },
             function (result) {
-                console.log("========");
                 console.log(result);
-                console.log("========");
+                if(result['code']==200){
+                    self.hideEvent();
+                    // windows.location.reload();
+                }else{
+                    //如果不为200 那么返回的值就是
+                }
             }
 
         );
     });
 
 }
-//运行
+//run
 Auth.prototype.run = function () {
     self = this;
     self.listenEvent();

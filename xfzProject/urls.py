@@ -19,7 +19,6 @@ from apps.news import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-
     path('', include("apps.news.urls")),
     path('news/', include("apps.news.urls")),
     path('cms/', include("apps.cms.urls")),

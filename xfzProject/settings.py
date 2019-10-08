@@ -60,7 +60,7 @@ ROOT_URLCONF = 'xfzProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 修改为front下的templates目录
+        # modification templates dir to front/templates
         'DIRS': [os.path.join(BASE_DIR, 'front', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,6 +85,10 @@ WSGI_APPLICATION = 'xfzProject.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # 配置mysql数据库
+
+# django cant identified mysql8 encrypt,so u should change mysql`s encrypt type. 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
