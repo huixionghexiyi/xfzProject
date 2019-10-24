@@ -64,6 +64,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'front', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
+            # 上下文处理器，会给模板添加如下变量
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'xfzProject.wsgi.application'
 
 # 配置mysql数据库
 
-# django cant identified mysql8 encrypt,so u should change mysql`s encrypt type. 
+# django cant identified mysql8 encrypt,so u should change mysql`s encrypt type.
 
 
 DATABASES = {

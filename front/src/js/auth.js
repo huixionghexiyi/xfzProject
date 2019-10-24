@@ -49,12 +49,12 @@ Auth.prototype.listenEvent = function () {
     var switchBtn = $(".switch");
     signinBtn.click(function () {
         self.showEvent();
-        console.log("login in");
+        // console.log("login in");
         self.scrollGroup.css({"left":0});
     });
     signupBtn.click(function () {
         self.showEvent();
-        console.log("login out");
+        // console.log("login out");
         self.scrollGroup.css({"left":-400});
     });
     closeBtn.click(function () {
@@ -77,6 +77,7 @@ Auth.prototype.listenRequestEvent = function () {
     var passwordInput = signinGroup.find("input[name='password']");
     var rememberInput = signinGroup.find("input[name='remember']");
     var submitBtn = signinGroup.find(".submit_btn");
+    var logoutBtn = $("#logout_btn");
 
     submitBtn.click(function () {
         var telephone = telephoneInput.val();
@@ -90,17 +91,41 @@ Auth.prototype.listenRequestEvent = function () {
                 'remember': remember ? 1 : 0
             },
             function (result) {
-                console.log(result);
+                // console.log(result);
                 if(result['code']==200){
                     self.hideEvent();
-                    // windows.location.reload();
+                    window.location.reload();
                 }else{
                     //如果不为200 那么返回的值就是
+                    var messageObject = result['message']
+                    //如果返回的参数是字符串
+                    if(typeof messageObject == 'string'||  messageObject.constructor == String){
+
+                        window.messageBox.show(messageObject,"info");
+                    //如果返回的参数不是字符串
+                    }else{
+                        for(var key in messageObject){
+                            var messages = messageObject[key];
+                            var message = messages[0];
+                            window.messageBox.show(message,"error");
+                        }
+                    }
                 }
             }
 
         );
     });
+    // logoutBtn.click(function(){
+    //     $.ajax({
+    //         url:"account/logout/",
+    //         dataType: "json",
+    //         type:"POST",
+    //         data:{},
+    //         success: function(result){
+    //             console.log(result);
+    //         }
+    //     })
+    // });
 
 }
 //run

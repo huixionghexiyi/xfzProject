@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 from .forms import LoginForm
 from django.http import JsonResponse
 from utils import resultful
+from django.shortcuts import redirect,reverse
 
 
 @require_POST
@@ -29,6 +30,7 @@ def login_view(request):
                     request.session.set_expiry(None)
                 else:
                     request.session.set_expiry(0)
+                print("==200==")
                 return resultful.ok()
             else:  # 用户不可用
                 return resultful.unauth(message="账户没有激活")
@@ -41,3 +43,7 @@ def login_view(request):
         return resultful.params_error(message=errors)
     # 数据处理返回Json：{code、message、data{}}
 
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('news:index'))
+    

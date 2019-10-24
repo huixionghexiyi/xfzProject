@@ -86,7 +86,7 @@ body {
                             height: 50px;
                             line-height: 50px;
                             // background: red;
-                            background: url('{%STATIC_URL%}img/side-icon.png');
+                            background: url("/static/img/side-icon.png");
                             background-repeat: no-repeat;
                             background-size: 26%;
                             margin-bottom: 10px;
@@ -121,7 +121,7 @@ body {
                         width: 110px;
                         height: 80px;
                         float: right;
-                        background: url("../../../src/img/xfz-wechat-share.png") no-repeat;
+                        background: url("/static/img/xfz-wechat-share.png") no-repeat;
                         background-size: contain;
 
                         .desc {
