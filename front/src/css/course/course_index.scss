@@ -63,7 +63,7 @@
             //flex布局，css3特性
             display: flex;
             flex-direction: row; //指定方向
-            flex-wrap: wrap; //环绕方式，一行还不下就换行
+            flex-wrap: wrap; //环绕方式，一行放不下就换行
             justify-content: space-between; //对齐方式
 
             li {

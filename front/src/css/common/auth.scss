@@ -3,6 +3,10 @@
 
 body {
     background: #ccc;
+
+    .pointer {
+        cursor: pointer;
+    }
 }
 
 //遮罩一个透明的div，用于遮住
@@ -140,6 +144,10 @@ body {
                                 line-height: 40px;
                                 box-sizing: border-box;
                                 cursor: pointer;
+                            }
+                            .disabled{
+                                color:#ccc;
+                                border-color: #ccc;
                             }
                         }
                     }

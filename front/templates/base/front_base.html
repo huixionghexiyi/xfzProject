@@ -12,8 +12,9 @@
     <title>{% block title %}{% endblock title %}</title>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/message.min.js'%}"></script>
-    <script src="{% static 'js/auth.min.js' %}"></script>
+    <script src="{% static 'js/front_base.min.js' %}"></script>
     <script src="{% static 'js/csrftoken.min.js' %}"></script>
+    <script src="{% static 'js/bmob.min.js' %}"></script>
     {% block head %}{% endblock head %}
 </head>
 
@@ -21,6 +22,7 @@
     <!-- 最上边的页头 -->
     <header class="header">
         <div class="container">
+            {%csrf_token%}
             <div class="logo-box">
                 <a href="/"></a>
             </div>
@@ -33,8 +35,13 @@
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>
                 {% if user.is_authenticated %}
+                <div class="user-more-box">
+                    <i class="triangle"></i>
+                    <a href="#">我的订单</a>
+                    <a href="{% url 'xfzauth:logout' %}">退出登录</a>
+                </div>
                 <a href="#" class="authenticated-box">{{user.username}}</a>
-                <a href="{%  url 'xfzauth:logout' %}" class="authenticated-box">注销</a>
+
                 {% else %}
                 <a href="javascript:void(0)" class="signin">登录</a>&nbsp;/
                 <a href="javascript:void(0)" class="signup">注册</a>
@@ -158,22 +165,22 @@
                         </div>
                         <div class="input-group">
                             <div class="short-input-group">
-                                <input type="text" class="form-control" name="img_captcha">
+                                <input type="text" class="form-control" name="img_captcha" placeholder="请输入图片上的字符">
                             </div>
                             <div class="input-group-addon">
-                                <img src="" alt="">
+                                <img src="{% url 'xfzauth:img_captcha' %}" alt="请刷新" class="img_captcha pointer">
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="short-input-group">
-                                <input type="text" class="form-control" name="img_captcha">
+                                <input type="text" class="form-control" name="captcha" placheholder="验证码" id="smSCaptcha">
                             </div>
                             <div class="input-group-addon">
-                                <span class="sms-captcha-btn">发送验证码</span>
+                                <span class="sms-captcha-btn" id="sendSmsBtn">发送验证码</span>
                             </div>
                         </div>
                         <div class="input-group">
-                            <input type="submit" class="submit_btn" value="立即注册">
+                            <input type="submit" class="submit_btn " value="立即注册">
                             </label>
                         </div>
                     </div>

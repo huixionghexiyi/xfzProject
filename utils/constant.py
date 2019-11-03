@@ -1,0 +1,2 @@
+APP_ID = "f8441d0d3db8a79e380e5fc3f23ca43d" 
+REST_KEY = "32555b76ad3b57fa51b876fea41d7bd5"

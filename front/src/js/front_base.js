@@ -1,32 +1,33 @@
-//点击登录按钮，弹出对话框
-//不使用面向对象的思想设计的逻辑。
-// $(function () {
-//     $('#btn').click(function () {
-//         $(".mask_wrapper").show();
-//     });
-//     $('#close_btn').click(function () {
-//         $(".mask_wrapper").hide();
-//     });
-//     $('.switch').click(function () {
-//         var scrollGroup = $('.scroll_group');
-//         var currentLeft = scrollGroup.css("left");
-//         currentLeft = parseInt(currentLeft);
-//         if (currentLeft < 0) {
-//             scrollGroup.animate({ "left": '0px' });
-//         } else {
-//             scrollGroup.animate({ "left": '-400px' });
+/**
+ * 用于监听导航
+ */
+function FrontBase() { }
 
-//         }
-//         // this.animate({ "left": -400 }, 400);
-//     })
-// })
+FrontBase.prototype.run = function () {
+    var self = this;
+    self.listenAuthBoxHaver();
+}
 
+FrontBase.prototype.listenAuthBoxHaver = function () {
+    var authBox = $(".auth-box");
+    var userMoreBox = $(".user-more-box");
+    authBox.hover(function () {
+        userMoreBox.show();
+    }, function () {
+        userMoreBox.hide();
+    });
+}
 
-//使用面向对象的思想设计的逻辑
+/**
+ * 用来监听登录
+ * 使用面向对象的思想设计的逻辑
+ */
 function Auth() {
     self = this;
     self.mask_wrapper = $(".mask_wrapper");
     self.scrollGroup = $('.scroll_group');
+    self.telephoneInput = $(".signup_group input[name='telephone']");
+    self.sendSmsBtn = $("#sendSmsBtn");
 }
 //展示
 Auth.prototype.showEvent = function () {
@@ -47,6 +48,7 @@ Auth.prototype.listenEvent = function () {
     var signupBtn = $(".signup");
     var closeBtn = $("#close_btn");
     var switchBtn = $(".switch");
+    var imgCaptcha = $(".img_captcha");
     signinBtn.click(function () {
         self.showEvent();
         // console.log("login in");
@@ -69,18 +71,31 @@ Auth.prototype.listenEvent = function () {
             self.scrollGroup.animate({ "left": '-400px' });
         }
     });
-
+    imgCaptcha.click(function () {
+        console.log("img is clicked");
+        //src被重写设置的时候会重写访问。
+        imgCaptcha.attr("src", "/account/img_captcha/" + "?random=" + Math.random());
+    });
 
 }
 Auth.prototype.listenRequestEvent = function () {
     self = this;
     var signinGroup = $(".signin_group");
+    var signupGroup = $(".signup_group");
     var telephoneInput = signinGroup.find("input[name='telephone']");
     var passwordInput = signinGroup.find("input[name='password']");
     var rememberInput = signinGroup.find("input[name='remember']");
     var loginBtn = signinGroup.find(".submit_btn");
+    var logupBtn = signupGroup.find(".submit_btn");
     var logoutBtn = $("#logout_btn");
-
+    //listen Enter
+    $("body").bind("keyup", function (event) {
+        if (event.keyCode == "13") {
+            console.log("login");
+            loginBtn.click();
+        }
+    });
+    //登录
     loginBtn.click(function () {
         var telephone = telephoneInput.val();
         var password = passwordInput.val();
@@ -102,7 +117,6 @@ Auth.prototype.listenRequestEvent = function () {
                     var messageObject = result['message']
                     //如果返回的参数是字符串
                     if (typeof messageObject == 'string' || messageObject.constructor == String) {
-
                         window.messageBox.show(messageObject, "info");
                         //如果返回的参数不是字符串
                     } else {
@@ -117,6 +131,7 @@ Auth.prototype.listenRequestEvent = function () {
 
         );
     });
+    //退出
     logoutBtn.click(function () {
         $.ajax({
             url: "account/logout",
@@ -127,23 +142,71 @@ Auth.prototype.listenRequestEvent = function () {
                 console.log("logout success");
             }
         })
-    })
+    });
+    //注册
+    logupBtn.click(function () {
 
+    });
+}
+Auth.prototype.SmsSuccessEvent = function () {
+    self = this;
+    messageBox.showSuccess("短信验证码发送成功");
+    // 将发送验证码设置为不可用，并且有倒计时。
+    self.sendSmsBtn.addClass("disabled");
+    var count = 59;
+    self.sendSmsBtn.unbind("click");
+    var timer = setInterval(function () {
+        self.sendSmsBtn.text(count + 's');
+        count -= 1;
+        if (count <= 0) {
+            clearInterval(timer);
+            self.sendSmsBtn.removeClass('disabled');
+            self.sendSmsBtn.text("发送验证码");
+            self.listenSmsCaptchaEvent();
+        }
+    }, 1000);
+}
+Auth.prototype.SmsFailEvent = function (fail_info) {
+    messageBox.showError(fail_info);
+}
+Auth.prototype.listenSmsCaptchaEvent = function () {
+    self = this;
+    //ajax请求
+    self.sendSmsBtn.click(function () {
+        //校验手机号是否正确
+        var telephone = self.telephoneInput.val();
+        if (!telephone) {
+            messageBox.showInfo("请输入手机号码");
+        } else {
+            $.get({
+                url: "account/sms_captcha/",
+                data: { "telephone": telephone },
+                success: function (result) {
+                    if (result['code'] == 200) {
+                        self.SmsSuccessEvent();
+                    } else {
+                        self.SmsFailEvent(result['message']);
+                    }
+                }
+            });
+        }
+
+    });
 }
 //run
 Auth.prototype.run = function () {
     self = this;
-    if (event.keyCode == 13) {
-        switchBtn.trigger('click');
-    }
     self.listenEvent();
     self.listenRequestEvent();
+    self.listenSmsCaptchaEvent();
 }
-$(function () {
-    var auth = new Auth();
-    auth.run();
-    if (event.keyCode == 13) {
-        console.log("enter");
-    }
 
+/**
+ * 页面加载时，加载两个js对象
+ */
+$(function () {
+    var frontBase = new FrontBase();
+    var auth = new Auth();
+    frontBase.run();
+    auth.run();
 });
