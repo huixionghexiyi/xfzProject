@@ -12,7 +12,7 @@ class HttpCode(object):
     unauth = 401  # 没授权
     methoderror = 405  # 方法错误
     servererror = 500  # 服务器错误
-    captchaerror = 10022  # 手机验证码错误
+    captchaerror = 406  # 手机验证码错误
 
 
 def result(code=HttpCode.ok, message="", data=None, kwargs=None):

@@ -25,6 +25,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, telephone, username, password, **kwargs):
         kwargs['is_superuser'] = True
+        kwargs['is_staff'] = True
         return self._create_user(telephone, username, password, **kwargs)
 
 
@@ -34,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     telephone = models.CharField(max_length=11, unique=True)
     # password 我猜测不需要重写,因为AbstractBaseUser内置的就可以了。需要看鉴权和授权
     # password = models.CharField(max_length=200)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True,null=True)
     username = models.CharField(max_length=100)
     # 是否可用
     is_active = models.BooleanField(default=True)

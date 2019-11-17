@@ -37,7 +37,9 @@
                 {% if user.is_authenticated %}
                 <div class="user-more-box">
                     <i class="triangle"></i>
-                    <a href="#">我的订单</a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'cms:index'%}">后台管理</a>
+                    {% endif %}
                     <a href="{% url 'xfzauth:logout' %}">退出登录</a>
                 </div>
                 <a href="#" class="authenticated-box">{{user.username}}</a>
@@ -155,7 +157,7 @@
                             <input type="text" class="form-control" name="telephone" placeholder="手机号码">
                         </div>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="username" placeholder="用户名">
+                            <input type="text" class="form-control" name="username" placeholder="用户名">
                         </div>
                         <div class="input-group">
                             <input type="password" class="form-control" name="pwd1" placeholder="密码">
@@ -173,7 +175,8 @@
                         </div>
                         <div class="input-group">
                             <div class="short-input-group">
-                                <input type="text" class="form-control" name="captcha" placheholder="验证码" id="smSCaptcha">
+                                <input type="text" class="form-control" name="captcha" placheholder="验证码"
+                                    id="smSCaptcha">
                             </div>
                             <div class="input-group-addon">
                                 <span class="sms-captcha-btn" id="sendSmsBtn">发送验证码</span>

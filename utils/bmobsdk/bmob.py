@@ -291,6 +291,12 @@ def httpRequest(url, method='GET', headers=None, body=None, timeout=10):
         errMsg = "Unknown Error"
         return HttpResponse(-4, errMsg, {}, errMsg, errMsg)
 
+class SingletonBmob(object):
+    _instance = None
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(SingletonBmob,cls).__new__(cls, *args, **kwargs)
+        return cls._instance
 
 class Bmob:
     def __init__(self, appid, restkey):

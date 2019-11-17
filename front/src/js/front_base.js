@@ -1,5 +1,5 @@
 /**
- * 用于监听导航
+ * 用于监听导航中的用户Box
  */
 function FrontBase() { }
 
@@ -72,7 +72,6 @@ Auth.prototype.listenEvent = function () {
         }
     });
     imgCaptcha.click(function () {
-        console.log("img is clicked");
         //src被重写设置的时候会重写访问。
         imgCaptcha.attr("src", "/account/img_captcha/" + "?random=" + Math.random());
     });
@@ -80,14 +79,23 @@ Auth.prototype.listenEvent = function () {
 }
 Auth.prototype.listenRequestEvent = function () {
     self = this;
-    var signinGroup = $(".signin_group");
-    var signupGroup = $(".signup_group");
+    var signinGroup = $(".signin_group");//登录
+    var signupGroup = $(".signup_group");//注册
+    //登录的信息
     var telephoneInput = signinGroup.find("input[name='telephone']");
     var passwordInput = signinGroup.find("input[name='password']");
     var rememberInput = signinGroup.find("input[name='remember']");
-    var loginBtn = signinGroup.find(".submit_btn");
-    var logupBtn = signupGroup.find(".submit_btn");
-    var logoutBtn = $("#logout_btn");
+    //注册的信息
+    var logupTelInput = signupGroup.find("input[name='telephone']");
+    var usernameInput = signupGroup.find("input[name='username']");
+    var logupPwd1Input = signupGroup.find("input[name='pwd1']");
+    var logupPwd2Input = signupGroup.find("input[name='pwd2']");
+    var imgCaptchaInput = signupGroup.find("input[name='img_captcha']");
+    var smsCaptchaInput = signupGroup.find("input[id='smSCaptcha']");
+    //按钮
+    var loginBtn = signinGroup.find(".submit_btn");//登录按钮
+    var logupBtn = signupGroup.find(".submit_btn");//注册按钮
+    var logoutBtn = $("#logout_btn");//退出登录(没有使用)
     //listen Enter
     $("body").bind("keyup", function (event) {
         if (event.keyCode == "13") {
@@ -131,7 +139,53 @@ Auth.prototype.listenRequestEvent = function () {
 
         );
     });
-    //退出
+    //注册
+    logupBtn.click(function () {
+        var logupTel =   logupTelInput.val();
+        var username =   usernameInput.val();
+        var logupPwd1 =  logupPwd1Input.val();
+        var logupPwd2 =  logupPwd2Input.val();
+        var imgCaptcha = imgCaptchaInput.val();
+        var smsCaptcha = smsCaptchaInput.val();
+        console.log(logupPwd2);
+        $.ajax({
+            url:"/account/register/",
+            type: "POST",
+            dataType: "json",
+            data:{
+                telephone:logupTel,
+                username:username, 
+                password1:logupPwd1,
+                password2:logupPwd2,
+                img_captcha:imgCaptcha,
+                sms_captcha:smsCaptcha,
+            },
+            success: function (result) {
+                if(result['code'] ==200){
+                    window.location.reload();
+                }else{
+                     //如果不为200 那么返回的值就是
+                     var messageObject = result['message']
+                     //如果返回的参数是字符串
+                     if (typeof messageObject == 'string' || messageObject.constructor == String) {
+                         window.messageBox.show(messageObject, "info");
+                         //如果返回的参数不是字符串
+                     } else {
+                         for (var key in messageObject) {
+                             var messages = messageObject[key];
+                             var message = messages[0];
+                             window.messageBox.show(message, "error");
+                         }
+                     }
+                }
+            },
+            fail:function(){
+                window.messageBox.show("系统错误","error");
+            }
+        });
+    });
+        //退出
+    //使用{% url 'xfzauth:logout %}'替代了
     logoutBtn.click(function () {
         $.ajax({
             url: "account/logout",
@@ -142,10 +196,6 @@ Auth.prototype.listenRequestEvent = function () {
                 console.log("logout success");
             }
         })
-    });
-    //注册
-    logupBtn.click(function () {
-
     });
 }
 Auth.prototype.SmsSuccessEvent = function () {
@@ -192,6 +242,10 @@ Auth.prototype.listenSmsCaptchaEvent = function () {
         }
 
     });
+}
+
+Auth.prototype.listenLoginEvent = function(){
+    
 }
 //run
 Auth.prototype.run = function () {

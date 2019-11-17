@@ -2,7 +2,6 @@ from django import forms
 
 
 class FormMixin(object):
-
     def get_errors(self):
         # 如果存在errors字段
         if hasattr(self, 'errors'):
