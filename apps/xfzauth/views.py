@@ -13,6 +13,7 @@ from utils.bmobsdk.bmob import Bmob
 from django.core.cache import cache
 
 User = get_user_model()
+
 @require_POST
 def login_view(request):
     """

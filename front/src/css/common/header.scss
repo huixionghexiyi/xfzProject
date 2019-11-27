@@ -5,7 +5,7 @@
     background: #2d2d2d;
     width: 100%;
     height: $navHeight;
-    overflow: hidden;
+    // overflow: hidden;
     position: fixed; //固定位置，配合position使用。
     top: 0;
     left: 0;
@@ -75,9 +75,8 @@
         .auth-box {
             float: right;
             line-height: $navHeight;
-            margin-right: 20px;
             color: #fff;
-            position:relative;
+            position: relative;
 
             .iconfont {
                 font-size: 20px;
@@ -87,39 +86,41 @@
                 color: #fff;
                 font-size: 14px;
             }
+            .user-more-box {
+                background: rgb(255, 255, 255);
+                width: 140px;
+                // height: 60px;
+                position: absolute;
+                box-shadow: 0 3px 4px #ccc;
+                border-radius: 5px;
+                top: 65px;
+                margin-left: -20px;
+                font-size: 14px;
+                z-index: 10;
+                display: none;
+
+                .triangle {
+                    border: solid transparent;
+                    border-width: 10px;
+                    border-bottom-color: #fff;
+                    display: block;
+                    text-align: center;
+                    width: 0;
+                    height: 0;
+                    margin-top: -20px;
+                    margin-left: 60px;
+                }
+
+                a {
+                    text-align: center;
+                    height: 30px;
+                    color: #6d85ac;
+                    display: block;
+                    line-height: 30px;
+                }
+            }
         }
 
-        .user-more-box {
-            background: rgb(255, 255, 255);
-            width: 140px;
-            // height: 60px;
-            position: fixed;
-            box-shadow: 0 3px 4px #ccc;
-            border-radius: 5px;
-            top: 65px;
-            right: 150px;
-            font-size: 14px;
-            z-index: 10;
-            display: none;
 
-            .triangle {
-                border: solid transparent;
-                border-width: 10px;
-                border-bottom-color: #fff;
-                display: block;
-                text-align: center;
-                width: 0;
-                height: 0;
-                margin-top: -20px;
-                margin-left: 60px;
-            }
-            a {
-                text-align: center;
-                height: 30px;
-                color: #6d85ac;
-                display: block;
-                line-height: 30px;
-            }
-        }
     }
 }
