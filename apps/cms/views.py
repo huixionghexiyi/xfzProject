@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
 from apps.news.models import NewsCategory
 from utils import resultful
+from .forms import EditNewsCategoryForm
 
 # Create your views here.
 
@@ -43,3 +44,29 @@ def add_news_category(request):
         return resultful.ok()
     else:
         return resultful.params_error(message="该分类已存在")
+
+
+@require_POST
+def edit_news_category(request):
+    form = EditNewsCategoryForm(request.POST)
+    if form.is_valid():
+        pk = form.cleaned_data['pk']
+        name = form.cleaned_data['name']
+        try:
+            NewsCategory.objects.filter(pk=pk).update(name=name)
+        except:
+            return resultful.params_error(message='该分类不存在')
+    else:
+        return resultful.params_error(message=form.get_errors())
+    return resultful.ok()
+
+
+@require_POST
+def del_news_category(request):
+    pk = request.POST.get('pk')
+    try:
+        cur_news_category = NewsCategory.objects.get(pk=pk)
+        cur_news_category.delete()
+        return resultful.ok(message="haha")
+    except:
+        return resultful.notfind(message="该分类不存在！")

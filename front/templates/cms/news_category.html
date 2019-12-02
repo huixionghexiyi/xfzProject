@@ -32,12 +32,12 @@
                     </thead>
                     <tbody>
                         {% for category in categories %}
-                        <tr>
+                        <tr data-pk='{{category.id}}' data-name='{{category.name}}'>
                             <th>{{category.name}}</th>
                             <th>20</th>
                             <th>
-                                <button class="btn btn-warning btn-xs">编辑</button>
-                                <button class="btn btn-danger btn-xs">删除</button>
+                                <button class="btn btn-warning btn-xs edit_btn">编辑</button>
+                                <button class="btn btn-danger btn-xs del_btn">删除</button>
                             </th>
                         </tr>
                         {% endfor %}

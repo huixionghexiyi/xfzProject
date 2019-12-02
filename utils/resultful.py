@@ -13,6 +13,7 @@ class HttpCode(object):
     methoderror = 405  # 方法错误
     servererror = 500  # 服务器错误
     captchaerror = 406  # 手机验证码错误
+    notfind = 407  # 手机验证码错误
 
 
 def result(code=HttpCode.ok, message="", data=None, kwargs=None):
@@ -23,8 +24,8 @@ def result(code=HttpCode.ok, message="", data=None, kwargs=None):
     return JsonResponse(json_dict)
 
 
-def ok():
-    return result()
+def ok(message="", data=None):
+    return result(message=message, data=data)
 
 
 def params_error(code=HttpCode.paramserror, message="", data=None, kwargs=None):
@@ -44,4 +45,8 @@ def server_error(code=HttpCode.servererror, message="", data=None, kwargs=None):
 
 
 def captcha_error(code=HttpCode.captchaerror, message="", data=None, kwargs=None):
+    return result(code, message=message, data=data, kwargs=kwargs)
+
+
+def notfind(code=HttpCode.notfind, message="", data=None, kwargs=None):
     return result(code, message=message, data=data, kwargs=kwargs)
