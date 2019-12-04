@@ -1,12 +1,7 @@
 function NewCategory() {
 
 };
-NewCategory.prototype.run = function () {
-    var self = this;
-    self.listenAddCategoryEvent();
-    self.listenEditCategoryEvent();
-    self.listenDelCategoryEvent();
-}
+
 NewCategory.prototype.listenAddCategoryEvent = function () {
     var add_btn = $("#add-btn");
     add_btn.click(function () {
@@ -77,7 +72,6 @@ NewCategory.prototype.listenEditCategoryEvent = function () {
         });
     });
 }
-
 NewCategory.prototype.listenDelCategoryEvent = function () {
     var self = this;
     var delBtn = $('.del_btn');
@@ -108,6 +102,12 @@ NewCategory.prototype.listenDelCategoryEvent = function () {
         })
     });
 };
+NewCategory.prototype.run = function () {
+    var self = this;
+    self.listenAddCategoryEvent();
+    self.listenEditCategoryEvent();
+    self.listenDelCategoryEvent();
+}
 
 $(function () {
     var newCategory = new NewCategory();
