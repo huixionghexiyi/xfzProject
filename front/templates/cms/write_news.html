@@ -6,7 +6,8 @@
 {% endblock title %}
 
 {% block head %}
-
+<script src="{% static 'js/news.min.js'%}"></script>
+<script src="https://unpkg.com/qiniu-js@2.5.2/dist/qiniu.min.js"></script>
 {% endblock head %}
 
 {% block content-header %}
@@ -15,6 +16,7 @@
 
 {% block content %}
 <div class="row">
+  <!--  -->
   <div class="col-md-12">
     <div class="box box-primary">
       <form action="" class="form">
@@ -26,9 +28,9 @@
           <div class="form-group">
             <label for="category-form">分类</label>
             <select name="category" id="category-form" class="form-control">
-              <option value="1">创业案例</option>
-              <option value="2">热点</option>
-              <option value="3">创投资讯</option>
+              {% for category in categories %}
+              <option value="{{category.id}}">{{category.name}}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="form-group">
@@ -40,7 +42,10 @@
             <div class="input-group">
               <input type="text" class="form-control" name="thumbnail" id="thumbnail-form">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default">上传图片</button>
+                <label class="btn btn-default btn-file">
+                  <input hidden type="file" class="btn btn-default" id="thumbnail-btn">
+                  上传图片
+                </label>
               </span>
             </div>
           </div>

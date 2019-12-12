@@ -1,6 +1,5 @@
 # 后端开发
 
-
 - 准备工作
 利用`AdminLET`框架，创建后端管理平台的前端页面。
 并且创建cms的app
@@ -30,4 +29,6 @@ apps中创建app：`xfzauth`:
 >这里需要学习django的验证与授权
 定义User方法，继承AbstractBaseUser、PermissionsMixin
 查看方法`xfzauth/models.py`
+
+# 使用sweetAlert,模式对话框,展示一个全屏提示。![官网](https://sweetalert2.github.io/)
 

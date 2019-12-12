@@ -13,3 +13,4 @@ def news_detail(request, news_id):
 
 def search(request):
     return render(request, "search/search_index.html")
+
