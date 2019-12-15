@@ -3,9 +3,11 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
 from apps.news.models import NewsCategory
-from utils import resultful
+from utils import resultful, constants
 from .forms import EditNewsCategoryForm
-
+from django.conf import settings
+import os
+from qiniu import Auth
 # Create your views here.
 
 
@@ -23,7 +25,12 @@ def index(request):
 
 class WriteNewsView(View):
     def get(self, request):
-        return render(request, 'cms/write_news.html')
+        categories = NewsCategory.objects.all()
+        context = {
+            'categories': categories
+        }
+        print(context)
+        return render(request, 'cms/write_news.html', context=context)
 
 
 @require_GET
@@ -70,3 +77,23 @@ def del_news_category(request):
         return resultful.ok(message="haha")
     except:
         return resultful.notfind(message="该分类不存在！")
+
+
+@require_POST
+def upload_file(request):
+    file = request.FILES.get('file')
+    name = file.name
+    with open(os.path.join(settings.MEDIA_ROOT, name), 'wb') as fp:
+        for chunk in file.chunks():
+            fp.write(chunk)
+
+    url = request.build_absolute_uri(settings.MEDIA_URL+name)
+    return resultful.ok(data={'url': url})
+
+
+@require_GET
+def qn_token(request):
+    q = Auth(constants.ACCESS_KEY, constants.SECRET_KEY)
+    bucket_name = 'huixiong'
+    token = q.upload_token(bucket_name)
+    return resultful.ok(data={'token': token})

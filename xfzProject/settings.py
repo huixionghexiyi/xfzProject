@@ -125,9 +125,9 @@ AUTH_USER_MODEL = 'xfzauth.User'
 
 # 缓存设置,设置memcached缓存
 CACHES = {
-    'default':{
-            'BACKEND':"django.core.cache.backends.memcached.MemcachedCache", 
-            'LOCATION':'127.0.0.1:11211'
+    'default': {
+        'BACKEND': "django.core.cache.backends.memcached.MemcachedCache",
+        'LOCATION': '127.0.0.1:11211'
     }
 }
 # Internationalization
@@ -152,3 +152,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist')
 ]
+
+# 文件保存的相对路径
+MEDIA_URL = '/media/'
+# 文件保存的绝对路径
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
