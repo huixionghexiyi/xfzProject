@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.news import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -25,4 +27,5 @@ urlpatterns = [
     path('account/', include("apps.xfzauth.urls")),
     path('course/', include("apps.course.urls")),
     path('payinfo/', include("apps.payinfo.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# 只有将静态文件添加到最后，即通过static()方法
