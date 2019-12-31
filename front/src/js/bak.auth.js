@@ -57,9 +57,10 @@ Auth.prototype.listenEvent = function () {
         // console.log("login out");
         self.scrollGroup.css({ "left": -400 });
     });
-    closeBtn.click(function () {
-        self.hideEvent();
+    closeBtn.click(function () { 
+        self.hideEvent(); 
     });
+
     switchBtn.click(function () {
         var currentLeft = self.scrollGroup.css("left");
         currentLeft = parseInt(currentLeft);

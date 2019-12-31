@@ -29,3 +29,9 @@
 
 - [后端项目初始化](./doc/后端/后端项目搭建.md)
 - [都断的坑和土](./doc/后端/后端开发的坑与土.md)
+
+
+
+正式使用时请修改`apps/xfzauth/forms.py`中的短信验证，将注释取消。并将`apps/xfzauth/views.py`中的`sms_captcha`与`__sms_captcha`替换。默认验证码为123456
+
+并且需要mysql与memcache服务。

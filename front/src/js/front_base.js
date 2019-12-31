@@ -46,7 +46,7 @@ Auth.prototype.listenEvent = function () {
     self = this;
     var signinBtn = $(".signin");
     var signupBtn = $(".signup");
-    var closeBtn = $("#close_btn");
+    var closeBtn = $(".close_btn");
     var switchBtn = $(".switch");
     var imgCaptcha = $(".img_captcha");
     signinBtn.click(function () {
@@ -72,11 +72,12 @@ Auth.prototype.listenEvent = function () {
         }
     });
     imgCaptcha.click(function () {
-        //src被重写设置的时候会重写访问。
+        //src被重写设置的时候会重写访问。不然重复内容的访问不会被执行。
         imgCaptcha.attr("src", "/account/img_captcha/" + "?random=" + Math.random());
     });
 
 }
+
 Auth.prototype.listenRequestEvent = function () {
     self = this;
     var signinGroup = $(".signin_group");//登录
@@ -96,10 +97,11 @@ Auth.prototype.listenRequestEvent = function () {
     var loginBtn = signinGroup.find(".submit_btn");//登录按钮
     var logupBtn = signupGroup.find(".submit_btn");//注册按钮
     var logoutBtn = $("#logout_btn");//退出登录(没有使用)
-    //listen Enter
+    //listen Enter 给body标签绑定一个键盘按钮
     $("body").bind("keyup", function (event) {
+        // 按下回车触发登录事件(如果是在注册界面也是出发登录事件)
         if (event.keyCode == "13") {
-            console.log("login");
+            // console.log("login");
             loginBtn.click();
         }
     });
@@ -184,7 +186,7 @@ Auth.prototype.listenRequestEvent = function () {
             }
         });
     });
-        //退出
+    //退出
     //使用{% url 'xfzauth:logout %}'替代了
     logoutBtn.click(function () {
         $.ajax({

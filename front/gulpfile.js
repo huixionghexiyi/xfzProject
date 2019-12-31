@@ -74,4 +74,4 @@ gulp.task("bs", function () {
 //任务名为default，就可以直接用gulp，而不用使用gulp [任务名]
 //监听文件修改，附带浏览器异步监听
 // gulp.task("default", ['bs', 'watch']);
-gulp.task("default", ["bs",'watch']);
+gulp.task("default", ['watch']);

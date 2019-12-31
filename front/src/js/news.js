@@ -1,5 +1,4 @@
 function News() {
-
 };
 //上传到本地
 News.prototype.listenUploadImgEvent = function () {
@@ -24,17 +23,21 @@ News.prototype.listenUploadImgEvent = function () {
     });
 }
 
+//上传到七牛云
 News.prototype.listenQiniuUploadImgEvent = function () {
     self = this;
     var uploadBtn = $('#thumbnail-btn');
     var thumbnailUrl = $('#thumbnail-form');
+
     uploadBtn.change(function () {
+        //获取七牛的Token,只需要获取到正确可用的token值，就能从前端你直接传递图片到七牛云。而不需要通过后端服务器
         $.get({
             url: '/cms/qn_token/',
             dataType: "json",
             success: function (result) {
                 if (result['code'] === 200) {
                     var file = uploadBtn[0].files[0];
+                    console.log(result['data']['token']);
                     var token = result['data']['token'];
                     var key = (new Date()).getTime() + '.' + file.name.split('.').pop();
                     var putExtra = {
@@ -53,6 +56,10 @@ News.prototype.listenQiniuUploadImgEvent = function () {
                         next: function (response) {
                             var total = response.total;
                             var percent = total.percent;
+                            var percentText = percent.toFixed(0) + "%";
+                            var progressBar = $('#progress-bar');
+                            progressBar.css({ "width": percent + "%" });
+                            progressBar.text(percentText);
                             console.log(percent);
                         },
                         error: function (response) {
@@ -64,7 +71,7 @@ News.prototype.listenQiniuUploadImgEvent = function () {
                     }
                     var subscription = observable.subscribe(listenQiniuObserver);
                 } else {
-
+                    alert("bad");
                 }
             }
         })
@@ -72,24 +79,72 @@ News.prototype.listenQiniuUploadImgEvent = function () {
     })
 }
 
-News.listenQiniuObserver = {
-    next: function (response) {
-        var total = response.total;
-        var percent = total.percent;
-        console.log(percent);
-    },
-    error: function (response) {
-        console.log(response.message);
-    },
-    complete: function (response) {
-        console.log(response);
-    }
+//监听创建新闻时间
+
+News.prototype.listenSubmitEvent = function () {
+    var submitBtn = $("#submitBtn");
+    submitBtn.click(function () {
+        event.preventDefault();
+        var title = $("#title-form").val();
+        var category = $("#category-form").val();
+        var desc = $("#desc-form").val();
+        var thumbnail = $("#thumbnail-form").val();
+        var content = window.editor.getValue();
+        $.post({
+            url: '/cms/write_news/',
+            data: {
+                title: title,
+                category: category,
+                desc: desc,
+                thumbnail: thumbnail,
+                content: content
+            },
+            success: function (result) {
+                if (result['code'] === 200) {
+                    xfzalert.alertSuccess('新闻发布成功', function () {
+                        window.location.reload();
+                    });
+                } else {
+                    var messageObject = result['message'];
+                    if (typeof messageObject == 'string' || messageObject.constructor == String) {
+                        xfzalert.alertError(result['message']);
+                    } else {
+                        for (var key in messageObject) {
+                            var message = messageObject[key];
+                            var message = message[0];
+                            xfzalert.alertError(message);
+                        }
+                    }
+                }
+            }
+        });
+    });
 }
-//上传到七牛云
+
+
+News.prototype.initSimditor = function () {
+    window.editor = new Simditor({
+        textarea: $('#content-form'),
+        placeholder: "在此编辑你的文章",
+        upload: {
+            url: '/cms/upload_content_img/',
+            fileKey: 'upload_file',
+            leaveConfirm: '图片正在上传，确定离开吗？',
+            params: null
+        }
+    });
+
+}
+
 News.prototype.run = function () {
     var self = this;
-    // self.listenUploadImgEvent();
-    self.listenQiniuUploadImgEvent();
+    self.listenUploadImgEvent();
+    // self.listenQiniuUploadImgEvent();
+
+
+    self.initSimditor();
+    self.listenSubmitEvent();
+
 }
 $(function () {
     var news = new News();

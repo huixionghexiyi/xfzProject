@@ -54,6 +54,9 @@ def logout_view(request):
     return redirect(reverse('news:index'))
 
 def register(request):
+    '''
+    注册
+    '''
     form  = RegisterForm(request.POST)
     if form.is_valid():
         telephone = form.cleaned_data.get('telephone')
@@ -69,8 +72,8 @@ def img_captcha(request):
     """
     将图片验证码放入memcache中
     """
+    # 获取一个验证码和图片
     text, image = Captcha.gene_code()
-    print(text)
     # 用于存储图片的流
     out = BytesIO()
     # 将image对象保存到out流中。
@@ -83,25 +86,30 @@ def img_captcha(request):
     response['Content-Length'] = out.tell()
     # 将图片验证码存到memcached中
     cache.set(text.lower(),text.lower(),10*60)
+    print(cache.get(text.lower()))
     return response
 
 def sms_captcha(request):
     """
     将短信验证码放入memcached中？bmob不能获取
-    {'code': 400}
-    {'status': 'Bad Request'}
-    {'headers': <http.client.HTTPMessage object at 0x054F1F30>}
-    {'stringData': '{"code":10022,"error":"模板:tpl_hfx 不存在"}'}或{'stringData':{"smsId":"108674070"}}
-    {'err': 'Bad Request'}
-    {'msg': None}
+
     """
+    telephone = request.GET['telephone']
+    print(telephone)
+    # 用于测试短信验证码
     cache.set("smsId","123456")
-    print(cache.get("smsId"))
+    print("=="+cache.get("smsId"))
     return resultful.ok()
 
 def __sms_captcha(request):
     """
     正式方法：需要真实的手机验证码才能注册,修改方法名
+    {'code': 400}
+    {'status': 'Bad Request'}
+    {'headers': <http.client.HTTPMessage object at 0x054F1F30>}
+    {'stringData': '{"code":10022,"error":"模板:tpl_hfx 不存在"}'}或{'stringData':{"smsId":"108674070"}}
+    {'err': 'Bad Request'}
+    {'msg': None }
     """
     b = Bmob(constants.APP_ID, constants.REST_KEY)
     telephone = request.GET.get("telephone")
@@ -115,16 +123,12 @@ def __sms_captcha(request):
     else:
         error_message = strData.get("error","")
         return resultful.captcha_error(message=error_message)
-    print(cache.get("smsId"))
     return resultful.ok()
 
-def verify_captcha(request):
-    """
-    """
-    pass
-
-
 def verify(request):
+    '''
+    不需要该方法来验证。已经在forms中验证了
+    '''
     # b = Bmob(constants.APP_ID, constants.REST_KEY)
     # result = b.sendSMSCode("16600275590","tpl_hx")
     # strData = json.loads(result.stringData)
@@ -140,13 +144,13 @@ def verify(request):
     # check
     y = Bmob(constants.APP_ID,constants.REST_KEY)
     result2 = y.verifySMSCode("16600275590","823805")
-    print("="*10)
-    print(result2.code)
-    print(result2.status)
-    print(result2.headers)
-    print(result2.stringData)
-    print(result2.err)
-    print(result2.msg)
+    # print("="*10)
+    # print(result2.code)
+    # print(result2.status)
+    # print(result2.headers)
+    # print(result2.stringData)
+    # print(result2.err)
+    # print(result2.msg)
     strData2 = json.loads(result2.stringData)
     if result2.code == 200:
         print("success")

@@ -8,6 +8,12 @@
 {% block head %}
 <script src="{% static 'js/news.min.js'%}"></script>
 <script src="https://unpkg.com/qiniu-js@2.5.2/dist/qiniu.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'simditor/styles/simditor.css'%}" />
+
+<script type="text/javascript" src="{% static 'simditor/scripts/module.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/hotkeys.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/uploader.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/simditor.js'%}"></script>
 {% endblock head %}
 
 {% block content-header %}
@@ -34,13 +40,13 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="category-form">描述</label>
+            <label for="desc-form">描述</label>
             <input type="text" class="form-control" id="desc-form" name="desc">
           </div>
           <div class="form-group">
             <label for="thumbnail-form">缩略图</label>
             <div class="input-group">
-              <input type="text" class="form-control" name="thumbnail" id="thumbnail-form">
+              <input type="text" class="form-control" name="thumbnail" id="thumbnail-form" readonly>
               <span class="input-group-btn">
                 <label class="btn btn-default btn-file">
                   <input hidden type="file" class="btn btn-default" id="thumbnail-btn">
@@ -49,13 +55,22 @@
               </span>
             </div>
           </div>
+          <!-- 上传进度条 -->
+          <div class="form-group" id="progress-group">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                aria-valuemax="100" style="width: 0%" id="progress-bar">
+                <span class="sr-only">0%</span>
+              </div>
+            </div>
+          </div>
           <div class="form-group">
             <label for="content-form">内容</label>
-            <textarea class="form-control" name="content" id="content" rows="10" cols="30"></textarea>
+            <textarea id="content-form" class="form-control" placeholder="" autofocus></textarea>
           </div>
         </div>
         <div class="box-footer">
-          <button class="btn btn-primary pull-right">发布新闻</button>
+          <button class="btn btn-primary pull-right" id="submitBtn">发布新闻</button>
         </div>
       </form>
     </div>

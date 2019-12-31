@@ -39,12 +39,14 @@ class RegisterForm(forms.Form, FormMixin):
         if not cached_img_captcha or cached_img_captcha != img_captcha.lower():
             raise forms.ValidationError("图形验证码错误")
         # 验证短信验证码
+        if sms_captcha != cache.get('smsId'):
+            raise forms.ValidationError("短信验证吗不正确")
         # b = Bmob(constants.APP_ID, constants.REST_KEY)
         # smsVerify = b.verifySMSCode(telephone,sms_captcha)
         # code = smsVerify.code
-        code = 200 # 加验证，真验证还需要修改sms_captcha方法
-        if code != 200:
-            raise forms.ValidationError("短信验证码错误")
+        # code = 200 # 加验证，真验证还需要修改sms_captcha方法
+        # if code != 200:
+        #     raise forms.ValidationError("短信验证码错误")
         # 电话是否被注册过
         exists = User.objects.filter(telephone=telephone).exists()
         if exists:

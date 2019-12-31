@@ -1,7 +1,7 @@
 function NewCategory() {
 
 };
-
+//添加分类
 NewCategory.prototype.listenAddCategoryEvent = function () {
     var add_btn = $("#add-btn");
     add_btn.click(function () {
@@ -30,6 +30,7 @@ NewCategory.prototype.listenAddCategoryEvent = function () {
         })
     });
 }
+//编辑分类
 NewCategory.prototype.listenEditCategoryEvent = function () {
     var editBtn = $('.edit_btn');
     editBtn.click(function () {
@@ -72,6 +73,7 @@ NewCategory.prototype.listenEditCategoryEvent = function () {
         });
     });
 }
+//删除分类
 NewCategory.prototype.listenDelCategoryEvent = function () {
     var self = this;
     var delBtn = $('.del_btn');

@@ -25,7 +25,7 @@ SECRET_KEY = 'krqx83rn&=!%#s=c*61df+_lw5nehqdgw(&=qk*&d8)0*h8%^z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.150.131',"0.0.0.0"]
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'apps.xfzauth',
     'apps.cms',
     'apps.news',
+    'apps.payinfo',
+    'apps.course'
 ]
 
 MIDDLEWARE = [
@@ -97,7 +99,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'admin'
+        'PASSWORD': '123456'
     }
 }
 
@@ -127,7 +129,7 @@ AUTH_USER_MODEL = 'xfzauth.User'
 CACHES = {
     'default': {
         'BACKEND': "django.core.cache.backends.memcached.MemcachedCache",
-        'LOCATION': '127.0.0.1:11211'
+        'LOCATION': '192.168.150.131:11211'
     }
 }
 # Internationalization
