@@ -80,7 +80,6 @@ News.prototype.listenQiniuUploadImgEvent = function () {
 }
 
 //监听创建新闻时间
-
 News.prototype.listenSubmitEvent = function () {
     var submitBtn = $("#submitBtn");
     submitBtn.click(function () {
@@ -122,6 +121,7 @@ News.prototype.listenSubmitEvent = function () {
 }
 
 
+// 初始化富文本编辑器
 News.prototype.initSimditor = function () {
     window.editor = new Simditor({
         textarea: $('#content-form'),
@@ -136,12 +136,12 @@ News.prototype.initSimditor = function () {
 
 }
 
+
+//启动监听
 News.prototype.run = function () {
     var self = this;
     self.listenUploadImgEvent();
     // self.listenQiniuUploadImgEvent();
-
-
     self.initSimditor();
     self.listenSubmitEvent();
 

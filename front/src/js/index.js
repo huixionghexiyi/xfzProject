@@ -152,17 +152,17 @@ Banner.prototype.listenArrowClick = function () {
     //监听左边
     self.leftArrow.click(function () {
         if (self.index === 0) {
-            self.bannerUl.css({"left":-self.bannerWidth*self.bannerCount});
+            self.bannerUl.css({ "left": -self.bannerWidth * self.bannerCount });
             self.index = self.bannerCount - 1;
         } else {
-            self.index--;   
+            self.index--;
         }
         self.animate();
     });
     //监听右边
     self.rightArrow.click(function () {
         if (self.index === self.bannerCount + 1) {
-            self.bannerUl.css({"left":-self.bannerWidth});
+            self.bannerUl.css({ "left": -self.bannerWidth });
             self.index = 2;
         } else {
             self.index++;
@@ -190,11 +190,108 @@ Banner.prototype.run = function () {
 
 }
 
+function Index() {
+    self = this;
+    self.page = 2;
+    self.category_id = 0;
+    template.defaults.imports.timeSince = function (dateValue) {
+        var date = new Date(dateValue);
+        var datets = date.getTime();
+        var nowts = (new Date()).getTime();
+        var timestamp = (nowts - datets) / 1000;//得到秒数
+        if (timestamp < 60) {
+            return '刚刚';
+        } else if (timestamp >= 60 && timestamp < 60 * 60) {
+            minutes = parseInt(timestamp / 60);
+            return minutes + "分钟前";
+        } else if (timestamp >= 60 * 60 && timestamp < 60 * 60 * 24) {
+            hours = parseInt(timestamp / 60 / 60);
+            return hours + "小时前";
+        } else if (timestamp >= 60 * 60 * 24 && timestamp < 60 * 60 * 24 * 30) {
+            days = parseInt(timestamp / 60 / 60 / 24);
+            return days + "天前";
+        } else {
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            return year + "/" + month + "/" + day + " " + hour + ":" + minutes;
+        }
+    }
+}
+Index.prototype.listenMoreNewsEvent = function () {
+    self = this;
+    moreNewsBtn = $("#load-more-btn");
+    moreNewsBtn.click(function () {
+        $.get({
+            'url': '/news/list/',
+            'data': {
+                'p': self.page,
+                category_id: self.category_id
+            },
+            'success': function (result) {
+                if (result['code'] === 200) {
+                    var newses = result['data'];
+                    if (newses.length > 0) {
+                        var tpl = template("news-item", { "newses": newses });
+                        var ul = $(".list_inner_group");
+                        ul.append(tpl);
+                        self.page += 1;
+                    } else {
+                        moreNewsBtn.hide();
+                    }
+
+                }
+            }
+        });
+    })
+}
+
+Index.prototype.listenCategorySwitchEnvet = function () {
+    self = this;
+    var tabGroup = $(".list_tab");
+    var listGroup = $(".list_inner_group");
+    moreNewsBtn = $("#load-more-btn");
+    tabGroup.children().click(function () {
+        var li = $(this);
+        var category_id = li.attr("date-category");
+        $.get({
+            url: '/news/list/',
+            data: {
+                category_id: category_id
+            },
+            dataType: 'json',
+            success: function (result) {
+                if (result['code'] === 200) {
+                    // console.log(result['data']);
+                    var newses = result['data'];
+                    var tpl = template("news-item", { "newses": newses });
+                    listGroup.empty();
+                    listGroup.append(tpl);
+                    li.addClass('active').siblings().removeClass('active');
+                    self.category_id = category_id;
+                    self.page = 2;
+                    moreNewsBtn.show();
+
+                }
+            }
+
+        })
+    })
+}
+Index.prototype.run = function () {
+    self = this;
+    self.listenMoreNewsEvent();
+    self.listenCategorySwitchEnvet();
+}
 /**
  * 页面加载完毕执行的方法
  */
 
 $(function () {
     var banner = new Banner();
+    var index = new Index();
+    index.run();
     banner.run();
 });

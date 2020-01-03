@@ -50,10 +50,15 @@ class WriteNewsView(View):
             thumbnail = form.cleaned_data.get('thumbnail')
             category = NewsCategory.objects.get(pk=category_id)
             News.objects.create(title=title, desc=desc, category=category,
-                                thumbnail=thumbnail, author=request.user,content=content)
+                                thumbnail=thumbnail, author=request.user, content=content)
             return resultful.ok()
         else:
             return resultful.params_error(message=form.get_errors())
+
+@require_POST
+def show_newses(request):
+    
+    pass
 
 
 @require_GET

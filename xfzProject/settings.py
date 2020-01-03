@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'apps.cms',
     'apps.news',
     'apps.payinfo',
-    'apps.course'
+    'apps.course',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -159,3 +160,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 # 文件保存的绝对路径
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 一次加载的文章数
+
+ONE_PAGE_NEWS_COUNT = 2

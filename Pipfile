@@ -8,6 +8,7 @@ autopep8 = "*"
 
 [packages]
 qiniu = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

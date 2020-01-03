@@ -1,16 +1,42 @@
 {% extends 'base/front_base.html' %}
-
+{% load news_filters %}
 
 {% block title %}
-    小饭桌
+小饭桌
 {% endblock title %}
-    
+
 {% block head %}
 <!-- 图标 -->
 <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
-<script src="{% static 'js/index.min.js' %}">
-  
+<script src="{% static 'js/template-web.js'%}"></script>
+<script src="{% static 'js/index.min.js' %}"></script>
+<script id="news-item" type="text/html">
+    {% verbatim %}
+    {{ each newses news index}}
+    <li>
+        <div class="thumbnail_group">
+            <a href="/news/{{news.id}}">
+                <img src="{{ news.thumbnail }}" alt="">
+            </a>
+        </div>
+        <div class="news_group">
+            <p class="title">
+                <a href="/news/{{news.id}}">
+                    {{ news.title}}
+                </a>
+            </p>
+            <p class="desc">{{news.desc}}</p>
+            <p class="more">
+                <span class="category">{{ news.category.name }}</span>
+                <span class="pub_time">{{ news.pub_time|timeSince }}</span>
+                <span class="author">{{ news.author.username }}</span>
+            </p>
+        </div>
+    </li>
+    {{/each}}
+    {% endverbatim %}
 </script>
+
 {% endblock head %}
 {% block main %}
 <!-- 中间的主体内容 -->
@@ -39,56 +65,38 @@
             <div class="list_outer_group">
                 <!-- 新闻标签 -->
                 <ul class="list_tab">
-                    <li class="active"><a href="">最新资讯</a></li>
-                    <li><a href="">新消费</a></li>
-                    <li><a href="">金融科技</a></li>
-                    <li><a href="">出行物流</a></li>
+                    <li class="active" date-category="0"><a href="javascript:void(0);">最新</a></li>
+                    {% for category in categories%}
+                    <li date-category="{{ category.pk }}"><a href="javascript:void(0);">{{category.name}}</a></li>
+                    {% endfor %}
                 </ul>
                 <!-- 新闻简介 -->
                 <ul class="list_inner_group">
+                    {% for news in newses %}
                     <li>
                         <div class="thumbnail_group">
                             <a href="#">
-                                <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
+                                <img src="{{ news.thumbnail }}" alt="">
                             </a>
                         </div>
                         <div class="news_group">
                             <p class="title">
-                                <a href="news_detail.html">
-                                    早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
+                                <a href="{% url 'news:detail' news_id=news.pk %}">
+                                    {{ news.title}}
                                 </a>
                             </p>
-                            <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
+                            <p class="desc">{{news.desc}}</p>
                             <p class="more">
-                                <span class="category">中兴5G手机</span>
-                                <span class="pub_time">一小时前</span>
-                                <span class="author">huixiong</span>
+                                <span class="category">{{news.category.name}}</span>
+                                <span class="pub_time">{{news.pub_time|time_since}}</span>
+                                <span class="author">{{news.author.username}}</span>
                             </p>
                         </div>
                     </li>
-                    <li>
-                        <div class="thumbnail_group">
-                            <a href="#">
-                                <img src="https://static-image.xfz.cn/1565060483_314.png-website.news.list" alt="">
-                            </a>
-                        </div>
-                        <div class="news_group">
-                            <p class="title">
-                                <a href="#">
-                                    早报：国内首款5G手机今日开售；NASA协助马斯克开发太空技术；沃尔玛申请数字加密货币专利
-                                </a>
-                            </p>
-                            <p class="desc">法拉第未来的FF 91现身洛杉矶引围观。</p>
-                            <p class="more">
-                                <span class="category">中兴5G手机</span>
-                                <span class="pub_time">一小时前</span>
-                                <span class="author">huixiong</span>
-                            </p>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <div class="load_more_group">
-                    <button class="load_more">
+                    <button class="load_more" id="load-more-btn">
                         查看更多
                     </button>
                 </div>
