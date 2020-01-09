@@ -6,8 +6,23 @@
 {% endblock title %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/news/news_detail.min.css' %}">
-
+<script src="{% static 'js/template-web.js'%}"></script>
 <script src="{% static 'js/index.min.js' %}"></script>
+<script src="{% static 'js/news_detail.min.js' %}"></script>
+<script id="comment-item" type="text/html">
+    {% verbatim %}
+    <li>
+        <div class="comment_info">
+            <img src="/static/img/avatar.jpg" alt="" class="avatar">
+            <span class="author">{{comment.author.username}}</span>
+            <span class="sub_time">{{comment.pub_time|timeSince}}</span>
+        </div>
+        <div class="comment_content">
+            {{comment.content}}
+        </div>
+    </li>
+    {% endverbatim %}
+</script>
 {% endblock %}
 
 
@@ -33,9 +48,8 @@
                         <a href="#" class="weibo item_group"></a>
                     </div>
                 </div>
-                <!-- 展示文章，我们不需要编辑样式，
-                    传递过来的数据就是渲染好的 ,这里展示不好看，是因为缺少统一的js，后面自己写的时候就不会这样了-->
                 <article class="article">
+                    <!-- 表示文章内容是安全的，可以使用html语法解析他 -->
                     {{news.content|safe}}
                 </article>
             </div>
@@ -44,33 +58,25 @@
                 <h3 class="title">
                     文章评论(0)
                 </h3>
-                <textarea name="textarea" class="comment_textarea logined_textarea" placeholder="立即登录,参与评论"></textarea>
+                <textarea name="comment" class="comment_textarea logined_textarea" placeholder="立即登录,参与评论"></textarea>
                 <div class="submit_btn_group">
-                    <button class="submit_btn">发表评论</button>
+                    <button class="submit_btn" data-news-id="{{ news.pk }}">发表评论</button>
                 </div>
             </div>
             <!-- 评论列表 -->
             <ul class="comment_list">
+                {% for comment in news.comments.all %}
                 <li>
                     <div class="comment_info">
-                        <img src="../../src/img/avatar.jpg" alt="" class="avatar">
-                        <span class="author">灰熊</span>
-                        <span class="sub_time">2年前</span>
+                        <img src='{% static  "img/avatar.jpg" %}' alt="" class="avatar">
+                        <span class="author">{{comment.author.username}}</span>
+                        <span class="sub_time">{{comment.pub_time|time_since}}</span>
                     </div>
                     <div class="comment_content">
-                        这是太好玩啊~哈哈哈。
+                        {{comment.content}}
                     </div>
                 </li>
-                <li>
-                    <div class="comment_info">
-                        <img src="../../src/img/avatar.jpg" alt="" class="avatar">
-                        <span class="author">灰熊</span>
-                        <span class="sub_time">1年前</span>
-                    </div>
-                    <div class="comment_content">
-                        也就一般好玩~哈哈哈。
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
         </div>
         {% include 'common/siderbar.html' %}

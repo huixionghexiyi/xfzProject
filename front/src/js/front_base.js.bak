@@ -23,21 +23,22 @@ FrontBase.prototype.listenAuthBoxHover = function () {
  */
 function Auth() {
     self = this;
+    self.mask_wrapper = $(".mask_wrapper");
     self.scrollGroup = $('.scroll_group');
     self.telephoneInput = $(".signup_group input[name='telephone']");
     self.sendSmsBtn = $("#sendSmsBtn");
 }
 
 //展示
-function showEvent() {
-    var mask_wrapper = $(".mask_wrapper");
-    mask_wrapper.show();
+Auth.prototype.showEvent = function () {
+    self = this;
+    self.mask_wrapper.show();
 };
 
 //隐藏
-function hideEvent() {
-    var mask_wrapper = $(".mask_wrapper");
-    mask_wrapper.hide();
+Auth.prototype.hideEvent = function () {
+    self = this;
+    self.mask_wrapper.hide();
 };
 
 //监听
@@ -50,39 +51,36 @@ Auth.prototype.listenEvent = function () {
     var imgCaptcha = $(".img_captcha");
 
     signinBtn.click(function () {
-        showEvent();
-        var scrollGroup = $('.scroll_group');
-        scrollGroup.css({ "left": 0 });
+        self.showEvent();
+        self.scrollGroup.css({ "left": 0 });
     });
     signupBtn.click(function () {
-        showEvent();
-        var scrollGroup = $('.scroll_group');
-        scrollGroup.css({ "left": -400 });
+        self.showEvent();
+        self.scrollGroup.css({ "left": -400 });
     });
     closeBtn.click(function () {
         var mask_wrapper = $(".mask_wrapper");
         mask_wrapper.hide();
     });
     switchBtn.click(function () {
-        var scrollGroup = $('.scroll_group');
-        var currentLeft = scrollGroup.css("left");
-
+        var currentLeft = self.scrollGroup.css("left");
         currentLeft = parseInt(currentLeft);
         if (currentLeft < 0) {
-            scrollGroup.animate({ "left": '0px' });
+            self.scrollGroup.animate({ "left": '0px' });
         } else {
-            scrollGroup.animate({ "left": '-400px' });
+            self.scrollGroup.animate({ "left": '-400px' });
         }
     });
     imgCaptcha.click(function () {
         //src被重写设置的时候会重写访问。不然重复内容的访问不会被执行。
         imgCaptcha.attr("src", "/account/img_captcha/" + "?random=" + Math.random());
     });
+
 }
 
 Auth.prototype.listenRequestEvent = function () {
     self = this;
-    var signinGroup = $(".signin_group");//登录 
+    var signinGroup = $(".signin_group");//登录
     var signupGroup = $(".signup_group");//注册
     //登录的信息
     var telephoneInput = signinGroup.find("input[name='telephone']");
@@ -122,7 +120,7 @@ Auth.prototype.listenRequestEvent = function () {
             function (result) {
                 // console.log(result);
                 if (result['code'] == 200) {
-                    hideEvent();
+                    self.hideEvent();
                     window.location.reload();
                 } else {
                     //如果不为200 那么返回的值就是
@@ -248,6 +246,7 @@ Auth.prototype.listenSmsCaptchaEvent = function () {
     });
 }
 Auth.prototype.listenLoginEvent = function () {
+
 }
 //run
 Auth.prototype.run = function () {
