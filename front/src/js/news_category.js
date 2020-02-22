@@ -91,7 +91,6 @@ NewCategory.prototype.listenDelCategoryEvent = function () {
                         pk: pk
                     },
                     dataType: 'json',
-                    type: 'post',
                     success: function (result) {
                         if (result['code'] === 200) {
                             window.location.reload();

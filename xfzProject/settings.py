@@ -24,8 +24,31 @@ SECRET_KEY = 'krqx83rn&=!%#s=c*61df+_lw5nehqdgw(&=qk*&d8)0*h8%^z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG Toolbar
+DEBUG_TOOLBAR_PANELS = [
+    # django version
+    'debug_toolbar.panels.versions.VersionsPanel',
+    # load used time
+    'debug_toolbar.panels.timer.TimerPanel',
+    # show settings
+    'debug_toolbar.panels.settings.SettingsPanel',
+    # req/resp header
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.profiling.ProfilingPanel',
+]
 
-ALLOWED_HOSTS = ['192.168.150.131',"0.0.0.0"]
+
+ALLOWED_HOSTS = ['192.168.150.131', "0.0.0.0"]
+
+INTERNAL_IPS = ["127,0,0,1", '0.0.0.0', "*"]
 
 
 # Application definition
@@ -43,10 +66,12 @@ INSTALLED_APPS = [
     'apps.news',
     'apps.payinfo',
     'apps.course',
-    'rest_framework'
+    'rest_framework',  # django的RESTful API 这里用来序列化对象
+    'debug_toolbar',  # debug toolbar工具
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # 该中间件尽可能靠前
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,7 +99,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # 自动导入静态文件，以后就不用手动导入
+            # 自动导入静态文件，以后就不用手动导入 {% static 'js/...'%}
             'builtins':[
                 'django.templatetags.static'
             ]
@@ -164,3 +189,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 一次加载的文章数
 
 ONE_PAGE_NEWS_COUNT = 2
+
+
+# # 会使用jquery来在前端展示。所以配置jquery有助于加快速度
+DEBUG_TOOLBAR_CONFIG = {
+    'JQUERY_URL': '',# 为空 不加载jquery，因为本身前端已经使用了。
+    # 或把jquery下载到本地然后取消下面这句的注释, 并把上面那句删除或注释掉
+    # 'JQUERY_URL': '/static/jquery/2.1.4/jquery.min.js',
+    'SHOW_COLLAPSED': True,
+    'SHOW_TOOLBAR_CALLBACK': lambda x: True,
+}

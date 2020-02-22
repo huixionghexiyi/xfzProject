@@ -133,8 +133,8 @@ News.prototype.initSimditor = function () {
             params: null
         }
     });
-
 }
+
 
 
 //启动监听
@@ -144,6 +144,7 @@ News.prototype.run = function () {
     // self.listenQiniuUploadImgEvent();
     self.initSimditor();
     self.listenSubmitEvent();
+    self.listenRemoveEvent();
 
 }
 $(function () {

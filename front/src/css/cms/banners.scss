@@ -6,12 +6,16 @@
 } 
 .thumbnail-group{
     float: left;
+    height: 80px;
 }
 .thumbnail{
     float: left;
     width: 250px;
+    height: 100%;
+    cursor: pointer;// 将鼠标悬停改为小手
 
 }
+
 .more-group{
     float: left;
     margin-left: 10px;

@@ -67,7 +67,7 @@ Banner.prototype.toggleArrow = function (isShow) {
 Banner.prototype.animate = function () {
     var self = this;
     //设置滑动的方向和花费的时间。
-    this.bannerUl.animate({ "left": -self.bannerWidth * self.index }, 500);
+    this.bannerUl.stop().animate({ "left": -self.bannerWidth * self.index }, 500);
     //设置pageControl
     var index = self.index;
     if (index === 0) {

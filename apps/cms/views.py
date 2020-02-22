@@ -3,15 +3,18 @@ from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
-from apps.news.models import NewsCategory, News
+from apps.news.models import NewsCategory, News, Banner
 from utils import resultful, constants
-from .forms import EditNewsCategoryForm, WriteNewsForm
+from .forms import EditNewsCategoryForm, WriteNewsForm, SaveBannerForm, EditBannerForm
 from django.conf import settings
 import os
+from django.core.paginator import Paginator, Page
 from qiniu import Auth
 from datetime import datetime
+from apps.news.serializers import BannerSerializer
 import logging
-
+from django.utils.timezone import make_aware
+from urllib import parse
 
 logging.basicConfig(level=logging.DEBUG)
 # Create your views here.
@@ -24,7 +27,7 @@ def login_view(request):
     return render(request, 'cms/login.html')
 
 # 跳转到news app下的index
-@staff_member_required(login_url='news:index')
+@staff_member_required(login_url='news:index')  # 如果没有权限的话，会跳转到主页面
 def index(request):
     return render(request, 'cms/index.html')
 
@@ -55,10 +58,84 @@ class WriteNewsView(View):
         else:
             return resultful.params_error(message=form.get_errors())
 
-@require_POST
-def show_newses(request):
-    
-    pass
+
+class NewsListView(View):
+    def get(self, request):
+        page = int(request.GET.get('p', 1))
+        newses = News.objects.select_related('category', 'author').all()
+        title = request.GET.get('title')
+        category = request.GET.get('category')
+        start = request.GET.get('start')
+        end = request.GET.get('end')
+        # 参数中有时间
+        if start or end:
+            if start:
+                start_date = datetime.strptime(start, r'%Y/%m/%d')
+            else:
+                start_date = datetime(year=2019, month=1, day=6)
+            if end:
+                end_date = datetime.strptime(end, '%Y/%m/%d')
+            else:
+                end_date = datetime.today()
+            newses = newses.filter(pub_time__range=(
+                make_aware(start_date), make_aware(end_date)))
+        # 参数中有标题
+        if title:
+            newses = newses.filter(title__icontains=title)
+        # 参数中有分类
+        if category:
+            newses = newses.filter(category=category)
+        paginator = Paginator(newses, 2)  # 该对象将查询到的数据分页，每页两个QuerySet对象
+        page_obj = paginator.page(page)  # 将获取指定页码的QuerySet对象
+        context = {
+            'categories': NewsCategory.objects.all(),
+            # 查询相关联的数据
+            'newses': page_obj.object_list,  # 返回Page对象中的QuerySet的list
+            'page_obj': page_obj,
+            'paginator': paginator,
+            'page_url': '&category={0}&title={1}&start={2}&end={3}'.format(category, title, start, end)
+        }
+        context.update(self.get_pagination_data(
+            paginator, page_obj))  # 处理分页数据，并添加到context中
+        return render(request, 'cms/news_list.html', context=context)
+
+    def get_pagination_data(self, paginator, page_obj, around_count=2):
+
+        # 当前页面
+        cur_page = page_obj.number
+        # 总共的页数
+        num_pages = paginator.num_pages
+        # left_has_more
+        left_has_more = False
+        right_has_more = False
+        # 左边
+        if cur_page <= around_count + 2:
+            left_pages = range(1, cur_page)
+        else:
+            left_pages = range(cur_page - around_count, cur_page)
+        # 右边
+        if cur_page >= num_pages - around_count - 1:
+            right_pages = range(cur_page+1, num_pages+1)
+        else:
+            right_pages = range(cur_page+1, cur_page+around_count+1)
+        # 返回
+        return {
+            'left_pages': left_pages,  # 当前也左边的页码
+            'right_pages': right_pages,  # 当前也右边的页码
+            'cur_page': cur_page,  # 当前页
+            'left_has_more': left_has_more,  # 左边还有更多？
+            'right_has_more': right_has_more,  # 右边还有更多？
+            'num_pages': num_pages  # 总页数
+        }
+
+
+def remove_news(request):
+    '''
+    删除新闻
+    '''
+    pk = request.POST.get('pk')
+    News.objects.get(pk=pk).delete()
+    return resultful.ok()
 
 
 @require_GET
@@ -117,7 +194,6 @@ def upload_file(request):
     with open(os.path.join(settings.MEDIA_ROOT, name), 'wb') as fp:
         for chunk in file.chunks():
             fp.write(chunk)
-
     url = request.build_absolute_uri(settings.MEDIA_URL+name)
     return resultful.ok(data={'url': url})
 
@@ -150,3 +226,62 @@ def upload_content_img(request):
     logging.debug('file_dir:'+file_dir)
     upload_info = {'success': True, 'msg': 'success', 'file_path': file_dir}
     return JsonResponse(upload_info)
+
+
+def banners(request):
+    '''
+    跳转到轮播图
+    '''
+    return render(request, 'cms/banners.html')
+
+
+def banner_list(request):
+    '''
+    展示所有轮播图
+    '''
+    banners = Banner.objects.all()
+    # 序列化，即将外键等同时也查询出来。
+    serialize = BannerSerializer(banners, many=True)
+    return resultful.result(data=serialize.data)
+
+
+def save_banner(request):
+    '''
+    存储Banner
+    '''
+    form = SaveBannerForm(request.POST)
+    if form.is_valid():
+        priority = form.cleaned_data.get('priority')
+        image_url = form.cleaned_data.get('image_url')
+        link_to = form.cleaned_data.get('link_to')
+        banner = Banner.objects.create(
+            priority=priority, image_url=image_url, link_to=link_to)
+        return resultful.result(data={"banner_id": banner.pk})
+    else:
+        return resultful.params_error(message=form.get_errors())
+
+
+def remove_banner(request):
+    '''
+    删除Banner
+    '''
+    banner_id = request.POST.get('banner_id')
+    Banner.objects.filter(pk=banner_id).delete()
+    return resultful.ok()
+
+
+def edit_banner(request):
+    '''
+    编辑Banner
+    '''
+    form = EditBannerForm(request.POST)
+    if form.is_valid():
+        banner_id = form.cleaned_data.get("banner_id")
+        priority = form.cleaned_data.get("priority")
+        image_url = form.cleaned_data.get("image_url")
+        link_to = form.cleaned_data.get("link_to")
+        Banner.objects.filter(pk=banner_id).update(
+            image_url=image_url, link_to=link_to, priority=priority)
+        return resultful.ok()
+    else:
+        return resultful.params_error(message=form.get_errors())

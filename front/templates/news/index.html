@@ -47,9 +47,9 @@
             <div class="banner_gruop" id="banner_gruop">
                 <!-- 轮播图 -->
                 <ul class="banner_ul" id="banner_ul">
-                    <li><a href="#"><img src="{% static 'img/banner1.jpg' %}" alt=""></a></li>
-                    <li><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt=""></a></li>
-                    <li><a href="#"><img src="{% static 'img/banner3.jpg' %}" alt=""></a></li>
+                    {% for banner in banners %}
+                        <li><a target="_block" href="{{banner.link_to}}"><img src="{{banner.image_url}}" alt="" target="blank"></a></li>
+                    {% endfor %}
                 </ul>
                 <!-- 左右箭头 -->
                 <span class="arrow left_arrow" id="left_arrow">‹</span>

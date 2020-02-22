@@ -1,10 +1,11 @@
 # 自定义过滤器
 # 过滤时间
 from datetime import datetime
-from django import template
+from django import template # 模板的标签，即过滤器
 from django.utils.timezone import now as now_func
-register = template.Library()
+register = template.Library() #
 
+@register.filter(name='time_since')
 def time_since(value):
     """
     time距离现在的时间间隔
@@ -33,5 +34,7 @@ def time_since(value):
     else:
         return value
 
-
-register.filter("time_since",time_since)
+def time_fromat(value):
+    if not isinstance(value,datetime):
+        return value
+    return localtime(value).strftime("%Y/%m/%d %H:%M:%S")

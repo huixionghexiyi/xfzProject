@@ -7,5 +7,7 @@ urlpatterns = [
     # get news_detail
     path("<int:news_id>/", views.news_detail, name="detail"),
     path("search/", views.search, name="search"),
-    path("list/",views.news_list,name="list")
+    path("list/", views.news_list, name="list"),
+    path("comment/", views.public_comment, name="comment")
+
 ]

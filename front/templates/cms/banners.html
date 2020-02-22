@@ -9,28 +9,56 @@
 <link rel="stylesheet" href="{% static 'css/cms/banners.min.css' %}">
 <script id="banner-item" type="text/html">
     {% verbatim %}
+    {{if banner}}
+    <div class="box banner-item" data-banner-id="{{banner.id}}">
+    {{else}}
     <div class="box banner-item">
+    {{/if}}
+        {{if banner}}
         <div class="box-header">
-            <span>位置：0</span>
-            <button class="btn btn-default btn-xs pull-right">
+            <span id="priority-span">优先级:{{banner.priority}}</span>
+            <button class="btn btn-default btn-xs pull-right close-btn">
                 <i class="fa fa-close"></i>
             </button>
         </div>
         <div class="box-body">
             <div class="thumbnail-group">
-                <img src="/static/img/banner1.jpg" alt="" class="thumbnail">
+                <input type="file" style="display:none" class="image-input">
+                <img src="{{banner.image_url}}" alt="" class="thumbnail">
             </div>
             <div class="more-group">
                 <div class="form-group">
-                    <input type="number" class="form-control" name="position" placeholder="位置">
+                    <input type="number" class="form-control priority" name="priority" placeholder="优先级" value="{{banner.priority}}">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="link_to" placeholder="链接">
+                    <input type="text" class="form-control link_to" name="link_to" placeholder="链接" value="{{banner.link_to}}">
                 </div>
             </div>
         </div>
+        {{else}}
+        <div class="box-header">
+            <span id="priority-span">优先级:0</span>
+            <button class="btn btn-default btn-xs pull-right close-btn">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+        <div class="box-body">
+            <div class="thumbnail-group">
+                <input type="file" style="display:none" class="image-input">
+                <img src="/static/img/banner_demo.png" alt="" class="thumbnail">
+            </div>
+            <div class="more-group">
+                <div class="form-group">
+                    <input type="number" class="form-control priority" name="priority" placeholder="优先级">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control link_to" name="link_to" placeholder="链接">
+                </div>
+            </div>
+        </div>
+        {{/if}}
         <div class="box-footer">
-            <button class="btn btn-primary pull-right">保存</button>
+            <button class="btn btn-primary pull-right save-btn">保存</button>
         </div>
     </div>
     {% endverbatim %}

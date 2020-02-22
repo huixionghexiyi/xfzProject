@@ -1,1 +1,1 @@
-.btn-group,.thumbnail-group,.tips{float:left}.thumbnail{float:left;width:250px}.more-group{float:left;margin-left:10px;width:500px}.banner-item{width:800px}
+.btn-group,.tips{float:left}.thumbnail-group{float:left;height:80px}.thumbnail{float:left;width:250px;height:100%;cursor:pointer}.more-group{float:left;margin-left:10px;width:500px}.banner-item{width:800px}
