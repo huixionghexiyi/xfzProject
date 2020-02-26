@@ -89,7 +89,7 @@ def img_captcha(request):
     print(cache.get(text.lower()))
     return response
 
-def sms_captcha(request):
+def __sms_captcha(request):
     """
     将短信验证码放入memcached中？bmob不能获取
 
@@ -101,7 +101,7 @@ def sms_captcha(request):
     print("=="+cache.get("smsId"))
     return resultful.ok()
 
-def __sms_captcha(request):
+def sms_captcha(request):
     """
     正式方法：需要真实的手机验证码才能注册,修改方法名
     {'code': 400}

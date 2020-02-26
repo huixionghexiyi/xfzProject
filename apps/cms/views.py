@@ -13,8 +13,8 @@ from qiniu import Auth
 from datetime import datetime
 from apps.news.serializers import BannerSerializer
 import logging
-from django.utils.timezone import make_aware
-from urllib import parse
+from django.utils.timezone import make_aware  # 将时间标记为清醒的时间，即包含更多的信息，naive是幼稚的时间
+from urllib import parse  # 将字符串转换为url拼接的形式
 
 logging.basicConfig(level=logging.DEBUG)
 # Create your views here.
@@ -59,45 +59,71 @@ class WriteNewsView(View):
             return resultful.params_error(message=form.get_errors())
 
 
+class EditNewsView(View):
+    def get(self, request):
+        news_id = request.GET.get('news_id')
+        news = News.objects.get(pk=news_id)
+        context = {
+            'news': news,
+            'categories': NewsCategory.objects.all()
+        }
+        return render(request, 'cms/write_news.html', context=context)
+
+
 class NewsListView(View):
     def get(self, request):
-        page = int(request.GET.get('p', 1))
+        page = int(request.GET.get('p', 1))  # 获取页码
         newses = News.objects.select_related('category', 'author').all()
-        title = request.GET.get('title')
-        category = request.GET.get('category')
-        start = request.GET.get('start')
-        end = request.GET.get('end')
-        # 参数中有时间
+        title = request.GET.get('title')  # 获取标题
+        category_id = int(request.GET.get('category_id') or 0)  # 获取分类
+        start = request.GET.get('start')  # 获取开始时间
+        end = request.GET.get('end')  # 获取结束事件
+        # 参数中是否有时间
         if start or end:
             if start:
                 start_date = datetime.strptime(start, r'%Y/%m/%d')
             else:
                 start_date = datetime(year=2019, month=1, day=6)
             if end:
-                end_date = datetime.strptime(end, '%Y/%m/%d')
+                end_date = datetime.strptime(end, r'%Y/%m/%d')
             else:
                 end_date = datetime.today()
+            # 将时间 转换成清醒的时间，过滤时间范围再两者之间的新闻
             newses = newses.filter(pub_time__range=(
                 make_aware(start_date), make_aware(end_date)))
         # 参数中有标题
         if title:
+            # icontains 表示大小写不敏感
             newses = newses.filter(title__icontains=title)
         # 参数中有分类
-        if category:
-            newses = newses.filter(category=category)
+        if category_id:
+            newses = newses.filter(category=category_id)
         paginator = Paginator(newses, 2)  # 该对象将查询到的数据分页，每页两个QuerySet对象
-        page_obj = paginator.page(page)  # 将获取指定页码的QuerySet对象
+        page_obj = paginator.page(page)  # 获取指定页码的QuerySet对象
         context = {
             'categories': NewsCategory.objects.all(),
             # 查询相关联的数据
             'newses': page_obj.object_list,  # 返回Page对象中的QuerySet的list
             'page_obj': page_obj,
             'paginator': paginator,
-            'page_url': '&category={0}&title={1}&start={2}&end={3}'.format(category, title, start, end)
+            'start': start,
+            'end': end,
+            'category_id': category_id,
+            'title': title,
+            'page_url': '&'+parse.urlencode({  # url的形式凭拼接idict
+                'start': start or '',
+                'end': end or '',
+                'title': title or '',
+                'category_id': category_id or ''
+            })
         }
         context.update(self.get_pagination_data(
             paginator, page_obj))  # 处理分页数据，并添加到context中
         return render(request, 'cms/news_list.html', context=context)
+
+    '''
+    使用paginator对象和page对象制作分页，paginator 分页器，pag_obj 页对象，around_count 当前页两边的页码
+    '''
 
     def get_pagination_data(self, paginator, page_obj, around_count=2):
 
@@ -123,8 +149,8 @@ class NewsListView(View):
             'left_pages': left_pages,  # 当前也左边的页码
             'right_pages': right_pages,  # 当前也右边的页码
             'cur_page': cur_page,  # 当前页
-            'left_has_more': left_has_more,  # 左边还有更多？
-            'right_has_more': right_has_more,  # 右边还有更多？
+            'left_has_more': left_has_more,  # 左边还有更多,添加 [...]
+            'right_has_more': right_has_more,  # 右边还有更多,添加 [...]
             'num_pages': num_pages  # 总页数
         }
 
@@ -240,7 +266,7 @@ def banner_list(request):
     展示所有轮播图
     '''
     banners = Banner.objects.all()
-    # 序列化，即将外键等同时也查询出来。
+    # 序列化，即将外键等同时也查询出来。序列化为一个json数据
     serialize = BannerSerializer(banners, many=True)
     return resultful.result(data=serialize.data)
 

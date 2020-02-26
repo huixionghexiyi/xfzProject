@@ -3,6 +3,7 @@ function NewsList() {
 }
 //监听发布评论的按钮
 NewsList.prototype.listenSubmitEvent = function () {
+    var self = this;
     var submitBtn = $(".submit_btn");
     var textarea = $("textarea[name='comment']");
     submitBtn.click(function () {

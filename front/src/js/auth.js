@@ -1,3 +1,6 @@
+/**
+ * 已经写到front_base中了
+ */
 //点击登录按钮，弹出对话框
 //不使用面向对象的思想设计的逻辑。
 // $(function () {
@@ -28,39 +31,42 @@ function Auth() {
     self.mask_wrapper = $(".mask_wrapper");
     self.scrollGroup = $('.scroll_group');
 }
-//展示
+//展示登录/注册页面
 Auth.prototype.showEvent = function () {
     self = this;
     self.mask_wrapper.show();
 };
 
-//隐藏
+//隐藏登录/注册页面
 Auth.prototype.hideEvent = function () {
     self = this;
     self.mask_wrapper.hide();
 };
 
-//监听
+//监听按钮事件
 Auth.prototype.listenEvent = function () {
     self = this;
     var signinBtn = $(".signin");
     var signupBtn = $(".signup");
     var closeBtn = $("#close_btn");
     var switchBtn = $(".switch");
+    // 点右上角登录
     signinBtn.click(function () {
         self.showEvent();
         // console.log("login in");
         self.scrollGroup.css({ "left": 0 });
     });
+    //点右上角注册
     signupBtn.click(function () {
         self.showEvent();
         // console.log("login out");
         self.scrollGroup.css({ "left": -400 });
     });
-    closeBtn.click(function () { 
-        self.hideEvent(); 
+    //点击关闭
+    closeBtn.click(function () {
+        self.hideEvent();
     });
-
+    //点击切换
     switchBtn.click(function () {
         var currentLeft = self.scrollGroup.css("left");
         currentLeft = parseInt(currentLeft);
@@ -70,9 +76,8 @@ Auth.prototype.listenEvent = function () {
             self.scrollGroup.animate({ "left": '-400px' });
         }
     });
-
-
 }
+//监听请求
 Auth.prototype.listenRequestEvent = function () {
     self = this;
     var signinGroup = $(".signin_group");
@@ -81,7 +86,7 @@ Auth.prototype.listenRequestEvent = function () {
     var rememberInput = signinGroup.find("input[name='remember']");
     var loginBtn = signinGroup.find(".submit_btn");
     var logoutBtn = $("#logout_btn");
-
+    //登录
     loginBtn.click(function () {
         var telephone = telephoneInput.val();
         var password = passwordInput.val();
@@ -118,6 +123,7 @@ Auth.prototype.listenRequestEvent = function () {
 
         );
     });
+    //退出登录
     logoutBtn.click(function () {
         $.ajax({
             url: "account/logout",
@@ -131,6 +137,7 @@ Auth.prototype.listenRequestEvent = function () {
     })
 
 }
+
 //run
 Auth.prototype.run = function () {
     self = this;

@@ -45,7 +45,7 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.profiling.ProfilingPanel',
 ]
 
-
+# 允许通过一下ip访问
 ALLOWED_HOSTS = ['192.168.150.131', "0.0.0.0"]
 
 INTERNAL_IPS = ["127,0,0,1", '0.0.0.0', "*"]
@@ -99,7 +99,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # 自动导入静态文件，以后就不用手动导入 {% static 'js/...'%}
+            # 自动导入静态文件，以后就不用写 {% load static %} 就可以直接使用{% static 'js/...'%}标签
             'builtins':[
                 'django.templatetags.static'
             ]
@@ -177,11 +177,12 @@ USE_TZ = True
 
 # 静态文件
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist')
 ]
 
-# 文件保存的相对路径
+# 媒体文件保存的相对路径
 MEDIA_URL = '/media/'
 # 文件保存的绝对路径
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

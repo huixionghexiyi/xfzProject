@@ -8,12 +8,13 @@
 <script src="{% static 'js/banners.min.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/cms/banners.min.css' %}">
 <script id="banner-item" type="text/html">
+    <!-- 如果点击【查看更多】，会加载这里的模板，因为是通过ajax访问的数据，不能用djangoTemplate渲染的。 -->
     {% verbatim %}
     {{if banner}}
-    <div class="box banner-item" data-banner-id="{{banner.id}}">
+<div class="box banner-item" data-banner-id="{{banner.id}}">
     {{else}}
     <div class="box banner-item">
-    {{/if}}
+        {{/if}}
         {{if banner}}
         <div class="box-header">
             <span id="priority-span">优先级:{{banner.priority}}</span>
@@ -28,10 +29,12 @@
             </div>
             <div class="more-group">
                 <div class="form-group">
-                    <input type="number" class="form-control priority" name="priority" placeholder="优先级" value="{{banner.priority}}">
+                    <input type="number" class="form-control priority" name="priority" placeholder="优先级"
+                        value="{{banner.priority}}">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control link_to" name="link_to" placeholder="链接" value="{{banner.link_to}}">
+                    <input type="text" class="form-control link_to" name="link_to" placeholder="链接"
+                        value="{{banner.link_to}}">
                 </div>
             </div>
         </div>
@@ -44,6 +47,7 @@
         </div>
         <div class="box-body">
             <div class="thumbnail-group">
+                <!-- 上传文件的标签，点击图片时触发该input点击事件 -->
                 <input type="file" style="display:none" class="image-input">
                 <img src="/static/img/banner_demo.png" alt="" class="thumbnail">
             </div>
@@ -69,6 +73,7 @@
 <h1>轮播图管理</h1>
 {% endblock content-header %}
 {% block content %}
+<!-- bootstrap中的row一共有12列 -->
 <div class="row">
     <!-- bootstrap会自动清除浮动的 -->
     <div class="col-md-12">

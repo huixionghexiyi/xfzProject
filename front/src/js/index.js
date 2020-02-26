@@ -189,15 +189,15 @@ Banner.prototype.run = function () {
     this.listenPageCotrol();
 
 }
-
+// 【加载更多】的对象
 function Index() {
-    self = this;
-    self.page = 2;
+    var self = this;
+    self.page = 2; //第一页已经自动加载了，所以从第二页开始
     self.category_id = 0;
 
 }
 Index.prototype.listenMoreNewsEvent = function () {
-    self = this;
+    var self = this;
     moreNewsBtn = $("#load-more-btn");
     moreNewsBtn.click(function () {
         $.get({
@@ -217,7 +217,6 @@ Index.prototype.listenMoreNewsEvent = function () {
                     } else {
                         moreNewsBtn.hide();
                     }
-
                 }
             }
         });
@@ -225,7 +224,7 @@ Index.prototype.listenMoreNewsEvent = function () {
 }
 
 Index.prototype.listenCategorySwitchEnvet = function () {
-    self = this;
+    var self = this;
     var tabGroup = $(".list_tab");
     var listGroup = $(".list_inner_group");
     moreNewsBtn = $("#load-more-btn");

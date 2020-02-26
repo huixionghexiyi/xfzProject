@@ -1,3 +1,6 @@
+/**
+ * 这里的banners指的是轮播图的数据，在index.js中的banner指的是轮播图的前端结构。
+ */
 function Banners() {
 
 }
@@ -22,6 +25,7 @@ Banners.prototype.loadData = function () {
 }
 /**
  * 调用createBanner创建一个新的banner
+ * 监听添加轮播图按钮
  */
 Banners.prototype.listenAddBanner = function () {
     self = this;
@@ -40,10 +44,11 @@ Banners.prototype.listenAddBanner = function () {
 /**
  * 创建一个bannerItem
  */
-Banners.prototype.createBannerItem = function (banner) {// 一开始加载的时候,如果有一个调用一次这个方法，并传日参数banner
+Banners.prototype.createBannerItem = function (banner) {// 一开始加载的时候,如果有一个banner就调用一次这个方法，并传入参数banner
     // 其中banner是后端传递的数据
     var tpl = template("banner-item", { "banner": banner });
     var bannerListGroup = $(".banner-list-group");
+    //该元素为当前添加的元素，即点击添加轮播图生成的banner
     var bannerItem = null;
     if (banner) {
         //如果bannerItem存在,即自动加载的bannerItem
@@ -53,13 +58,13 @@ Banners.prototype.createBannerItem = function (banner) {// 一开始加载的时
     } else {
         //如果不存在,即点击创建按钮创建的bannerItem
         bannerListGroup.prepend(tpl);
-        //下面给他绑定事件：
+        //找到第一个元素，即刚添加的那个。
         bannerItem = bannerListGroup.find(".banner-item:first");
     }
-    //绑定事件:保存图片、saveBanner、删除
+    //给当前添加的banner绑定事件:保存图片、saveBanner、删除
     self.addImageSelectEvent(bannerItem);
-    self.removeBannerEvent(bannerItem);
-    self.saveBannerEvent(bannerItem);
+    self.addRemoveBannerEvent(bannerItem);
+    self.addSaveBannerEvent(bannerItem);
 }
 
 /**
@@ -69,6 +74,7 @@ Banners.prototype.addImageSelectEvent = function (bannerItem) {
     //先拿到image标签
     //通过bannerItem找到 .image-input
     var image = bannerItem.find(".thumbnail");
+    // 文件input
     var imageInput = bannerItem.find('.image-input');
     // 点击图片的时候,就触发一个input的点击事件
     image.click(function () {
@@ -99,7 +105,7 @@ Banners.prototype.addImageSelectEvent = function (bannerItem) {
 /**
  * 保存事件
  */
-Banners.prototype.saveBannerEvent = function (bannerItem) {
+Banners.prototype.addSaveBannerEvent = function (bannerItem) {
     var saveBtn = bannerItem.find(".save-btn");
     // 三个变量
     saveBtn.click(function () {
@@ -125,7 +131,7 @@ Banners.prototype.saveBannerEvent = function (bannerItem) {
             },
             success: function (result) {
                 if (result['code'] === 200) {
-                    console.log(result);
+                    // console.log(result);
                     if (bannerId) {
                         messageBox.showSuccess("轮播图修改成功");
                     } else {
@@ -135,9 +141,8 @@ Banners.prototype.saveBannerEvent = function (bannerItem) {
                     }
                     //修改banner左上角的显示
                     bannerSpan.text("优先级:" + priority.val());
-
                 } else {
-                    console.log(result);
+                    messageBox.showError(result.message);
                 }
             }
         });
@@ -147,10 +152,11 @@ Banners.prototype.saveBannerEvent = function (bannerItem) {
 /**
  * 删除事件
  */
-Banners.prototype.removeBannerEvent = function (bannerItem) {
+Banners.prototype.addRemoveBannerEvent = function (bannerItem) {
     //从当前的bannerItem中找到关闭的按钮
     var closeBtn = bannerItem.find('.close-btn');
     closeBtn.click(function () {
+        //点击删除的时候获取是否有banner-id。
         var bannerId = bannerItem.attr("data-banner-id");
         if (bannerId) {
             xfzalert.alertConfirm({

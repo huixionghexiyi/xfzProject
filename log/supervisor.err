@@ -1,0 +1,577 @@
+[uWSGI] getting INI configuration from xfz_wsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb 22 23:12:44 2020] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-39) on 22 February 2020 07:30:08
+os: Linux-3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019
+nodename: t495centos7
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /root/workspace/xfzProject
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/workspace/xfzProject
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 31118
+your memory page size is 4096 bytes
+detected max file descriptor number: 4096
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/workspace/xfzProject/xfz.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.5 (default, Dec 13 2019, 13:06:04)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+Set PythonHome to /root/.local/share/virtualenvs/xfzProject-kC4q4-G_
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x23afe30
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x23afe30 pid: 29848 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 29848, cores: 1)
+hello
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./apps/news/views.py", line 29, in index
+    return render(request, "news/index.html", context=context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/panels/staticfiles.py", line 68, in _setup
+    self._wrapped = DebugStaticFilesStorage(collector)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/panels/staticfiles.py", line 61, in __init__
+    super().__init__(*args, **kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/middleware.py", line 99, in __call__
+    bits[-2] += toolbar.render_toolbar()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/toolbar.py", line 69, in render_toolbar
+    return render_to_string("debug_toolbar/base.html", context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 501, in _setup
+    self._wrapped = get_storage_class(settings.STATICFILES_STORAGE)()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+[pid: 29848|app: 0|req: 1/1] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:13:09 2020] GET / => generated 128553 bytes in 1825 msecs (HTTP/1.1 500) 1 headers in 63 bytes (1 switches on core 0)
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/middleware.py", line 99, in __call__
+    bits[-2] += toolbar.render_toolbar()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/toolbar.py", line 69, in render_toolbar
+    return render_to_string("debug_toolbar/base.html", context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 501, in _setup
+    self._wrapped = get_storage_class(settings.STATICFILES_STORAGE)()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+[pid: 29848|app: 0|req: 2/2] 192.168.150.1 () {46 vars in 1472 bytes} [Sat Feb 22 23:13:11 2020] GET /favicon.ico => generated 130752 bytes in 320 msecs (HTTP/1.1 500) 1 headers in 63 bytes (1 switches on core 0)
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./apps/news/views.py", line 29, in index
+    return render(request, "news/index.html", context=context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/panels/staticfiles.py", line 68, in _setup
+    self._wrapped = DebugStaticFilesStorage(collector)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/panels/staticfiles.py", line 61, in __init__
+    super().__init__(*args, **kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/middleware.py", line 99, in __call__
+    bits[-2] += toolbar.render_toolbar()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/toolbar.py", line 69, in render_toolbar
+    return render_to_string("debug_toolbar/base.html", context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 501, in _setup
+    self._wrapped = get_storage_class(settings.STATICFILES_STORAGE)()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+[pid: 29848|app: 0|req: 3/3] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:14:57 2020] GET / => generated 128553 bytes in 1456 msecs (HTTP/1.1 500) 1 headers in 63 bytes (1 switches on core 0)
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/middleware.py", line 99, in __call__
+    bits[-2] += toolbar.render_toolbar()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/debug_toolbar/toolbar.py", line 69, in render_toolbar
+    return render_to_string("debug_toolbar/base.html", context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/test/utils.py", line 95, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/template/base.py", line 903, in render_annotated
+    return self.render(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 106, in render
+    url = self.url(context)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 103, in url
+    return self.handle_simple(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/templatetags/static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/utils/functional.py", line 224, in inner
+    self._setup()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 501, in _setup
+    self._wrapped = get_storage_class(settings.STATICFILES_STORAGE)()
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/storage.py", line 33, in __init__
+    check_settings(base_url)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/contrib/staticfiles/utils.py", line 58, in check_settings
+    "runserver can't serve media if MEDIA_URL is within STATIC_URL."
+django.core.exceptions.ImproperlyConfigured: runserver can't serve media if MEDIA_URL is within STATIC_URL.
+[pid: 29848|app: 0|req: 4/4] 192.168.150.1 () {46 vars in 1472 bytes} [Sat Feb 22 23:14:59 2020] GET /favicon.ico => generated 130752 bytes in 278 msecs (HTTP/1.1 500) 1 headers in 63 bytes (1 switches on core 0)
+[uWSGI] getting INI configuration from xfz_wsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb 22 23:28:13 2020] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-39) on 22 February 2020 07:30:08
+os: Linux-3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019
+nodename: t495centos7
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /root/workspace/xfzProject
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/workspace/xfzProject
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 31118
+your memory page size is 4096 bytes
+detected max file descriptor number: 4096
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/workspace/xfzProject/xfz.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.5 (default, Dec 13 2019, 13:06:04)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+Set PythonHome to /root/.local/share/virtualenvs/xfzProject-kC4q4-G_
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1910e30
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1910e30 pid: 30175 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 30175, cores: 1)
+hello
+[pid: 30175|app: 0|req: 1/1] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:28:28 2020] GET / => generated 26702 bytes in 606 msecs (HTTP/1.1 200) 7 headers in 630 bytes (1 switches on core 0)
+wtfk
+[pid: 30175|app: 0|req: 2/2] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:28:28 2020] GET /account/img_captcha/ => generated 1356 bytes in 43 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30175|app: 0|req: 3/3] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:31:24 2020] GET / => generated 26702 bytes in 378 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+hmgp
+[pid: 30175|app: 0|req: 4/4] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:31:25 2020] GET /account/img_captcha/ => generated 1441 bytes in 52 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30175|app: 0|req: 5/5] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:31:28 2020] GET / => generated 26702 bytes in 329 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+emu1
+[pid: 30175|app: 0|req: 6/6] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:31:29 2020] GET /account/img_captcha/ => generated 1169 bytes in 45 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30175|app: 0|req: 7/7] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:37:04 2020] GET / => generated 26702 bytes in 372 msecs (HTTP/1.1 200) 7 headers in 639 bytes (1 switches on core 0)
+ebyq
+[pid: 30175|app: 0|req: 8/8] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:37:05 2020] GET /account/img_captcha/ => generated 1424 bytes in 49 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30175|app: 0|req: 9/9] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:37:12 2020] GET / => generated 26702 bytes in 356 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+znad
+[pid: 30175|app: 0|req: 10/10] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:37:13 2020] GET /account/img_captcha/ => generated 1529 bytes in 57 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[uWSGI] getting INI configuration from xfz_wsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb 22 23:40:34 2020] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-39) on 22 February 2020 07:30:08
+os: Linux-3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019
+nodename: t495centos7
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /root/workspace/xfzProject
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/workspace/xfzProject
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 31118
+your memory page size is 4096 bytes
+detected max file descriptor number: 4096
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/workspace/xfzProject/xfz.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.5 (default, Dec 13 2019, 13:06:04)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+Set PythonHome to /root/.local/share/virtualenvs/xfzProject-kC4q4-G_
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1903e30
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1903e30 pid: 30573 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 30573, cores: 1)
+hello
+[pid: 30573|app: 0|req: 1/1] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:40:39 2020] GET / => generated 26702 bytes in 633 msecs (HTTP/1.1 200) 7 headers in 637 bytes (1 switches on core 0)
+kjfp
+[pid: 30573|app: 0|req: 2/2] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:40:40 2020] GET /account/img_captcha/ => generated 1146 bytes in 87 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 3/3] 192.168.150.1 () {44 vars in 1509 bytes} [Sat Feb 22 23:44:33 2020] GET / => generated 26702 bytes in 373 msecs (HTTP/1.1 200) 7 headers in 632 bytes (1 switches on core 0)
+bxzk
+[pid: 30573|app: 0|req: 4/4] 192.168.150.1 () {42 vars in 1437 bytes} [Sat Feb 22 23:44:34 2020] GET /account/img_captcha/ => generated 1662 bytes in 44 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 5/5] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:52:34 2020] GET / => generated 26702 bytes in 335 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+fzja
+[pid: 30573|app: 0|req: 6/6] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:52:34 2020] GET /account/img_captcha/ => generated 1182 bytes in 63 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 7/7] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:55:37 2020] GET / => generated 26702 bytes in 368 msecs (HTTP/1.1 200) 7 headers in 651 bytes (1 switches on core 0)
+huf2
+[pid: 30573|app: 0|req: 8/8] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:55:37 2020] GET /account/img_captcha/ => generated 1203 bytes in 50 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 9/9] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:55:43 2020] GET / => generated 26702 bytes in 396 msecs (HTTP/1.1 200) 7 headers in 644 bytes (1 switches on core 0)
+tekm
+[pid: 30573|app: 0|req: 10/10] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:55:44 2020] GET /account/img_captcha/ => generated 1516 bytes in 49 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 11/11] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:57:29 2020] GET / => generated 26702 bytes in 328 msecs (HTTP/1.1 200) 7 headers in 655 bytes (1 switches on core 0)
+bqpu
+[pid: 30573|app: 0|req: 12/12] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:57:29 2020] GET /account/img_captcha/ => generated 1863 bytes in 54 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 13/13] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:57:49 2020] GET / => generated 26703 bytes in 386 msecs (HTTP/1.1 200) 7 headers in 655 bytes (1 switches on core 0)
+7cvd
+[pid: 30573|app: 0|req: 14/14] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:57:50 2020] GET /account/img_captcha/ => generated 1503 bytes in 53 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 15/15] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:57:54 2020] GET / => generated 26702 bytes in 359 msecs (HTTP/1.1 200) 7 headers in 651 bytes (1 switches on core 0)
+gcov
+[pid: 30573|app: 0|req: 16/16] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:57:54 2020] GET /account/img_captcha/ => generated 1638 bytes in 41 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 17/17] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:58:06 2020] GET / => generated 26702 bytes in 359 msecs (HTTP/1.1 200) 7 headers in 651 bytes (1 switches on core 0)
+ypie
+[pid: 30573|app: 0|req: 18/18] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:58:07 2020] GET /account/img_captcha/ => generated 1277 bytes in 50 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 19/19] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:58:32 2020] GET / => generated 26702 bytes in 326 msecs (HTTP/1.1 200) 7 headers in 640 bytes (2 switches on core 0)
+fqxa
+[pid: 30573|app: 0|req: 20/20] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:58:32 2020] GET /account/img_captcha/ => generated 1525 bytes in 61 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 21/21] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:58:39 2020] GET / => generated 26702 bytes in 403 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+tcnz
+[pid: 30573|app: 0|req: 22/22] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:58:40 2020] GET /account/img_captcha/ => generated 1271 bytes in 36 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 23/23] 192.168.150.1 () {46 vars in 1531 bytes} [Sat Feb 22 23:58:47 2020] GET / => generated 26702 bytes in 357 msecs (HTTP/1.1 200) 7 headers in 651 bytes (1 switches on core 0)
+chns
+[pid: 30573|app: 0|req: 24/24] 192.168.150.1 () {46 vars in 1490 bytes} [Sat Feb 22 23:58:47 2020] GET /account/img_captcha/ => generated 1591 bytes in 56 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 25/25] 192.168.150.1 () {46 vars in 1532 bytes} [Sun Feb 23 12:57:02 2020] GET / => generated 26702 bytes in 395 msecs (HTTP/1.1 200) 7 headers in 640 bytes (1 switches on core 0)
+nic8
+[pid: 30573|app: 0|req: 26/26] 192.168.150.1 () {46 vars in 1491 bytes} [Sun Feb 23 12:57:03 2020] GET /account/img_captcha/ => generated 1548 bytes in 58 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+Not Found: /favicon.ico
+[pid: 30573|app: 0|req: 27/27] 192.168.150.1 () {42 vars in 1438 bytes} [Sun Feb 23 12:57:16 2020] GET /favicon.ico => generated 12828 bytes in 250 msecs (HTTP/1.1 404) 5 headers in 447 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 28/28] 192.168.150.1 () {44 vars in 1538 bytes} [Sun Feb 23 13:02:24 2020] GET /cms/index/ => generated 14814 bytes in 286 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 29/29] 192.168.150.1 () {44 vars in 1556 bytes} [Sun Feb 23 13:02:26 2020] GET /cms/news_list/ => generated 19087 bytes in 353 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 30/30] 192.168.150.1 () {44 vars in 1536 bytes} [Sun Feb 23 13:02:35 2020] GET /9/ => generated 23571 bytes in 337 msecs (HTTP/1.1 200) 7 headers in 650 bytes (1 switches on core 0)
+t7dm
+[pid: 30573|app: 0|req: 31/31] 192.168.150.1 () {42 vars in 1440 bytes} [Sun Feb 23 13:02:35 2020] GET /account/img_captcha/ => generated 1493 bytes in 30 msecs (HTTP/1.1 200) 4 headers in 122 bytes (3 switches on core 0)
+[pid: 30573|app: 0|req: 32/32] 192.168.150.1 () {44 vars in 1536 bytes} [Sun Feb 23 13:02:42 2020] GET /8/ => generated 24561 bytes in 463 msecs (HTTP/1.1 200) 7 headers in 650 bytes (1 switches on core 0)
+qxlh
+[pid: 30573|app: 0|req: 33/33] 192.168.150.1 () {42 vars in 1440 bytes} [Sun Feb 23 13:02:43 2020] GET /account/img_captcha/ => generated 1570 bytes in 30 msecs (HTTP/1.1 200) 4 headers in 122 bytes (3 switches on core 0)
+[pid: 30573|app: 0|req: 34/34] 192.168.150.1 () {44 vars in 1560 bytes} [Sun Feb 23 13:02:46 2020] GET /cms/news_list/ => generated 19087 bytes in 321 msecs (HTTP/1.1 200) 7 headers in 648 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 35/35] 192.168.150.1 () {44 vars in 1562 bytes} [Sun Feb 23 13:02:47 2020] GET /cms/write_news/ => generated 17704 bytes in 271 msecs (HTTP/1.1 200) 7 headers in 654 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 36/36] 192.168.150.1 () {44 vars in 1569 bytes} [Sun Feb 23 13:02:51 2020] GET /cms/news_category/ => generated 17437 bytes in 275 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 37/37] 192.168.150.1 () {44 vars in 1560 bytes} [Sun Feb 23 13:02:53 2020] GET /cms/banners/ => generated 17774 bytes in 250 msecs (HTTP/1.1 200) 7 headers in 639 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 38/38] 192.168.150.1 () {44 vars in 1445 bytes} [Sun Feb 23 13:02:53 2020] GET /cms/banner_list/ => generated 497 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 39/39] 192.168.150.1 () {52 vars in 1715 bytes} [Sun Feb 23 13:03:01 2020] POST /cms/remove_banner/ => generated 42 bytes in 22 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 40/40] 192.168.150.1 () {52 vars in 1715 bytes} [Sun Feb 23 13:03:03 2020] POST /cms/remove_banner/ => generated 42 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 41/41] 192.168.150.1 () {52 vars in 1715 bytes} [Sun Feb 23 13:03:05 2020] POST /cms/remove_banner/ => generated 42 bytes in 13 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 42/42] 192.168.150.1 () {52 vars in 1759 bytes} [Sun Feb 23 13:05:48 2020] POST /cms/upload_file/ => generated 90 bytes in 5 msecs (HTTP/1.1 200) 4 headers in 127 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 43/43] 192.168.150.1 () {52 vars in 1713 bytes} [Sun Feb 23 13:05:53 2020] POST /cms/save_banner/ => generated 55 bytes in 64 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 44/44] 192.168.150.1 () {52 vars in 1759 bytes} [Sun Feb 23 13:06:00 2020] POST /cms/upload_file/ => generated 90 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 127 bytes (4 switches on core 0)
+[pid: 30573|app: 0|req: 45/45] 192.168.150.1 () {52 vars in 1713 bytes} [Sun Feb 23 13:06:09 2020] POST /cms/save_banner/ => generated 55 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 46/46] 192.168.150.1 () {52 vars in 1759 bytes} [Sun Feb 23 13:06:19 2020] POST /cms/upload_file/ => generated 90 bytes in 6 msecs (HTTP/1.1 200) 4 headers in 127 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 47/47] 192.168.150.1 () {52 vars in 1713 bytes} [Sun Feb 23 13:06:26 2020] POST /cms/save_banner/ => generated 55 bytes in 9 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 48/48] 192.168.150.1 () {44 vars in 1558 bytes} [Sun Feb 23 13:06:36 2020] GET /cms/news_list/ => generated 19087 bytes in 344 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 49/49] 192.168.150.1 () {44 vars in 1568 bytes} [Sun Feb 23 13:06:49 2020] GET /cms/news_category/ => generated 17437 bytes in 294 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 50/50] 192.168.150.1 () {44 vars in 1566 bytes} [Sun Feb 23 13:06:51 2020] GET /cms/write_news/ => generated 17704 bytes in 272 msecs (HTTP/1.1 200) 7 headers in 654 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 51/51] 192.168.150.1 () {44 vars in 1561 bytes} [Sun Feb 23 13:06:57 2020] GET /cms/news_list/ => generated 19087 bytes in 348 msecs (HTTP/1.1 200) 7 headers in 654 bytes (1 switches on core 0)
+Internal Server Error: /cms/news_list/
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/views/generic/base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./apps/cms/views.py", line 73, in get
+    start_date = datetime.strptime(start, r'%Y/%m/%d')
+  File "/usr/local/lib/python3.7/_strptime.py", line 577, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/local/lib/python3.7/_strptime.py", line 359, in _strptime
+    (data_string, format))
+ValueError: time data 'None' does not match format '%Y/%m/%d'
+[pid: 30573|app: 0|req: 52/52] 192.168.150.1 () {44 vars in 1657 bytes} [Sun Feb 23 13:07:00 2020] GET /cms/news_list/?p=2&category=None&title=None&start=None&end=None => generated 95395 bytes in 346 msecs (HTTP/1.1 500) 6 headers in 489 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 53/53] 192.168.150.1 () {42 vars in 1479 bytes} [Sun Feb 23 13:07:10 2020] GET / => generated 26604 bytes in 360 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+hmin
+[pid: 30573|app: 0|req: 54/54] 192.168.150.1 () {42 vars in 1438 bytes} [Sun Feb 23 13:07:11 2020] GET /account/img_captcha/ => generated 1236 bytes in 43 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 55/55] 192.168.150.1 () {44 vars in 1522 bytes} [Sun Feb 23 13:07:33 2020] GET /9/ => generated 23571 bytes in 321 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+mkur
+[pid: 30573|app: 0|req: 56/56] 192.168.150.1 () {42 vars in 1440 bytes} [Sun Feb 23 13:07:34 2020] GET /account/img_captcha/ => generated 1505 bytes in 33 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 57/57] 192.168.150.1 () {42 vars in 1479 bytes} [Sun Feb 23 13:07:41 2020] GET / => generated 26604 bytes in 412 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+lmqm
+[pid: 30573|app: 0|req: 58/58] 192.168.150.1 () {42 vars in 1438 bytes} [Sun Feb 23 13:07:41 2020] GET /account/img_captcha/ => generated 1703 bytes in 28 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+bag3
+[pid: 30573|app: 0|req: 59/59] 192.168.150.1 () {42 vars in 1437 bytes} [Sun Feb 23 13:08:23 2020] GET /account/img_captcha/ => generated 1820 bytes in 45 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 60/60] 192.168.150.1 () {44 vars in 1537 bytes} [Sun Feb 23 13:11:08 2020] GET /cms/index/ => generated 14814 bytes in 264 msecs (HTTP/1.1 200) 7 headers in 633 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 30573|app: 0|req: 61/61] 192.168.150.1 () {42 vars in 1429 bytes} [Sun Feb 23 13:11:08 2020] GET /favicon.ico => generated 12828 bytes in 239 msecs (HTTP/1.1 404) 5 headers in 437 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 62/62] 192.168.150.1 () {44 vars in 1555 bytes} [Sun Feb 23 13:11:17 2020] GET /cms/news_list/ => generated 19087 bytes in 299 msecs (HTTP/1.1 200) 7 headers in 654 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 63/63] 192.168.150.1 () {44 vars in 1551 bytes} [Sun Feb 23 13:11:19 2020] GET /cms/index/ => generated 14814 bytes in 270 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 64/64] 192.168.150.1 () {44 vars in 1555 bytes} [Sun Feb 23 13:11:20 2020] GET /cms/news_list/ => generated 19087 bytes in 346 msecs (HTTP/1.1 200) 7 headers in 653 bytes (1 switches on core 0)
+Internal Server Error: /cms/news_list/
+Traceback (most recent call last):
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/root/.local/share/virtualenvs/xfzProject-kC4q4-G_/lib/python3.7/site-packages/django/views/generic/base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "./apps/cms/views.py", line 73, in get
+    start_date = datetime.strptime(start, r'%Y/%m/%d')
+  File "/usr/local/lib/python3.7/_strptime.py", line 577, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/local/lib/python3.7/_strptime.py", line 359, in _strptime
+    (data_string, format))
+ValueError: time data 'None' does not match format '%Y/%m/%d'
+[pid: 30573|app: 0|req: 65/65] 192.168.150.1 () {44 vars in 1656 bytes} [Sun Feb 23 13:11:25 2020] GET /cms/news_list/?p=2&category=None&title=None&start=None&end=None => generated 95394 bytes in 351 msecs (HTTP/1.1 500) 6 headers in 489 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 66/66] 192.168.150.1 () {46 vars in 1586 bytes} [Sun Feb 23 13:12:36 2020] GET /cms/news_list/ => generated 19087 bytes in 360 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 67/67] 192.168.150.1 () {48 vars in 1608 bytes} [Sun Feb 23 13:40:42 2020] GET /cms/news_list/ => generated 19087 bytes in 348 msecs (HTTP/1.1 200) 7 headers in 640 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 30573|app: 0|req: 68/68] 192.168.150.1 () {46 vars in 1486 bytes} [Sun Feb 23 13:40:43 2020] GET /favicon.ico => generated 12828 bytes in 227 msecs (HTTP/1.1 404) 5 headers in 447 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 69/69] 192.168.150.1 () {48 vars in 1608 bytes} [Sun Feb 23 13:40:44 2020] GET /cms/news_list/ => generated 19087 bytes in 360 msecs (HTTP/1.1 200) 7 headers in 651 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 30573|app: 0|req: 70/70] 192.168.150.1 () {46 vars in 1486 bytes} [Sun Feb 23 13:40:45 2020] GET /favicon.ico => generated 12828 bytes in 222 msecs (HTTP/1.1 404) 5 headers in 447 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 71/71] 192.168.150.1 () {42 vars in 1478 bytes} [Sun Feb 23 13:40:47 2020] GET / => generated 26604 bytes in 328 msecs (HTTP/1.1 200) 7 headers in 650 bytes (1 switches on core 0)
+wihx
+[pid: 30573|app: 0|req: 72/72] 192.168.150.1 () {42 vars in 1437 bytes} [Sun Feb 23 13:40:48 2020] GET /account/img_captcha/ => generated 1557 bytes in 32 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 73/73] 192.168.150.1 () {46 vars in 1531 bytes} [Sun Feb 23 13:40:51 2020] GET / => generated 26604 bytes in 403 msecs (HTTP/1.1 200) 7 headers in 652 bytes (1 switches on core 0)
+9ygi
+[pid: 30573|app: 0|req: 74/74] 192.168.150.1 () {46 vars in 1490 bytes} [Sun Feb 23 13:40:52 2020] GET /account/img_captcha/ => generated 1574 bytes in 40 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 75/75] 192.168.150.1 () {46 vars in 1531 bytes} [Sun Feb 23 13:41:19 2020] GET / => generated 26604 bytes in 300 msecs (HTTP/1.1 200) 7 headers in 642 bytes (1 switches on core 0)
+cbnw
+[pid: 30573|app: 0|req: 76/76] 192.168.150.1 () {46 vars in 1490 bytes} [Sun Feb 23 13:41:19 2020] GET /account/img_captcha/ => generated 1727 bytes in 48 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 30573|app: 0|req: 77/77] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:20 2020] GET /news/list/?category_id=5 => generated 40 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 78/78] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:21 2020] GET /news/list/?category_id=4 => generated 437 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 79/79] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:21 2020] GET /news/list/?category_id=3 => generated 520 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 80/80] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:22 2020] GET /news/list/?category_id=1 => generated 1191 bytes in 19 msecs (HTTP/1.1 200) 4 headers in 129 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 81/81] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:23 2020] GET /news/list/?category_id=5 => generated 40 bytes in 8 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 82/82] 192.168.150.1 () {48 vars in 1543 bytes} [Sun Feb 23 13:41:24 2020] GET /news/list/?category_id=0 => generated 1191 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 129 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 83/83] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:25 2020] GET /news/list/?category_id=1 => generated 1191 bytes in 11 msecs (HTTP/1.1 200) 4 headers in 129 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 84/84] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:25 2020] GET /news/list/?category_id=3 => generated 520 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 85/85] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:26 2020] GET /news/list/?category_id=4 => generated 437 bytes in 12 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 86/86] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:26 2020] GET /news/list/?category_id=1 => generated 1191 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 129 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 87/87] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:31 2020] GET /news/list/?category_id=3 => generated 520 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 88/88] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:31 2020] GET /news/list/?category_id=4 => generated 437 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 128 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 89/89] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:32 2020] GET /news/list/?category_id=5 => generated 40 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 127 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 90/90] 192.168.150.1 () {44 vars in 1490 bytes} [Sun Feb 23 13:41:32 2020] GET /news/list/?category_id=0 => generated 1191 bytes in 10 msecs (HTTP/1.1 200) 4 headers in 129 bytes (1 switches on core 0)
+[pid: 30573|app: 0|req: 91/91] 192.168.150.1 () {46 vars in 1531 bytes} [Sun Feb 23 14:11:08 2020] GET / => generated 26604 bytes in 329 msecs (HTTP/1.1 200) 7 headers in 650 bytes (1 switches on core 0)
+utpx
+[pid: 30573|app: 0|req: 92/92] 192.168.150.1 () {46 vars in 1490 bytes} [Sun Feb 23 14:11:09 2020] GET /account/img_captcha/ => generated 1469 bytes in 71 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[uWSGI] getting INI configuration from xfz_wsgi.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun Feb 23 14:11:43 2020] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-39) on 22 February 2020 07:30:08
+os: Linux-3.10.0-1062.9.1.el7.x86_64 #1 SMP Fri Dec 6 15:49:49 UTC 2019
+nodename: t495centos7
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /root/workspace/xfzProject
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /root/workspace/xfzProject
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 31118
+your memory page size is 4096 bytes
+detected max file descriptor number: 4096
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /root/workspace/xfzProject/xfz.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.5 (default, Dec 13 2019, 13:06:04)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+Set PythonHome to /root/.local/share/virtualenvs/xfzProject-kC4q4-G_
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x17e6e30
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 72920 bytes (71 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x17e6e30 pid: 36459 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 36459, cores: 1)
+hello
+[pid: 36459|app: 0|req: 1/1] 192.168.150.1 () {46 vars in 1531 bytes} [Sun Feb 23 14:11:49 2020] GET / => generated 26604 bytes in 646 msecs (HTTP/1.1 200) 7 headers in 640 bytes (1 switches on core 0)
+goml
+[pid: 36459|app: 0|req: 2/2] 192.168.150.1 () {46 vars in 1490 bytes} [Sun Feb 23 14:11:50 2020] GET /account/img_captcha/ => generated 1604 bytes in 64 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)
+[pid: 36459|app: 0|req: 3/3] 192.168.150.1 () {44 vars in 1547 bytes} [Sun Feb 23 14:29:58 2020] GET /account/logout/ => generated 0 bytes in 55 msecs (HTTP/1.1 302) 7 headers in 249 bytes (1 switches on core 0)
+[pid: 36459|app: 0|req: 4/4] 192.168.150.1 () {44 vars in 1473 bytes} [Sun Feb 23 14:29:58 2020] GET / => generated 26410 bytes in 307 msecs (HTTP/1.1 200) 7 headers in 643 bytes (1 switches on core 0)
+wugv
+[pid: 36459|app: 0|req: 5/5] 192.168.150.1 () {42 vars in 1393 bytes} [Sun Feb 23 14:29:59 2020] GET /account/img_captcha/ => generated 1733 bytes in 35 msecs (HTTP/1.1 200) 4 headers in 122 bytes (2 switches on core 0)

@@ -26,8 +26,10 @@ class News(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     pub_time = models.DateTimeField(auto_now_add=True)
+    # 以后通过news的外键访问Comment的时候，可以通过[comments]关键字
     news = models.ForeignKey(
         'News', on_delete=models.CASCADE, related_name='comments')
+
     author = models.ForeignKey("xfzauth.User", on_delete=models.CASCADE)
 
     class Meta:

@@ -1,5 +1,5 @@
 {% extends "cms/base.html" %}
-
+{% load news_filters %}
 
 {% block title %}
 新闻列表
@@ -10,9 +10,10 @@
 <link rel="stylesheet" href="{% static 'css/cms/news_list.min.css' %}">
 <!-- 删除事件 -->
 <script src="{% static 'js/news_list.min.js' %}"></script>
-<!-- AdminLTE 日期选择的控件 -->
+<!-- AdminLTE 日期选择的控件 以下三个-->
 <link rel="stylesheet"
   href="{% static 'adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+<!-- 控制控件动作 -->
 <script
   src="{% static 'adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
 <script
@@ -29,24 +30,48 @@
         <form action="" class="form-inline" method="">
           <div class="form-group left-group">
             <label for="">时间：</label>
+            {% if start %}
+            <input type="text" class="form-control" name="start" placeholder="开始时间" id="start-picker" value="{{start}}"
+              readonly>
+            {% else %}
             <input type="text" class="form-control" name="start" placeholder="开始时间" id="start-picker" readonly>
+            {% endif %}
             <span>-</span>
+            {% if end %}
+            <input type="text" class="form-control" name="end" placeholder="结束时间" id="end-picker" value="{{end}}"
+              readonly>
+            {% else %}
             <input type="text" class="form-control" name="end" placeholder="结束时间" id="end-picker" readonly>
+            {% endif %}
           </div>
           <div class="form-group left-group">
             <label for="title-input">标题：</label>
+            {% if title %}
+            <input type="text" class="form-control" name="title" id="title-input" placeholder="关键字" value="{{title}}">
+            {% else %}
             <input type="text" class="form-control" name="title" id="title-input" placeholder="关键字">
+            {% endif %}
           </div>
           <div class="form-group left-group">
             <label for="category-input">分类：</label>
-            <select name="category" id="" class="form-control">
+            <select name="category_id" id="" class="form-control">
+
+              {% if category_id == 0 %}
+              <option value="0" selected>所有分类</option>
+              {% else %}
               <option value="0">所有分类</option>
+              {% endif %}
               {% for category in categories %}
+              {% if category_id == category.pk %}
+              <option value="{{category.pk}}" selected>{{category.name}}</option>
+              {% endif %}
+
               <option value="{{category.pk}}">{{category.name}}</option>
               {% endfor %}
             </select>
           </div>
           <div class="form-group left-group">
+            <!-- 查询是通过表单提交的，默认提交到当前view的get方法 -->
             <button class="btn btn-primary">查询</button>
           </div>
           <div class="form-group">
@@ -70,10 +95,10 @@
             <tr>
               <td><a target="_block" href="{% url 'news:detail' news_id=news.pk %}">{{news.title}}</a></td>
               <td>{{news.category.name}}</td>
-              <td>{{news.pub_time}}</td>
+              <td>{{news.pub_time|time_format}}</td>
               <td>{{news.author.username}}</td>
               <td>
-                <a href="#" class="btn btn-info btn-xs">编辑</a>
+                <a href="{% url 'cms:edit_news' %}?news_id={{news.pk}}" class="btn btn-info btn-xs">编辑</a>
                 <a href="javascript:void(0)" class="btn btn-danger btn-xs remove-btn" data-news-id="{{news.pk}}">删除</a>
               </td>
             </tr>
@@ -85,6 +110,7 @@
       <div class="box-footer">
         <p class="pull-left">第{{cur_page}}页/总共{{ num_pages }}页 <ul class="pagination pull-right">
             {% if page_obj.has_previous %}
+            <!-- 通过后端传递的参数拼接url -->
             <li><a href="?p={{page_obj.previous_page_number}}{{page_url}}">上一页</a></li>
             {%else%}
             <li class="disabled"><a href="javascript:void(0);">上一页</a></li>
@@ -115,9 +141,7 @@
             {% endif %}
           </ul>
       </div>
-
     </div>
-
   </div>
 </div>
 {% endblock content %}

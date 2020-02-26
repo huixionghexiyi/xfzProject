@@ -1,4 +1,5 @@
 {% extends 'base/front_base.html' %}
+<!-- 使用自定义过滤器需要加载 -->
 {% load news_filters  %}
 
 {% block title %}
@@ -49,7 +50,7 @@
                     </div>
                 </div>
                 <article class="article">
-                    <!-- 表示文章内容是安全的，可以使用html语法解析他 -->
+                    <!-- 表示文章内容是安全的，可以使用html语法解析他,django 内置过滤器 -->
                     {{news.content|safe}}
                 </article>
             </div>
@@ -58,13 +59,19 @@
                 <h3 class="title">
                     文章评论(0)
                 </h3>
+                {% if user.is_authenticated %}
+                <textarea name="comment" class="comment_textarea logined_textarea" placeholder="评论千万条，友善第一条"></textarea>
+                {% else %}
                 <textarea name="comment" class="comment_textarea logined_textarea" placeholder="立即登录,参与评论"></textarea>
+                {% endif %}
                 <div class="submit_btn_group">
+                    <!-- 绑定新闻的id -->
                     <button class="submit_btn" data-news-id="{{ news.pk }}">发表评论</button>
                 </div>
             </div>
             <!-- 评论列表 -->
             <ul class="comment_list">
+                <!-- 这个是在Comment模型中的news外键中添加了related_name='comments'，所以可以通过news的comments属性调用Comment模型 -->
                 {% for comment in news.comments.all %}
                 <li>
                     <div class="comment_info">

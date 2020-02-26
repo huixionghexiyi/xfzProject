@@ -7,7 +7,8 @@ urlpatterns = [
     path("login/", views.login_view, name='login_view'),  # just for test.
     path("index/", views.index, name='index'),
     path("remove_news/", views.remove_news, name='remove'),
-    path("write_news/", views.WriteNewsView.as_view(), name='write_news'),
+    path("write_news/", views.WriteNewsView.as_view(), name='write_news'),  # 编辑新闻
+    path("edit_news/", views.EditNewsView.as_view(), name='edit_news'),  # 修改新闻
     path("news_list/", views.NewsListView.as_view(), name='news_list'),
     # path("show_newes/"),
     path("news_category/", views.news_category, name='news_category'),

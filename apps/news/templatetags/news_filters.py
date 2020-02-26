@@ -1,10 +1,13 @@
 # 自定义过滤器
+# 必须放在app中的templatetags下
 # 过滤时间
 from datetime import datetime
 from django import template # 模板的标签，即过滤器
-from django.utils.timezone import now as now_func
+from django.utils.timezone import now as now_func,localtime
+
 register = template.Library() #
 
+# 注册过滤器
 @register.filter(name='time_since')
 def time_since(value):
     """
@@ -34,7 +37,13 @@ def time_since(value):
     else:
         return value
 
+'''
+时间过滤器
+'''
+@register.filter(name='time_format')
 def time_fromat(value):
     if not isinstance(value,datetime):
         return value
+    # 通过settings中的时区调整为当前时区的时间
     return localtime(value).strftime("%Y/%m/%d %H:%M:%S")
+

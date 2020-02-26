@@ -1,3 +1,6 @@
+/**
+ * 这是CMS中的新闻列表，后台管理
+ */
 function NewsList() {
 
 }
@@ -31,21 +34,23 @@ NewsList.prototype.listenRemoveEvent = function () {
     });
 }
 
-//日期选择
+/**
+ * adminLET已经给我们集成了。
+ */
 NewsList.prototype.listenDatePickerEvent = function () {
     var startPicker = $('#start-picker');
     var endPicker = $('#end-picker');
     var todayDate = new Date();
     var todayStr = todayDate.getFullYear() + '/' + (todayDate.getMonth() + 1) + '/' + todayDate.getDate();
     var option = {
-        showButtonPanel: true,
-        format: 'yyyy/mm/dd',
-        language: 'zh-CN',
-        endDate: todayStr,
-        todayHighlight:true,
-        todayBtn: 'linked',
-        clearBtn: true,
-        autoclose: true,
+        showButtonPanel: true,//是否展示按钮
+        format: 'yyyy/mm/dd',//时间格式
+        language: 'zh-CN',//语言
+        endDate: todayStr,//今日作为截止日期
+        todayHighlight:true,//高亮今日
+        todayBtn: 'linked',//选中今天
+        clearBtn: true,//情况按钮
+        autoclose: true,//选择后自动关闭
     }
     startPicker.datepicker(option);
     endPicker.datepicker(option);

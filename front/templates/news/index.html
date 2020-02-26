@@ -8,13 +8,17 @@
 {% block head %}
 <!-- 图标 -->
 <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
+<!-- 要想使用artTemplate 就需要使用这个js文件 -->
 <script src="{% static 'js/template-web.js'%}"></script>
 <script src="{% static 'js/index.min.js' %}"></script>
+<!-- 新闻列表的art-template ，同构ajax添加额外的新闻 -->
 <script id="news-item" type="text/html">
+    <!-- 新闻列表，通过artTemplate实现 -->
     {% verbatim %}
     {{ each newses news index}}
     <li>
         <div class="thumbnail_group">
+            <!-- 不能使用url标签，因为这里是不被django渲染的，因为添加了 verbatim 标签 -->
             <a href="/news/{{news.id}}">
                 <img src="{{ news.thumbnail }}" alt="">
             </a>
