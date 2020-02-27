@@ -32,106 +32,25 @@
     <!-- 课程展示 -->
     <div class="wrapper">
         <ul class="course_list">
+            {% for course in courses %}
             <li>
-                <a href="course_detail.html">
+                <a href="{% url 'course:detail' course_id=course.pk %}">
                     <!-- 缩略图 -->
                     <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
+                        <img src="{{course.cover_url}}" class="thumbnail">
                     </div>
                     <!-- 课程信息 -->
                     <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
+                        <p class="title">{{course.title}}</p>
+                        <p class="author">{{course.teacher.username}}/{{course.teacher.job_title}}</p>
                         <p class="price_group">
-                            <span class="pay"> ￥0</span>
+                            <span class="pay"> ￥{{course.price}}</span>
                         </p>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <!-- 缩略图 -->
-                    <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
-                    </div>
-                    <!-- 课程信息 -->
-                    <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
-                        <p class="price_group">
-                            <span class="pay"> ￥1</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <!-- 缩略图 -->
-                    <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
-                    </div>
-                    <!-- 课程信息 -->
-                    <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
-                        <p class="price_group">
-                            <span class="pay"> ￥2</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <!-- 缩略图 -->
-                    <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
-                    </div>
-                    <!-- 课程信息 -->
-                    <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
-                        <p class="price_group">
-                            <span class="pay"> ￥3</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <!-- 缩略图 -->
-                    <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
-                    </div>
-                    <!-- 课程信息 -->
-                    <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
-                        <p class="price_group">
-                            <span class="pay"> ￥4</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <!-- 缩略图 -->
-                    <div class="thumbnail_group">
-                        <img src="https://static-image.xfz.cn/1563171621_723.png-course.list.small" class="thumbnail">
-                    </div>
-                    <!-- 课程信息 -->
-                    <div class="course_info">
-                        <p class="title">创业CEO如何避免技术决策错误</p>
-                        <p class="author">龚世海/HiCTO创始人兼CEO</p>
-                        <p class="price_group">
-                            <span class="pay"> ￥5</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li></li>
-            <li></li>
+            {% endfor %}
         </ul>
     </div>
 </div>
 {% endblock main %}
-

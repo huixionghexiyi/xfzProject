@@ -76,11 +76,12 @@
             </textarea>
           </div>
         </div>
+        <div class="box-footer">
+          <button class="btn btn-primary pull-right" id="submitBtn" data-news-id="{{news.pk}}">发布新闻</button>
+        </div>
         {% else %}
+        <!-- 如果没有 news 参数，说明是新建的新闻 -->
         <div class="box-body">
-
-
-
           <div class="form-group">
             <label for="title-form">标题</label>
             <input type="text" class="form-control" name="title" id="title-form">
@@ -123,10 +124,10 @@
             <textarea id="content-form" class="form-control" placeholder="" autofocus></textarea>
           </div>
         </div>
-        {% endif %}
         <div class="box-footer">
           <button class="btn btn-primary pull-right" id="submitBtn">发布新闻</button>
         </div>
+        {% endif %}
       </form>
     </div>
   </div>

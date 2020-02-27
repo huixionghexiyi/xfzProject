@@ -13,6 +13,7 @@
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/message.min.js'%}"></script>
     <script src="{% static 'js/front_base.min.js' %}"></script>
+    <script src="{% static 'js/index.min.js' %}"></script>
     <script src="{% static 'js/csrftoken.min.js' %}"></script>
     <script src="{% static 'js/bmob.min.js' %}"></script>
     {% block head %}{% endblock head %}
@@ -27,10 +28,10 @@
                 <a href="/"></a>
             </div>
             <ul class="nav">
-                <li class="active"><a href="/news">资讯</a></li>
-                <li><a href="/course">创业课堂</a><i class="little-triangle"></i></li>
-                <li><a href="/payinfo">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="/search">搜索</a> </li>
+                <li class=""><a href="{% url 'news:index' %}">资讯</a></li>
+                <li><a href="{% url 'course:index' %}">创业课堂</a><i class="little-triangle"></i></li>
+                <li><a href="{% url 'payinfo:index' %}">付费资讯</a><i class="little-triangle"></i></li>
+                <li><a href="{% url 'news:search' %}">搜索</a> </li>
             </ul>
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>

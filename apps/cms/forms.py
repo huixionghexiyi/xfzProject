@@ -17,6 +17,34 @@ class EditNewsCategoryForm(forms.Form, FormMixin):
 
 
 class WriteNewsForm(forms.ModelForm, FormMixin):
+    category_id = forms.IntegerField()
+    teacher_id = forms.IntegerField()
+    # Meta 指定应用的模型
+
+    class Meta:
+        model = News
+        exclude = ['category', 'author', 'pub_time']  # 验证除了这三个字段以外的字段
+        error_messages = {  # 如果指定字段的某种错误出发，则返回指定value
+            'title': {
+                'required': '必须要有标题哦~',
+                'max_length': '最多不超过200个字符~'
+            },
+            'desc': {
+                'required': '必须要有简介哦~',
+                'max_length': '最多不超过200个字符~'
+            },
+            'content': {
+                'required': '内容也不能为空啊'
+            },
+            'thumbnail': {
+                'required': '缩略图也不能为空哦~'
+            }
+
+        }
+
+
+class EditNewsForm(forms.ModelForm, FormMixin):
+
     category = forms.IntegerField()
     # Meta 指定应用的模型
 
@@ -50,6 +78,7 @@ class SaveBannerForm(forms.ModelForm, FormMixin):
 
 class EditBannerForm(forms.ModelForm, FormMixin):
     banner_id = forms.IntegerField()
+
     class Meta:
         model = Banner
         fields = ['priority', 'image_url', 'link_to']

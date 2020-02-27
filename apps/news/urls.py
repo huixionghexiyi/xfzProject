@@ -9,5 +9,4 @@ urlpatterns = [
     path("search/", views.search, name="search"),
     path("list/", views.news_list, name="list"),
     path("comment/", views.public_comment, name="comment")
-
 ]

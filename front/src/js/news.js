@@ -13,7 +13,7 @@ News.prototype.listenUploadImgEvent = function () {
             data: formData,
             processData: false, //这是告诉jquery不要再处理了
             contentType: false, //告诉jquery不要添加内容，就以二进制形式传递
-            success: function (result) {
+            success: function (result) { 
                 if (result['code'] === 200) {
                     var url = result['data']['url'];
                     thumbnailUrl.val(url);
@@ -79,30 +79,45 @@ News.prototype.listenQiniuUploadImgEvent = function () {
     })
 }
 
-//监听创建新闻时间
+//监听创建/修改新闻事件
 News.prototype.listenSubmitEvent = function () {
     var submitBtn = $("#submitBtn");
-    submitBtn.click(function () {
-        event.preventDefault();
+    submitBtn.click(function (event) {
+        event.preventDefault();//阻止默认的提交事件
+        var btn = $(this);
+        var pk = btn.attr('data-news-id');
+        url = '';
+        if (pk) {
+            url = '/cms/edit_news/';
+        } else {
+            url = '/cms/write_news/';
+        }
         var title = $("#title-form").val();
         var category = $("#category-form").val();
         var desc = $("#desc-form").val();
         var thumbnail = $("#thumbnail-form").val();
         var content = window.editor.getValue();
         $.post({
-            url: '/cms/write_news/',
+            url: url,
             data: {
                 title: title,
                 category: category,
                 desc: desc,
                 thumbnail: thumbnail,
-                content: content
+                content: content,
+                pk: pk
             },
             success: function (result) {
                 if (result['code'] === 200) {
-                    xfzalert.alertSuccess('新闻发布成功', function () {
-                        window.location.reload();
-                    });
+                    if (pk) {
+                        xfzalert.alertSuccess('新闻修改成功', function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        xfzalert.alertSuccess('新闻发布成功', function () {
+                            window.location.reload();
+                        });
+                    }
                 } else {
                     var messageObject = result['message'];
                     if (typeof messageObject == 'string' || messageObject.constructor == String) {
@@ -144,7 +159,7 @@ News.prototype.run = function () {
     // self.listenQiniuUploadImgEvent();
     self.initSimditor();
     self.listenSubmitEvent();
-    self.listenRemoveEvent();
+    // self.listenRemoveEvent();
 
 }
 $(function () {

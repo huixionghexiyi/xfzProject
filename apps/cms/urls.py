@@ -1,12 +1,12 @@
 from django.urls import path
-from . import views
+from . import views, courses_views
 
 app_name = 'cms'
 
 urlpatterns = [
     path("login/", views.login_view, name='login_view'),  # just for test.
     path("index/", views.index, name='index'),
-    path("remove_news/", views.remove_news, name='remove'),
+    path("remove_news/", views.remove_news, name='remove'),  # 删除
     path("write_news/", views.WriteNewsView.as_view(), name='write_news'),  # 编辑新闻
     path("edit_news/", views.EditNewsView.as_view(), name='edit_news'),  # 修改新闻
     path("news_list/", views.NewsListView.as_view(), name='news_list'),
@@ -25,5 +25,14 @@ urlpatterns = [
     path("banner_list/", views.banner_list, name='banner_list'),
     path("save_banner/", views.save_banner, name='save_banner'),
     path("remove_banner/", views.remove_banner, name='remove_banner'),
-    path("edit_banner/", views.edit_banner, name='edit_banner'),
+    path("edit_banner/", views.edit_banner, name='edit_banner')
+
+]
+
+'''
+课程相关
+'''
+urlpatterns += [
+    path("pub_courses/", courses_views.CourseListView.as_view(), name='pub_courses')
+
 ]

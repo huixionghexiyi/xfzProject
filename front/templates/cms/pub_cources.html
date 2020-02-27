@@ -1,0 +1,83 @@
+{% extends 'cms/base.html' %}
+
+
+{% block title %}
+发布课程
+{% endblock title %}
+
+
+{% block head %}
+<!-- 包含一些静态文件的引用 -->
+<script src="{% static 'js/courses.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'simditor/styles/simditor.css'%}" />
+
+<script type="text/javascript" src="{% static 'simditor/scripts/module.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/hotkeys.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/uploader.js'%}"></script>
+<script type="text/javascript" src="{% static 'simditor/scripts/simditor.js'%}"></script>
+{% endblock head %}
+
+
+{% block content-header %}
+<!-- 标题 -->
+<h1>发布课程</h1>
+{% endblock content-header %}
+
+
+{% block content %}
+<!-- 内容 -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <form action="" class="form">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="title-fomr">标题</label>
+            <input type="text" class="form-control" id="title-input" name="title">
+          </div>
+          <div class="form-group">
+            <label for="category-form">分类</label>
+            <select name="category" id="category-input" class="form-control">
+              {% for category in categories %}
+              <option value="{{category.pk}}">{{category.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="teacher-form">讲师</label>
+            <select name="teacher" id="teacher-input" class="form-control">
+
+              {% for teacher in teachers %}
+              <option value="{{teacher.pk}}">{{teacher.username}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="video-addr-form">视频地址</label>
+            <input type="text" class="form-control" id="video-addr-input" name="video_addr">
+          </div>
+          <div class="form-group">
+            <label for="cover-form">封面图</label>
+            <input type="text" class="form-control" id="cover-input" name="video_addr">
+          </div>
+          <div class="form-group">
+            <label for="price-form">价格</label>
+            <input type="text" class="form-control" id="price-input" name="video_addr">
+          </div>
+          <div class="form-group">
+            <label for="duration-form">时长</label>
+            <input type="text" class="form-control" id="duration-input" name="video_addr">
+          </div>
+          <div class="form-group">
+            <label for="desc-form">简介</label>
+            <textarea name="" id="desc-input" class="form-control" autofocus></textarea>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button class="btn btn-primary pull-right" id="submitBtn">发布课程</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

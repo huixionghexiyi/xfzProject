@@ -222,7 +222,9 @@ Index.prototype.listenMoreNewsEvent = function () {
         });
     })
 }
-
+/**
+ * 监听分类选择事件
+ */
 Index.prototype.listenCategorySwitchEnvet = function () {
     var self = this;
     var tabGroup = $(".list_tab");
@@ -248,17 +250,28 @@ Index.prototype.listenCategorySwitchEnvet = function () {
                     self.category_id = category_id;
                     self.page = 2;
                     moreNewsBtn.show();
-
                 }
             }
 
-        })
-    })
+        });
+    });
+}
+/**
+ * 监听Nav(导航)选择事件
+ */
+Index.prototype.listenNavSwitchEnvet = function () {
+    var self = this;
+    var navGroup = $(".nav");
+    navGroup.children().click(function () {
+        var li = $(this);
+        li.addClass('active').siblings().removeClass('active');
+    });
 }
 Index.prototype.run = function () {
-    self = this;
+    var self = this;
     self.listenMoreNewsEvent();
     self.listenCategorySwitchEnvet();
+    self.listenNavSwitchEnvet();
 }
 /**
  * 页面加载完毕执行的方法

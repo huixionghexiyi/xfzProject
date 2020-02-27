@@ -57,25 +57,31 @@
                         课程讲师
                     </p>
                     <div class="teacher_group">
-                        <div class="avatar_group"><img src="https://static-image.xfz.cn/1536563248_165.png"
-                                class="avatar"></div>
+                        <div class="avatar_group"><img src="{{course.teacher.avatar}}" class="avatar"></div>
                         <div class="teacher_info">
-                            <p class="teacher_name">龚世海</p>
-                            <p class="desc">HiCTO创始人兼CEO</p>
+                            <p class="teacher_name">{{course.teacher.username}}</p>
+                            <p class="desc">{{course.teacher.job_title}}</p>
                         </div>
                     </div>
-                    <p class="item_content">龚世海，普通老百姓，能吃苦耐劳。龚世海,普通老百姓，能吃苦耐劳。龚世海,普通老百姓，能吃苦耐劳。龚世海,普通老百姓，能吃苦耐劳。</p>
+                    <p class="item_content">{{course.teacher.profile}}</p>
+                </div>
+                <div class="item_group">
+                    <p class="item_title">
+                        课程简介
+                    </p>
+                    <p class="item_content">
+                        {{course.profile|safe}}
+                    </p>
                 </div>
                 <div class="item_group">
                     <p class="item_title">
                         帮助中心
                     </p>
-
                     <p class="item_content">
                         1. 购买后的课程在线可反复观看学习，视频有效期以具体课程信息为准。 <br>
                         2. 课程暂不支持下载观看，均为在线观看视频。 <br>
                         3. 课程一经购买，不可转让、不可退款；仅限购买账号观看。 <br>
-                        4. 如有问题请咨询客服饭桌君： 电话：18618172287 微信：fanzhuojun888 <br>
+                        4. 如有问题请咨询客服饭桌君： 电话：8208208820 微信：wo987871060 <br>
                     </p>
                 </div>
                 <div class="item_group">
@@ -101,7 +107,6 @@
                                     class="thumbnail">
                             </div>
                         </a>
-
                     </li>
                     <li>
                         <a href="">
@@ -136,7 +141,7 @@
         <div class="buy_group">
             <p class="buy_title">创业CEO如何避免技术决策错误 <span>会员免费</span></p>
             <div class="pay_group">
-                <p class="price free">￥0.00</p>
+                <p class="price free">￥{{course.price}}</p>
                 <a href="#" class="pay_btn">
                     <p>免费购买</p>
                 </a>
