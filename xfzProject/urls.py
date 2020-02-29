@@ -22,6 +22,11 @@ from django.conf import settings
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', include("apps.news.urls")),
+    # 使用索引的路由设置，并且会渲染 /templates/search/ 路径下的 search.html 模板
+    # 并且给模板传入：page、paginator、query等参数。
+    # 其中page和paginatior分别是django内置的page类和paginator类的对象。
+    # query是查询的关键字。可以通过 page.object_list获取到查出来的数据。
+    path('search/', include('haystack.urls')),
     path('news/', include("apps.news.urls")),
     path('cms/', include("apps.cms.urls")),
     path('account/', include("apps.xfzauth.urls")),
@@ -32,4 +37,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns.append(path("__debug__/",include(debug_toolbar.urls)))
+    urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

@@ -65,15 +65,18 @@ def news_list(request):
 def news_detail(request, news_id):
     # try:
     # select_related是同时查询外键的内容
-    news = News.objects.select_related(
-        # prefetch_related 同时查询以当前模型为外键的内容，和select_related是相反的
-        'category', 'author').prefetch_related('comments__author').get(pk=news_id)
-    context = {
-        'news': news
-    }
-    # except Exception as e:
-    #     logging.debug("==="+str(e))
-    return render(request, "news/news_detail.html", context=context)
+    if news_id:
+        news = News.objects.select_related(
+            # prefetch_related 同时查询以当前模型为外键的内容，和select_related是相反的
+            'category', 'author').prefetch_related('comments__author').get(pk=news_id)
+        context = {
+            'news': news
+        }
+        # except Exception as e:
+        #     logging.debug("==="+str(e))
+        return render(request, "news/news_detail.html", context=context)
+    else:
+        raise Http404
 
 # 登录的装饰器，支持ajax的重定向。如果使用内部的 login_required不能判断是不是ajax请求
 @xfz_login_required

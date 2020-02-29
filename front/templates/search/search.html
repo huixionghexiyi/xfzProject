@@ -22,7 +22,7 @@
             <div class="search_group" id="search_group">
                 <form action="" method="get">
                     <div class="search_input">
-                        <input type="text" name="q" placeholder="可输入新闻关键词、作者名字搜索">
+                        <input type="text" name="q" placeholder="可输入新闻关键词、作者名字搜索" value="{{query}}">
                         <input type="submit" class="search_btn" value="搜索">
                     </div>
                 </form>
@@ -32,7 +32,8 @@
                 <div class="group_type">热门推荐</div>
                 <!-- 新闻简介 -->
                 <ul class="list_inner_group">
-                    {% for news in newses %}
+                    {% for result in page.object_list %}
+                    {% with result.object as news %}
                     <li>
                         <div class="thumbnail_group">
                             <a href="#">
@@ -53,7 +54,9 @@
                             </p>
                         </div>
                     </li>
+                    {% endwith %}
                     {% endfor %}
+
                 </ul>
             </div>
         </div>

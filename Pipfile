@@ -15,6 +15,7 @@ qiniu = "*"
 djangorestframework = "*"
 django-haystack = "*"
 whoosh = "*"
+jieba = "*"
 
 [requires]
 python_version = "3.7"

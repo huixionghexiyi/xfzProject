@@ -206,12 +206,17 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 '''
-配置搜索引擎
+配置HAYSTACK搜索引擎
 '''
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index'), # 索引文件
+        # 修改whoosh中的分词分析器，使其能够对中文进行分词处理。
+        'ENGINE': 'apps.news.whoosh_cn_backend.WhooshEngine',
+        # 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),  # 索引文件
     }
 }
+
+# 增删改查后会自动创建索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
