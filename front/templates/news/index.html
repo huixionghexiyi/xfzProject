@@ -15,29 +15,29 @@
     <!-- 新闻列表，通过artTemplate实现 -->
     {% verbatim %}
     {{ each newses news index}}
-    <li>
-        <div class="thumbnail_group">
-            <!-- 不能使用url标签，因为这里是不被django渲染的，因为添加了 verbatim 标签 -->
+<li>
+    <div class="thumbnail_group">
+        <!-- 不能使用url标签，因为这里是不被django渲染的，因为添加了 verbatim 标签 -->
+        <a href="{% url 'news.pk/' %} ">
+            <img src="{{ news.thumbnail }}" alt="">
+        </a>
+    </div>
+    <div class="news_group">
+        <p class="title">
             <a href="/news/{{news.id}}">
-                <img src="{{ news.thumbnail }}" alt="">
+                {{ news.title}}
             </a>
-        </div>
-        <div class="news_group">
-            <p class="title">
-                <a href="/news/{{news.id}}">
-                    {{ news.title}}
-                </a>
-            </p>
-            <p class="desc">{{news.desc}}</p>
-            <p class="more">
-                <span class="category">{{ news.category.name }}</span>
-                <span class="pub_time">{{ news.pub_time|timeSince }}</span>
-                <span class="author">{{ news.author.username }}</span>
-            </p>
-        </div>
-    </li>
-    {{/each}}
-    {% endverbatim %}
+        </p>
+        <p class="desc">{{news.desc}}</p>
+        <p class="more">
+            <span class="category">{{ news.category.name }}</span>
+            <span class="pub_time">{{ news.pub_time|timeSince }}</span>
+            <span class="author">{{ news.author.username }}</span>
+        </p>
+    </div>
+</li>
+{{/each}}
+{% endverbatim %}
 </script>
 
 {% endblock head %}
@@ -51,7 +51,8 @@
                 <!-- 轮播图 -->
                 <ul class="banner_ul" id="banner_ul">
                     {% for banner in banners %}
-                        <li><a target="_block" href="{{banner.link_to}}"><img src="{{banner.image_url}}" alt="" target="blank"></a></li>
+                    <li><a target="_block" href="{{banner.link_to}}"><img src="{{banner.image_url}}" alt=""
+                                target="blank"></a></li>
                     {% endfor %}
                 </ul>
                 <!-- 左右箭头 -->

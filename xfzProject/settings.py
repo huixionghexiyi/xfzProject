@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 提供给django的搜索接口，底层可以是不同的搜索引擎：
+    # Solr、Elasticsearch、Whoosh、Xapian等。本项目使用Whoosh
+    # 需要 pip install django-jaystack whoosh
+    'haystack',
     # 安装自定义的应用
     'apps.xfzauth',
     'apps.cms',
@@ -177,7 +181,7 @@ USE_TZ = True
 
 # 静态文件
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist')
 ]
@@ -194,9 +198,20 @@ ONE_PAGE_NEWS_COUNT = 2
 
 # # 会使用jquery来在前端展示。所以配置jquery有助于加快速度
 DEBUG_TOOLBAR_CONFIG = {
-    'JQUERY_URL': '',# 为空 不加载jquery，因为本身前端已经使用了。
+    'JQUERY_URL': '',  # 为空 不加载jquery，因为本身前端已经使用了。
     # 或把jquery下载到本地然后取消下面这句的注释, 并把上面那句删除或注释掉
     # 'JQUERY_URL': '/static/jquery/2.1.4/jquery.min.js',
     'SHOW_COLLAPSED': True,
     'SHOW_TOOLBAR_CALLBACK': lambda x: True,
+}
+
+'''
+配置搜索引擎
+'''
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'), # 索引文件
+    }
 }

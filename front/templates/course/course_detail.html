@@ -132,7 +132,6 @@
                                     class="thumbnail">
                             </div>
                         </a>
-
                     </li>
                 </ul>
             </div>
@@ -142,8 +141,8 @@
             <p class="buy_title">创业CEO如何避免技术决策错误 <span>会员免费</span></p>
             <div class="pay_group">
                 <p class="price free">￥{{course.price}}</p>
-                <a href="#" class="pay_btn">
-                    <p>免费购买</p>
+                <a href="{% url 'course:course_order' course_id=course.pk%}" class="pay_btn">
+                    购买
                 </a>
             </div>
 

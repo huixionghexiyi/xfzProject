@@ -35,17 +35,19 @@
                         padding-left: 10px;
                         font-size: 22px;
                     }
+                    .search_btn {
+                        float: left;
+                        color: #fff;
+                        width: 120px;
+                        height: 46px;
+                        text-align: center;
+                        line-height: 46px;
+                        background: $themeColor;
+                        cursor: pointer;
+                    }
                 }
 
-                .search_btn {
-                    float: left;
-                    color: #fff;
-                    width: 120px;
-                    height: 46px;
-                    text-align: center;
-                    line-height: 46px;
-                    background: $themeColor;
-                }
+               
             }
 
             //轮播图下面的新闻组

@@ -1,0 +1,63 @@
+{% extends 'base/front_base.html' %}
+{#
+    这是使用【索引的搜索页面】，另一个是使用【普通查询数据库的搜索页面】
+    #}
+{% load news_filters %}
+{% block title %}
+搜索
+{% endblock title %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/search/search_index.min.css' %}">
+<script src="{% static 'js/index.min.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+<!-- 中间的主体内容 -->
+<div class="main">
+    <div class="wrapper">
+        <div class="main_content_wrapper">
+            <!-- 轮播组件，包含图、pageControl、arrow箭头 -->
+            <div class="search_group" id="search_group">
+                <form action="" method="get">
+                    <div class="search_input">
+                        <input type="text" name="q" placeholder="可输入新闻关键词、作者名字搜索">
+                        <input type="submit" class="search_btn" value="搜索">
+                    </div>
+                </form>
+            </div>
+            <!-- 新闻组 -->
+            <div class="list_outer_group">
+                <div class="group_type">热门推荐</div>
+                <!-- 新闻简介 -->
+                <ul class="list_inner_group">
+                    {% for news in newses %}
+                    <li>
+                        <div class="thumbnail_group">
+                            <a href="#">
+                                <img src="{{news.thumbnail}}" alt="">
+                            </a>
+                        </div>
+                        <div class="news_group">
+                            <p class="title">
+                                <a href="{% url 'news:detail' news_id=news.pk %}">
+                                    {{news.title}}
+                                </a>
+                            </p>
+                            <p class="desc">{{news.desc}}</p>
+                            <p class="more">
+                                <span class="category">{{news.category.name}}</span>
+                                <span class="pub_time">{{news.pub_time|time_since}}</span>
+                                <span class="author">{{news.author.username}}</span>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% include 'common/siderbar.html' %}
+    </div>
+</div>
+{% endblock main %}

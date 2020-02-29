@@ -7,6 +7,8 @@ from django.http import Http404
 import logging
 from .forms import PublicCommentForm
 from apps.xfzauth.decorators import xfz_login_required
+from apps.xfzauth.models import User
+from django.db.models import Q
 
 # Create your views here.
 logging.basicConfig(level=logging.DEBUG)
@@ -95,4 +97,12 @@ def public_comment(request):
 
 
 def search(request):
-    return render(request, "search/search_index.html")
+    q = request.GET.get('q')
+    context = {}
+    if q:
+        # author = User.objects.filter(username=q)
+        newses = News.objects.filter(
+            Q(title__icontains=q) | Q(content__icontains=q))
+        context['newses'] = newses
+        print(context)
+    return render(request, "search/search_index.html", context=context)

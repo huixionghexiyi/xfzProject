@@ -31,7 +31,7 @@
                 <li class=""><a href="{% url 'news:index' %}">资讯</a></li>
                 <li><a href="{% url 'course:index' %}">创业课堂</a><i class="little-triangle"></i></li>
                 <li><a href="{% url 'payinfo:index' %}">付费资讯</a><i class="little-triangle"></i></li>
-                <li><a href="{% url 'news:search' %}">搜索</a> </li>
+                <li><a href="/search/">搜索</a> </li>
             </ul>
             <div class="auth-box">
                 <i class="icon-person iconfont"></i>
@@ -48,7 +48,7 @@
                 {% else %}
                 <a href="javascript:void(0);" class="signin">登录</a>&nbsp;/
                 <a href="javascript:void(0);" class="signup">注册</a>
-                {% endif %}
+                {% endif %}  
             </div>
         </div>
     </header>

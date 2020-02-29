@@ -284,6 +284,7 @@ $(function () {
 
 $(function () {
     //如果加载了这个对象template
+    
     if (template) {
         //这个方法加载，就是使用art template动态的插入数据.过滤器
         template.defaults.imports.timeSince = function (dateValue) {
@@ -305,7 +306,7 @@ $(function () {
                 return days + "天前";
             } else {
                 var year = date.getFullYear();
-                var month = date.getMonth()+1;//js中用0 表示第一个月，所以要+1 
+                var month = date.getMonth() + 1;//js中用0 表示第一个月，所以要+1 
                 var day = date.getDate();
                 var hour = date.getHours();
                 var minutes = date.getMinutes();
