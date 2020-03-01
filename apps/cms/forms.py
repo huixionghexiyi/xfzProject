@@ -17,8 +17,7 @@ class EditNewsCategoryForm(forms.Form, FormMixin):
 
 
 class WriteNewsForm(forms.ModelForm, FormMixin):
-    category_id = forms.IntegerField()
-    teacher_id = forms.IntegerField()
+    category = forms.IntegerField()
     # Meta 指定应用的模型
 
     class Meta:

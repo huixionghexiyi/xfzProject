@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, courses_views
+from . import views, courses_views, staff_views
 
 app_name = 'cms'
 
@@ -35,4 +35,14 @@ urlpatterns = [
 urlpatterns += [
     path("pub_courses/", courses_views.CourseListView.as_view(), name='pub_courses')
 
+]
+
+'''
+员工相关
+'''
+
+urlpatterns += [
+    path("staffs/", staff_views.staff_list, name="staff_list"),
+    path("add_staff/", staff_views.AddStaffView.as_view(), name="add_staff"),
+    path("removeStaff/",staff_views.removeStaff,name="remove_staff")
 ]

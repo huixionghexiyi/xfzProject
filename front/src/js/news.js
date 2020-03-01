@@ -88,9 +88,9 @@ News.prototype.listenSubmitEvent = function () {
         var pk = btn.attr('data-news-id');
         url = '';
         if (pk) {
-            url = '/cms/edit_news/';
+            url = '/cms/edit_news/'; //修改新闻
         } else {
-            url = '/cms/write_news/';
+            url = '/cms/write_news/'; //创建新闻
         }
         var title = $("#title-form").val();
         var category = $("#category-form").val();
