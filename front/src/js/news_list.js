@@ -23,7 +23,7 @@ NewsList.prototype.listenRemoveEvent = function () {
                     dataType: 'json',
                     success: function (result) {
                         if (result['code'] === 200) {
-                            window.location.reload();
+                            window.location.href="/cms/news_list/";
                         } else {
                             xfzalert.alertError(result['message']);
                         }
