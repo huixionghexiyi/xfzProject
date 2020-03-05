@@ -23,8 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'krqx83rn&=!%#s=c*61df+_lw5nehqdgw(&=qk*&d8)0*h8%^z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG Toolbar
+
 DEBUG_TOOLBAR_PANELS = [
     # django version
     'debug_toolbar.panels.versions.VersionsPanel',
@@ -71,11 +72,10 @@ INSTALLED_APPS = [
     'apps.payinfo',
     'apps.course',
     'rest_framework',  # django的RESTful API 这里用来序列化对象
-    'debug_toolbar',  # debug toolbar工具
+    'debug_toolbar',  # debug toolbar工具 ，需要放到staticfiles后面
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # 该中间件尽可能靠前
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,6 +84,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+if DEBUG:
+    # 如果是DEBUG 那么就填
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'xfzProject.urls'
 

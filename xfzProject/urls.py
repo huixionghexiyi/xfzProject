@@ -35,6 +35,14 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # 只有将静态文件添加到最后，即通过static()方法
 
+# if settings.DEBUG:
+#     try:
+#         import debug_toolbar
+#         urlpatterns = [
+#             path(r'__debug__/', include(debug_toolbar.urls))] + urlpatterns
+#     except ImportError:
+#         pass
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))
+    urlpatterns = [
+        path(r'__debug__/', include(debug_toolbar.urls))] + urlpatterns
