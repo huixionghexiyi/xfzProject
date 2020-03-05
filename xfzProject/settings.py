@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     'apps.payinfo',
     'apps.course',
     'rest_framework',  # django的RESTful API 这里用来序列化对象
-    'debug_toolbar',  # debug toolbar工具 ，需要放到staticfiles后面
+    # 'debug_toolbar',  # debug toolbar工具 ，需要放到staticfiles后面
 ]
 
 MIDDLEWARE = [
@@ -87,6 +87,7 @@ MIDDLEWARE = [
 if DEBUG:
     # 如果是DEBUG 那么就填
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+    INSTALLED_APPS.append('debug_toolbar')
 
 ROOT_URLCONF = 'xfzProject.urls'
 
