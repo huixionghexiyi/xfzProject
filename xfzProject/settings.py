@@ -47,8 +47,9 @@ DEBUG_TOOLBAR_PANELS = [
 ]
 
 # 允许通过一下ip访问
-ALLOWED_HOSTS = ['192.168.150.131', "0.0.0.0"]
+ALLOWED_HOSTS = ['192.168.150.131', "0.0.0.0","*"]
 
+# 指定调试的机器的ip,如果其他机器访问则不启用debug-toolbar
 INTERNAL_IPS = ["127,0,0,1", '0.0.0.0', "*"]
 
 
@@ -130,7 +131,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'xfz',
-        'HOST': '127.0.0.1',
+        'HOST': 'db',
         'PORT': '3306',
         'USER': 'root',
         'PASSWORD': '123456'

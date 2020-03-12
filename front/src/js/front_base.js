@@ -237,6 +237,7 @@ Auth.prototype.listenSmsCaptchaEvent = function () {
     var self = this;
     //ajax请求
     self.sendSmsBtn.click(function () {
+        console.log("fuck");
         //校验手机号是否正确
         var telephoneInput = $(".signup_group input[name='telephone']");
         console.log(telephoneInput.val());
@@ -284,7 +285,6 @@ $(function () {
 
 $(function () {
     //如果加载了这个对象template
-    
     if (template) {
         //这个方法加载，就是使用art template动态的插入数据.过滤器
         template.defaults.imports.timeSince = function (dateValue) {

@@ -70,7 +70,7 @@
                 $courseItemHeight: 280px; //设置每个li的高度
                 $thumbnailHeight: 156px; //设置图片的高度，用于计算文字的高度，li减图片
                 width: 278px;
-                height: $courseItemHeight;
+                // height: $courseItemHeight;
                 background: #fff;
                 margin-bottom: 20px;
 
@@ -115,7 +115,7 @@
                         position: absolute;
                         left: 20px;
                         right: 20px;
-                        bottom: 20px;
+                        // bottom: 20px;
                         //行级标签就用text-align让其放到右边
                         //如果是块级标签就需要浮动
                         text-align: right;

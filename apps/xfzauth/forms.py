@@ -4,6 +4,7 @@ from .models import User
 from django.core.cache import cache
 from utils import constants
 from utils.bmobsdk.bmob import Bmob
+from django.core.validators import RegexValidator
 
 
 class LoginForm(forms.Form, FormMixin):
@@ -17,7 +18,7 @@ class LoginForm(forms.Form, FormMixin):
 
 class RegisterForm(forms.Form, FormMixin):
     telephone = forms.CharField(
-        max_length=11, required=True, error_messages={"required": "电话不能为空"})
+        max_length=11, required=True, error_messages={"required": "电话不能为空"}, validators=[RegexValidator("1[345678]\d{9}", message='请输入正确格式的手机号码！')])
     username = forms.CharField(max_length=20, required=True, error_messages={
                                "required": "用户名不能为空"})
     password1 = forms.CharField(max_length=16, min_length=6, error_messages={
@@ -36,9 +37,9 @@ class RegisterForm(forms.Form, FormMixin):
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
         telephone = cleaned_data.get('telephone')
-        img_captcha = cleaned_data.get('img_captcha')  # 图片验证码
-        sms_captcha = cleaned_data.get('sms_captcha') # 输入的短信验证码
-        
+        img_captcha = cleaned_data.get('img_captcha', "")  # 图片验证码
+        sms_captcha = cleaned_data.get('sms_captcha')  # 输入的短信验证码
+
         cached_img_captcha = cache.get(img_captcha.lower())  # 缓存中的图片验证码
         # 验证smsCode是否正确
         if password1 != password2:
@@ -51,9 +52,9 @@ class RegisterForm(forms.Form, FormMixin):
         #     raise forms.ValidationError("短信验证吗不正确")
 
         b = Bmob(constants.APP_ID, constants.REST_KEY)
-        smsVerify = b.verifySMSCode(telephone,sms_captcha)
+        smsVerify = b.verifySMSCode(telephone, sms_captcha)
         code = smsVerify.code
-        code = 200 # 加验证，真验证还需要修改sms_captcha方法
+        code = 200  # 加验证，真验证还需要修改sms_captcha方法
         if code != 200:
             raise forms.ValidationError("短信验证码错误")
         # 电话是否被注册过

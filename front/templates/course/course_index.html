@@ -43,9 +43,15 @@
                     <div class="course_info">
                         <p class="title">{{course.title}}</p>
                         <p class="author">{{course.teacher.username}}/{{course.teacher.job_title}}</p>
+                        {% if course.price > 0  %}
                         <p class="price_group">
                             <span class="pay"> ￥{{course.price}}</span>
                         </p>
+                        {% else %}
+                        <p class="price_group">
+                            <span class="free"> 免费</span>
+                        </p>
+                        {% endif %}
                     </div>
                 </a>
             </li>
